@@ -1,0 +1,132 @@
+
+
+
+#checkout-cart .shopping-cart .form-cart .table td.tb-price,
+#checkout-cart .shopping-cart .form-cart .table td.tb-qty,
+#checkout-cart .shopping-cart .form-cart .table td.tb-total,
+#checkout-cart .shopping-cart .form-cart .table td.tb-image,
+#checkout-cart .shopping-cart .form-cart .table td.tb-product {
+    padding: 15px 0;
+}
+
+.vertical-menu-list li {
+    padding: 6px 0;
+}
+.vertical-menu-list li a {
+    font-size: 12px;
+}
+
+.submenu .menu-item a,
+.submenu > .menu-item a {
+    font-size: 12px;
+    padding: 2px 0;
+}
+.header-content .nav-left {
+    padding-top: 0;
+}
+
+.shopping-cart .order-summary {
+    padding: 0px;
+    height: 290px;
+    position: relative;
+}
+
+.shopping-cart .title-shopping-cart {
+    padding: 15px;
+}
+
+
+.shopping-cart .checkout-element-content .btn-checkout {
+    margin: 0;
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    transform: translateX(9%);
+}
+
+.accountoptions{
+    position: absolute;
+    top:12px;
+    right:15px;
+}
+.accountoptions a{
+    padding:2px;
+}
+.checkout .title-checkout {
+     margin-bottom: 0;
+    border: none;
+}
+.checkout-title {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 15px;
+}
+
+/* Search result Area style */
+
+.form-search {
+    position: relative;
+}
+.search-result {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    z-index: 11111; 
+}
+.search-result ul {
+    margin: 0;
+    padding: 0;
+}
+.search-result ul li {
+    display: block;
+    list-style: none;
+    text-align: left;
+    background: #f9f9f9;
+    margin-bottom: 2px;
+}
+
+.search-result ul li.load-more {
+    text-align: center;
+    padding: 15px 0;
+}
+.search-result ul li.load-more a {
+
+    display: inline-block;
+    border: 1px solid;
+    padding: 2px 8px;
+    border-radius: 20px;
+
+}
+.search-result ul li.product a {
+    padding: 5px;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+li.product a {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.product-image img {
+    width: 50px;
+    max-width: 50px;
+    max-height: 62px;
+}
+
+.product-details {
+    display: table-cell;
+    width: 88%;
+    vertical-align: top;
+}
+.product-title {
+    display: block;
+    color: gray;
+    direction: ltr;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.product-price {
+    color: #8E0617;
+}

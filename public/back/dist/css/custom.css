@@ -1,0 +1,49 @@
+
+/* Custom CSS developed By Fahim Felixtech Limited */
+
+
+div.index-img {
+    position: relative;
+    overflow: hidden;
+    width: 80px;
+    display:inline-block;
+   
+}
+div.index-img:hover a {
+    transform: scale(1,1);
+}
+div.index-img > img {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+}
+div.index-img > a {
+    transition: .5s;
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom:0px;
+    width:100%;
+    padding: 2px 0;
+    text-align: center;
+    color: #fff;
+    background: rgba(0,0,0,.6);
+    transform: scale(0,0);
+}
+
+.dt-buttons {
+    float: left !important;
+}
+
+.dataTables_filter, .paging_simple_numbers {
+    float: right !important;
+}
+
+.checkbox label, .radio label {
+    padding-left: 0;
+    padding-right: 20px;
+}
+.bootstrap-tagsinput {
+    width: 100%;
+}
