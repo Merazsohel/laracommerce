@@ -17,11 +17,10 @@ class CheckoutController extends Controller
 
     public function checkout()
     {
-//        session()->forget('address');
         if(count(Cart::content())>=1)
         {
             $addresses=Address::where('customer_id',Auth::guard('customer')->user()->id)->get();
-            return view('front.checkout.checkout',compact('addresses'));
+            return view('frontend.cart.checkout',compact('addresses'));
         }else
         {
             return redirect()->route('index')->with('carterror','Your cart is empty.');

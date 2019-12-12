@@ -5,8 +5,14 @@
 
 html, body {
   height: 100%;
+  overflow-x: hidden;
 }
-
+.btn-sm{
+  padding: .20rem .1rem;
+  font-size: 0.850rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+}
 body {
   background-color: #ffffff;
   line-height: 23px;

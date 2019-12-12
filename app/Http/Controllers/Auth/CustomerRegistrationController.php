@@ -16,7 +16,7 @@ class CustomerRegistrationController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('front.customer.register');
+        return view('frontend.customer.login');
     }
 
     protected function validator(array $data)
@@ -31,8 +31,7 @@ class CustomerRegistrationController extends Controller
 
     public function register(Request $request)
     {
-        $this->validator($request->all())->validate();
-        event(new Registered($user = $this->create($request->all())));
+        $this->create($request->all());
         return redirect()->route('customerlogin')->with('registersuccess','Registration Successful. Now You Can Login.');
     }
 

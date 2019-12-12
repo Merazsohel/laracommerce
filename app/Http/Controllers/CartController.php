@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-
+use Illuminate\Support\Facades\DB;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 
@@ -11,18 +10,30 @@ class CartController extends Controller
 {
     public function addtocart(Request $request)
     {
-        $data=array();
-        $product=Product::with('singleImage')->where('id',$request->number)->first();
-        if($request->has('attr'))
-        {
-          Cart::add($request->number,$product->title,1,$product->price,['supplier_price'=>$product->supplierprice,'image'=>$product->singleImage->image
-           ,'attr'=>implode(",",$request->attr)]);
-        }else
-        {
-            Cart::add($request->number,$product->title,1,$product->price,['supplier_price'=>$product->supplierprice,'image'=>$product->singleImage->image
-            ]);
-        }
-        return $data=['content'=>count(Cart::content()),'total'=>Cart::subtotal()];
+        $qty=$request->qty;
+
+        $product_id=$request->product_id;
+
+        $product_info= DB::table('products')
+            ->where('id',$product_id)
+            ->first();
+
+        $productImageInfo= DB::table('product_images')
+            ->select('image')
+            ->where('product_id',$product_id)
+            ->first();
+
+        $data['id']=$product_info->id;
+        $data['name']=$product_info->title;
+        $data['price']=$product_info->price;
+        $data['qty']=$qty;
+        $data['options']['image']=$productImageInfo->image;
+
+        cart::add($data);
+
+        return redirect('cart');
+
+
     }
 
     public function cartDetails()
@@ -32,26 +43,21 @@ class CartController extends Controller
         return view('frontend.cart.details',compact('cartContents'));
     }
 
-    public function destroy(Request $request)
+    public function deleteSingleCart($item_id)
     {
-        Cart::remove($request->id);
+        Cart::remove($item_id);
+        return back();
     }
 
-    public function add(Request $request)
+    public function updateCart(Request $request)
     {
-      Cart::update($request->row,$request->qty+1);
-        return Cart::get($request->row)->price;
+
+        $rowId = $request->rowId;
+        $qty= $request->qty;
+        Cart::update($rowId,$qty);
+        return back();
     }
 
-    public function remove(Request $request)
-    {
-       Cart::update($request->row,$request->qty-1);
-        return Cart::get($request->row)->price;
-    }
 
-    public function clearall(Request $request)
-    {
-        Cart::destroy();
-        return redirect()->back();
-    }
+
 }

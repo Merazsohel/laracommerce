@@ -108,7 +108,7 @@
                                                 <span class="price"> {{$content->qty}}</span>
                                             </td>
                                             <td class="tb-total">
-                                                <span class="price">৳ {{$content->price * $content->qty}} /-</span>
+                                                <span class="price">৳ {{Cart::subtotal()}} /-</span>
                                             </td>
                                         </tr>
                                     @endforeach

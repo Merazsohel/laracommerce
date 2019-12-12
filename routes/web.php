@@ -15,15 +15,14 @@ Route::prefix('/')->group(function () {
     Route::get('search',array('as'=>'search','uses'=>'Front\HomeController@search'));
     Route::get('search-product','Front\HomeController@searchResult');
 
-
     //Cart
 
     Route::get('cart','CartController@cartDetails')->name('cart');
-    Route::post('cart','CartController@addtocart')->name('addtocart');
-    Route::post('cart/remove','CartController@destroy')->name('cartdestory');
-    Route::post('cart/update/add','CartController@add')->name('cartadd');
-    Route::post('cart/update/remove','CartController@remove')->name('cartremove');
-    Route::post('cart/clear','CartController@clearall')->name('cartclear');
+    Route::post('add-to-cart','CartController@addtocart')->name('addtocart');
+    Route::get('cart/remove/{item_id}','CartController@deleteSingleCart')->name('cart.remove');
+
+    Route::post('update-cart','CartController@updateCart')->name('cart.update');
+
 
     //Checkout
 

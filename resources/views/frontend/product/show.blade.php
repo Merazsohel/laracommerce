@@ -87,10 +87,13 @@
                             <p>{{$product->keypoint}}</p>
 
                             <div class="single-add-to-cart">
-                                <form action="{{url('cart')}}" class="cart-quantity d-flex" method="post">
+                                <form action="{{url('add-to-cart')}}" class="cart-quantity d-flex" method="post">
+                                    @csrf
                                     <div class="quantity">
                                         <div class="cart-plus-minus">
-                                            <input type="number" class="input-text" name="quantity" value="1" title="Qty">
+                                            <input type="number" class="input-text" name="qty" value="1" title="Qty" min="1">
+                                            <input name="product_id" type="hidden" value="{{$product->id}}"/>
+
                                         </div>
                                     </div>
                                     <button class="add-to-cart" type="submit">Add To Cart</button>
@@ -218,13 +221,13 @@
                     </div>
                 </div>
                 <div class="row ">
-                    @foreach($similiarProducts as $sProduct)
+                    @foreach($similiarProducts as $similiarProduct)
                     <div class="col-md-4 col-lg-3 col-12">
                         <!-- single-product-area start -->
                         <div class="single-product-area mt-30">
                             <div class="product-thumb">
-                                <a href="{{route('productdetails',['title'=>$sProduct->title,'id'=>$sProduct->id])}}">
-                                    <img class="primary-image" src="{{asset('public/image/product-images/'.$sProduct->singleImage->image)}}" alt="">
+                                <a href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">
+                                    <img class="primary-image" src="{{asset('public/image/product-images/'.$similiarProduct->singleImage->image)}}" alt="">
                                 </a>
                                 <div class="label-product label_new">New</div>
                                 <div class="action-links">
@@ -237,10 +240,10 @@
                                 </ul>
                             </div>
                             <div class="product-caption">
-                                <h4 class="product-name"><a href="{{route('productdetails',['title'=>$sProduct->title,'id'=>$sProduct->id])}}">{{$sProduct->title}}</a></h4>
+                                <h4 class="product-name"><a href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">{{$similiarProduct->title}}</a></h4>
                                 <div class="price-box">
-                                    <span class="new-price">৳ {{$sProduct->price}}</span>
-                                    <span class="old-price">৳ {{$sProduct->price}}</span>
+                                    <span class="new-price">৳ {{$similiarProduct->price}}</span>
+                                    <span class="old-price">৳ {{$similiarProduct->price}}</span>
                                 </div>
                             </div>
                         </div>

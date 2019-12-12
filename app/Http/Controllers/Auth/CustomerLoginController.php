@@ -23,7 +23,7 @@ class CustomerLoginController extends Controller
     }
     public function showLoginForm()
     {
-        return view('front.customer.login');
+        return view('frontend.customer.login');
     }
 
 
