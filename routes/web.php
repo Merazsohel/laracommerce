@@ -4,11 +4,10 @@ Route::prefix('/')->group(function () {
 
     Route::get('','Front\HomeController@index')->name('index');
     Route::get('product/{title}/{id}','Front\ProductController@show')->name('productdetails');
-    Route::get('customer/login','Auth\CustomerLoginController@showLoginForm')->name('customerlogin');
-    Route::post('customer/login','Auth\CustomerLoginController@login')->name('loginsubmit');
-    Route::get('register','Auth\CustomerRegistrationController@showRegistrationForm')->name('customeregistration');
-    Route::post('register','Auth\CustomerRegistrationController@register')->name('submitregistration');
-    Route::post('logout','Auth\CustomerLoginController@logout')->name('customerlogout');
+    Route::post('customer-register','Front\HomeController@customerRegister');
+    Route::post('customer-login','Front\HomeController@customerLogin');
+    Route::get('customer-logout','Front\HomeController@customerLogout');
+    Route::get('shipping','CheckoutController@shipping')->name('shipping');
 
     //Search
 
@@ -20,7 +19,6 @@ Route::prefix('/')->group(function () {
     Route::get('cart','CartController@cartDetails')->name('cart');
     Route::post('add-to-cart','CartController@addtocart')->name('addtocart');
     Route::get('cart/remove/{item_id}','CartController@deleteSingleCart')->name('cart.remove');
-
     Route::post('update-cart','CartController@updateCart')->name('cart.update');
 
 

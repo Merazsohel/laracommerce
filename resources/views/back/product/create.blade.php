@@ -199,13 +199,6 @@
                             </textarea>
                         </div>
                     </div>
-                    <!--<div class="col-xs-12">-->
-                    <!--    <div class="form-group">-->
-                    <!--        <label for="">Product Specification</label>-->
-                    <!--        <textarea id="specification" name="specification" rows="10" cols="80">-->
-                    <!--        </textarea>-->
-                    <!--    </div>-->
-                    <!--</div>-->
                     <div class="col-sm-4 col-xs-3">
                         <label>Upload Product Image</label>
                         <div class="form-group">

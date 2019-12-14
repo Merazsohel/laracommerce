@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Validation\ValidationException;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -11,14 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomerLoginController extends Controller
 {
-//    use AuthenticatesUsers;
 
     use  ThrottlesLogins;
     protected $redirectTo='/';
 
     public function __construct()
     {
-       // $this->middleware('guest')->except('logout');
        $this->middleware('guest:customer')->except('logout');
     }
     public function showLoginForm()
@@ -31,9 +28,6 @@ class CustomerLoginController extends Controller
     {
         $this->validateLogin($request);
 
-        // If the class is using the ThrottlesLogins trait, we can automatically throttle
-        // the auth attempts for this application. We'll key this by the username and
-        // the IP address of the client making these requests into this application.
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
@@ -44,9 +38,6 @@ class CustomerLoginController extends Controller
             return $this->sendLoginResponse($request);
         }
 
-        // If the auth attempt was unsuccessful we will increment the number of attempts
-        // to auth and redirect the user back to the auth form. Of course, when this
-        // user surpasses their maximum number of attempts they will get locked out.
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);

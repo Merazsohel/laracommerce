@@ -94,7 +94,7 @@
                             @php $i=0; @endphp
                               @foreach($product->image as $image)
                                   <div class="index-img">
-                                    <img src="{{asset('image/product-images/'.$image->image)}}" alt="">
+                                    <img src="{{asset('public/image/product-images/'.$image->image)}}" alt="">
                                     <a href="#." data-id="{{$image->id}}" class="editImageButton" data-toggle="modal"  data-target="#myModal"><i class="fa fa-edit"></i> Edit</a>
                                   </div>
                                 @php $i++; @endphp    
@@ -122,7 +122,7 @@
                     @endforeach
                 </tbody>
               </table>
-                {{$products->links()}}
+
             </div>
             <!-- /.box-body -->
           </div>
@@ -178,7 +178,7 @@
                 },
                 success:function (res) {
                     console.log(res);
-                    $('#existinimage').html('<img src="/image/product-images/'+res.image+'" style="width: 100px;">');
+                    $('#existinimage').html('<img src="public/image/product-images/'+res.image+'" style="width: 100px;">');
                     $('#id').val(res.id);
                 },
                 error:function (res) {
@@ -188,20 +188,20 @@
         })
 
         $('#supplier').on('change',function () {
-            $("#supplierform").attr('action',  document.location.origin+'/admin/supplier/product/search/'+$(this).val()+'');
+            $("#supplierform").attr('action',  document.location.origin+'/ecommerce/admin/supplier/product/search/'+$(this).val()+'');
             this.form.submit();
         })
 
         $('#brand').on('change',function () {
-            $("#brandform").attr('action',  document.location.origin+'/admin/brand/product/search/'+$(this).val()+'');
+            $("#brandform").attr('action',  document.location.origin+'/ecommerce/admin/brand/product/search/'+$(this).val()+'');
             this.form.submit();
         })
         $('#category').on('change',function () {
-            $("#categoryform").attr('action',  document.location.origin+'/admin/category/product/search/'+$(this).val()+'');
+            $("#categoryform").attr('action',  document.location.origin+'/ecommerce/admin/category/product/search/'+$(this).val()+'');
             this.form.submit();
         })
         $('#childcategory').on('change',function () {
-            $("#childcategoryform").attr('action',  document.location.origin+'/admin/type/product/search/'+$(this).val()+'');
+            $("#childcategoryform").attr('action',  document.location.origin+'/ecommerce/admin/type/product/search/'+$(this).val()+'');
             this.form.submit();
         })
     </script>

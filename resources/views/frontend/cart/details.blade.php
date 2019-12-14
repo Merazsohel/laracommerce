@@ -101,7 +101,7 @@
                                     <ul>
                                         <li>Subtotal <span>৳ {{Cart::subtotal()}}</span></li>
                                         <li>Shipping <span>৳ 50 </span></li>
-                                        <li>Total <span>৳ {{Cart::total()+50}}</span></li>
+                                        <li>Total <span>৳ {{Cart::total()}}</span></li>
                                     </ul>
                                     <a href="{{url('checkout')}}" class="proceed-checkout-btn">Proceed to checkout</a>
                                 </div>

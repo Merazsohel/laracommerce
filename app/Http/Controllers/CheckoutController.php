@@ -2,29 +2,30 @@
 
 namespace App\Http\Controllers;
 
-use App\Address;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
 {
-
-    public function __construct()
-    {
-        $this->middleware('auth:customer');
-    }
-
     public function checkout()
     {
-        if(count(Cart::content())>=1)
-        {
-            $addresses=Address::where('customer_id',Auth::guard('customer')->user()->id)->get();
-            return view('frontend.cart.checkout',compact('addresses'));
-        }else
-        {
-            return redirect()->route('index')->with('carterror','Your cart is empty.');
+        $customer_id = Session::get('customer_id');
+        $customer_info = DB::table('customers')
+            ->where('id', $customer_id)
+            ->first();
+
+        if (Session::get('customer_id')) {
+            return view('frontend.cart.checkout', compact('customer_info'));
+        } else {
+            return view('frontend.customer.login');
         }
-        
+
+    }
+
+
+    public function shipping(){
+        return view('frontend.cart.shipping');
     }
 }

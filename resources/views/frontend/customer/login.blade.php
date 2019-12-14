@@ -35,11 +35,11 @@
                             <div class="login-form-container">
                                 <div class="login-register-form">
 
-                                    <form class="login" method="post" action="{{route('loginsubmit')}}">
+                                    <form class="login" method="post" action="{{url('customer-login')}}">
                                        @csrf
 
                                         <div class="login-input-box">
-                                            <input type="text" name="username" placeholder="User Name" required>
+                                            <input type="text" name="email_address" placeholder="User Name" required>
                                             <input type="password" name="password" placeholder="Password" required>
 
                                         </div>
@@ -63,22 +63,16 @@
                         <div id="lg2" class="tab-pane">
                             <div class="login-form-container">
                                 <div class="login-register-form">
-                                    <form  method="post" action="{{route('submitregistration')}}">
+                                    <form  method="post" action="{{url('customer-register')}}">
                                         @csrf
                                         <div class="login-input-box">
-                                            <input type="text"  name="fname" class="input-text" placeholder="First Name" required>
+                                            <input type="text"  name="customer_name" class="input-text" placeholder="Name" required>
 
-                                            <input type="text"  name="lname" class="input-text" placeholder="Last Name">
+                                            <input type="email" name="email_address" placeholder="Email"  class="input-text">
 
-                                            <select name="gender" class="form-control mb-10" required>
-                                                <option value="">Gender</option>
-                                                <option value="male">Male</option>
-                                                <option value="female">Female</option>
-                                            </select>
+                                            <input type="text" name="mobile_number" placeholder="Mobile Number"  class="input-text">
 
-                                            <input type="text"  name="username" class="input-text" placeholder="User Name" required>
-
-                                            <input type="email" name="email" placeholder="Email"  class="input-text">
+                                            <input type="text" name="address" placeholder="Address"  class="input-text">
 
                                             <input type="password" name="password" placeholder="********" class="input-text">
 
