@@ -61,13 +61,13 @@ Route::prefix('/')->group(function () {
 
 Route::prefix('admin')->group(function () {
 
-    /* Products Route */
+    //Admin Login Route
     Route::get('/', ['uses' => 'Back\AdminPanelController@index', 'as' => 'adminindex', 'role' => ['admin', 'editor']]);
-
     Route::get('account/login', 'Auth\LoginController@showLoginForm')->name('adminlogin');
     Route::post('account/login', 'Auth\LoginController@login')->name('login');
     Route::post('account/logout', 'Auth\LoginController@logout')->name('adminlogout');
 
+    //Product Route
 
     Route::get('back/products', ['uses' => 'Back\Product\ProductController@index', 'as' => 'productindex']);
     Route::get('products/create', ['uses' => 'Back\Product\ProductController@create', 'as' => 'productcreate']);
@@ -82,7 +82,6 @@ Route::prefix('admin')->group(function () {
     Route::get('products/daily-sales/',['uses'=>'Back\Product\ProductController@todaysSale','as'=>'todaysSale']);
     Route::get('products/category-wise-sales/',['uses'=>'Back\Product\ProductController@categoryWiseSale','as'=>'categorywisesale']);
     Route::get('products/supplier-wise-sales/',['uses'=>'Back\Product\ProductController@supplierWiseSale','as'=>'supplierwise']);
-
     Route::delete('product/delete/{id}',['uses'=>'Back\Product\ProductController@destroy','as'=>'product.delete']);
 
     /* Category Route */
@@ -150,7 +149,6 @@ Route::prefix('admin')->group(function () {
     Route::delete('orders/destroy/{id}', ['uses' => 'Back\Order\OrderController@destroy', 'as' => 'orderdelete']);
     Route::post('orders/getdelivery', ['uses' => 'Back\Order\OrderController@getDeliveryCompany', 'as' => 'getDeliveryCompany']);
     Route::post('orders/deliveryConfirm', ['uses' => 'Back\Order\OrderController@deliveryConfirm', 'as' => 'deliveryConfirm']);
-
     Route::delete('remove/product/{id}', ['uses' => 'Back\Order\OrderController@orderProductDelete', 'as' => 'orderproductdelete']);
 
     /* Advertisement Route */

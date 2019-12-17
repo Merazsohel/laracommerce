@@ -12,26 +12,25 @@ class ProductImageController extends Controller
     {
         $this->middleware('auth:admin');
     }
+
     public function editProductImage(Request $request)
     {
-        return $productImage=ProductImage::with('product')->where('id',$request->id)->first();
+        return $productImage = ProductImage::with('product')->where('id', $request->id)->first();
     }
 
     public function update(Request $request)
     {
-        $existingImage=ProductImage::find($request->id);
-        if($request->hasFile('image'))
-        {
-            $file=$request->image;
-            $extention=$file->getClientOriginalExtension();
-            $filename=rand(111111,999999).".".$extention;
-            $file->move('image/product-images/',$filename);
-            if(file_exists('image/product-images/'.$existingImage->image))
-            {
-                unlink('image/product-images/'.$existingImage->image);
+        $existingImage = ProductImage::find($request->id);
+        if ($request->hasFile('image')) {
+            $file = $request->image;
+            $extention = $file->getClientOriginalExtension();
+            $filename = rand(111111, 999999) . "." . $extention;
+            $file->move('public/image/product-images/', $filename);
+            if (file_exists('public/image/product-images/' . $existingImage->image)) {
+                unlink('public/image/product-images/' . $existingImage->image);
             }
         }
-        ProductImage::where('id',$request->id)->update(['image'=>$filename]);
-        return redirect()->back()->with('success','Data Updated.');
+        ProductImage::where('id', $request->id)->update(['image' => $filename]);
+        return redirect()->back()->with('success', 'Data Updated.');
     }
 }

@@ -3,19 +3,16 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
-use App\Address;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
 {
 
-    
+
 
     public function checkout()
     {
-       $customer_id = Session::get('customer_id');
+        $customer_id = Session::get('customer_id');
         $customer_info = DB::table('customers')
             ->where('id', $customer_id)
             ->first();

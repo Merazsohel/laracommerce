@@ -52,10 +52,9 @@
                             <div class="col-sm-4 invoice-col">
                             To
                             <address>
-                                <strong>Name : {{$order->address->fname}} {{$order->address->lname}}</strong><br>
-                                <strong>{{$order->address->address}}</strong><br>
-                                Phone: {{$order->address->phone}}<br>
-                                City: {{$order->address->city}}<br>
+                                <strong>Name : </strong>{{$order->customer->customer_name}}<br>
+                                <strong>Address: </strong>{{$order->address}}<br>
+                                <strong> Phone: </strong>{{$order->customer->mobile_number}}<br>
                             </address>
                             </div>
                             <!-- /.col -->
@@ -85,8 +84,8 @@
                                         <tr>
                                             <td>{{$product->title}}</td>
                                             <td>{{$product->pivot->qty}}</td>
-                                            <td>{{$product->price}}</td>
-                                            <td>{{$product->price * $product->pivot->qty}}</td>
+                                            <td>৳ {{$product->price}}</td>
+                                            <td>৳ {{$product->price * $product->pivot->qty}}</td>
                                             <td>
                                                 <form id="delete-form{{$i}}" action="{{route('orderproductdelete',$product->pivot->id)}}" method="POST" style="display: inline-block">
                                                     {{ method_field('DELETE') }}
@@ -117,17 +116,13 @@
                                     <th style="width:50%">Subtotal:</th>
                                     <td>৳  {{$order->total}} /-</td>
                                 </tr>
-                                {{--<tr>--}}
-                                    {{--<th>Tax (9.3%)</th>--}}
-                                    {{--<td>$10.34</td>--}}
-                                {{--</tr>--}}
                                 <tr>
                                     <th>Shipping Charge:</th>
-                                    <td>৳ 60 /-</td>
+                                    <td>৳ 60 </td>
                                 </tr>
                                 <tr>
                                     <th>Grand Total:</th>
-                                    <td>৳ {{$order->total+60}} /-</td>
+                                    <td>৳ {{$order->total+60}} </td>
                                 </tr>
                                 </tbody></table>
                             </div>

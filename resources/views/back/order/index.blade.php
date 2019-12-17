@@ -74,7 +74,8 @@
                           <tr>
                               <th>Order ID</th>
                               <th>Date</th>
-                              <th>Phone Number</th>
+                              <th>Name</th>
+                              <th>Mobile</th>
                               <th>Address</th>
                               <th>Total</th>
                               <th>Status</th>
@@ -87,8 +88,9 @@
                             <tr>
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->created_at}}</td>
-                                <td>{{$order->address->phone}}</td>
-                                <td>{{$order->address->address}}</td>
+                                <td>{{$order->customer->customer_name}}</td>
+                                <td>{{$order->customer->mobile_number}}</td>
+                                <td>{{$order->address}}</td>
                                 <td>{{$order->total}} /-</td>
                                 <td>
                                     @if($order->cycle=='new')

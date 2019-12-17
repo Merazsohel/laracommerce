@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Add New product
+            Edit Product
             <small>Store product details</small>
         </h1>
     </section>
@@ -228,7 +228,7 @@
                             </div>
                             <div class="col-sm-3 col-xs-3">
                                 @foreach($product->image as $image)
-                                    <img src="{{asset('image/product-images/'.$image->image)}}" style="width: 80px" alt="">
+                                    <img src="{{asset('public/image/product-images/'.$image->image)}}" style="width: 80px" alt="">
                                 @endforeach
                                 <label>Upload Product Image</label>
                                 <div class="form-group">

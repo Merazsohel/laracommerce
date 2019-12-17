@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class HomeController extends Controller
 {
@@ -84,8 +85,9 @@ class HomeController extends Controller
         Session::put('customer_name', $request->customer_name);
         return redirect('checkout');
     }
-    
-    public function customerLoginView(){
+
+    public function customerLoginView()
+    {
         return view('frontend.customer.login');
     }
 
@@ -103,8 +105,14 @@ class HomeController extends Controller
         if ($result) {
             Session::put('customer_id', $result->id);
             Session::put('customer_name', $result->customer_name);
-            Session::put('address',$result->address);
-            return redirect('checkout');
+            Session::put('address', $result->address);
+
+            if (Cart::content()->isEmpty()) {
+                return redirect('/');
+            } else {
+                return redirect('checkout');
+            }
+
         } else {
 
             Session::put('message', 'Your User Id or Password Invalid!');

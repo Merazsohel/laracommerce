@@ -34,7 +34,7 @@
                                             <table class="table">
                                                 <thead>
                                                 <tr>
-                                                    <th>Order</th>
+                                                    <th>Product</th>
                                                     <th>Date</th>
                                                     <th>Status</th>
                                                     <th>Total</th>
@@ -46,7 +46,7 @@
 
                                                     <tr>
                                                         <td>{{$order->product_id}}</td>
-                                                        <td>{{$order->created_at}}</td>
+                                                        <td>{{date('F d, Y', strtotime($order->created_at))}}</td>
                                                         <td>{{$order->cycle}}</td>
                                                         <td>৳ {{$order->total}}</td>
                                                     </tr>

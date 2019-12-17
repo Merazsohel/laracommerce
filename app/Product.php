@@ -10,6 +10,7 @@ class Product extends Model
 
     protected $fillable=['title','category_id','subcategory_id','child_category','supplier_id','brand_id','price','description','keypoint','supplierprice','pcode','created_by'];
 
+
     public function singleImage()
     {
         return $this->hasOne(ProductImage::class);

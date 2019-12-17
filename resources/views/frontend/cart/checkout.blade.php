@@ -32,30 +32,33 @@
                                     <div class="col-lg-12">
                                         <p class="single-form-row">
                                             <label>Name <span class="required">*</span></label>
-                                            <input type="text" name="name" value="{{$customer_info->customer_name}}">
+                                            <input type="text" name="name" value="{{$customer_info->customer_name}}" readonly>
                                         </p>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <p class="single-form-row">
                                             <label>Address <span class="required">*</span></label>
-                                            <input type="text" name="address" value="{{$customer_info->address}}">
+                                            <input type="text" name="address" value="{{$customer_info->address}}" readonly>
                                         </p>
                                     </div>
 
                                     <div class="col-lg-12">
                                         <p class="single-form-row">
                                             <label>Phone <span class="required">*</span></label>
-                                            <input type="text" name="mobile_number" value="{{$customer_info->mobile_number}}">
+                                            <input type="text" name="mobile_number" value="{{$customer_info->mobile_number}}" readonly>
                                         </p>
                                     </div>
                                     <div class="col-lg-12">
                                         <p class="single-form-row">
                                             <label>Email <span class="required">*</span></label>
-                                            <input type="email" name="email" value="{{$customer_info->email_address}}">
+                                            <input type="email" name="email" value="{{$customer_info->email_address}}" readonly>
                                         </p>
                                     </div>
-
+                                    <div class="col-lg-12">
+                                    <span style="color: red">**Note: If you want to update your billing info please click <a
+                                                class="btn btn-info" href="{{url('account')}}"> here</a></span>
+                                    </div>
 
                                 </div>
 
