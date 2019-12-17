@@ -13,7 +13,7 @@
             <div class="box-header with-border">
                 <form role="form" method="post" action="{{route('productupdate',$product->id)}}" enctype="multipart/form-data">
                     {{csrf_field()}}
-                    <input name="_method" type="hidden" value="PUT">
+
                     <div class="box-body">
 
                         <div class="row">

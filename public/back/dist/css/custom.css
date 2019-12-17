@@ -1,7 +1,3 @@
-
-/* Custom CSS developed By Fahim Felixtech Limited */
-
-
 div.index-img {
     position: relative;
     overflow: hidden;
@@ -18,19 +14,7 @@ div.index-img > img {
     border: 2px solid #ddd;
     border-radius: 4px;
 }
-div.index-img > a {
-    transition: .5s;
-    display: block;
-    position: absolute;
-    left: 0;
-    bottom:0px;
-    width:100%;
-    padding: 2px 0;
-    text-align: center;
-    color: #fff;
-    background: rgba(0,0,0,.6);
-    transform: scale(0,0);
-}
+
 
 .dt-buttons {
     float: left !important;

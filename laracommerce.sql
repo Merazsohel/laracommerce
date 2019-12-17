@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 17, 2019 at 09:17 AM
--- Server version: 5.7.28-0ubuntu0.18.04.4
--- PHP Version: 7.2.24-0ubuntu0.18.04.1
+-- Host: 127.0.0.1
+-- Generation Time: Dec 17, 2019 at 06:15 PM
+-- Server version: 10.4.6-MariaDB
+-- PHP Version: 7.2.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -58,7 +60,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'admin', '', 'admin@gmail.com', '$2y$12$le6cXCBIDMEAH3asKZtLKOeuLnBxMSHVK15Z8agn5znl7SVf1KBFi', 'KLxVBlvJsVCioSsslVtpjnciKYDoC9MWtybE9NNuHf8W086UooAZAxearta8', NULL, '2019-12-10 08:00:00');
+(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'KLxVBlvJsVCioSsslVtpjnciKYDoC9MWtybE9NNuHf8W086UooAZAxearta8', NULL, '2019-12-10 08:00:00'),
+(5, 'sub', 'admin', 'subadmin@gmail.com', '$2y$10$z3MRApC3EoMn/DPSOD3lFOe9BtD7lHER59Uhf0JLzv6PpxQgLRedO', NULL, '2019-12-14 13:41:52', '2019-12-14 13:41:52');
 
 -- --------------------------------------------------------
 
@@ -77,7 +80,8 @@ CREATE TABLE `admin_role` (
 --
 
 INSERT INTO `admin_role` (`id`, `admin_id`, `role_id`) VALUES
-(3, 4, 1);
+(3, 4, 1),
+(4, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -399,8 +403,8 @@ CREATE TABLE `products` (
   `child_category` int(10) UNSIGNED DEFAULT NULL,
   `supplier_id` int(10) UNSIGNED DEFAULT NULL,
   `brand_id` int(10) UNSIGNED DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
-  `keypoint` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `keypoint` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `supplierprice` double(8,2) NOT NULL,
   `price` double(8,2) NOT NULL,
   `pcode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -412,59 +416,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `title`, `category_id`, `subcategory_id`, `child_category`, `supplier_id`, `brand_id`, `description`, `keypoint`, `supplierprice`, `price`, `pcode`, `created_by`) VALUES
-(4, 'Product One', NULL, NULL, NULL, 2, NULL, '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>', 500.00, 550.00, 'p3645', 'Admin'),
-(6, 'Product Two', 5, NULL, 1, 1, 1, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 30000.00, 35000.00, 'p3645', 'Admin'),
-(7, 'Product Three', NULL, NULL, NULL, 1, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 100000.00, 120000.00, 'p3645', 'Admin'),
-(12, 'Product Four', 3, NULL, 1, 2, 2, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.', 5000.00, 5505.00, 'p3645', 'Admin'),
-(30, 'Product Five', 13, 11, 6, 4, 9, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 83.00, 90.00, 'MP', 'Admin'),
-(31, 'Product Six', 13, 11, 6, 4, 9, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 92.00, 100.00, 'STB', 'Admin'),
-(32, 'Product Seven', 13, 11, 7, 4, 9, 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n\n', 125.00, 135.00, 'MD1', 'Admin'),
-(33, 'Product Eight', 13, 11, 7, 4, 9, NULL, '<ul>\r\n	<li>Colgate herbal</li>\r\n	<li>Anti tooth decay toothpaste</li>\r\n	<li>Stronger and healthier teeth</li>\r\n</ul>', 111.00, 120.00, 'CH', 'Admin'),
-(34, 'Product Nine', 13, 11, 7, 4, 9, NULL, '<ul>\r\n	<li>Foaming Toothpaste Cleans Hard-to-Reach Areas</li>\r\n	<li>30% More Foam as You Brush*</li>\r\n	<li>Long Lasting Fresh Breath</li>\r\n	<li>Removes Surface Stains to Whiten Teeth</li>\r\n	<li>*versus leading fluoride toothpaste</li>\r\n	<li>Sugar Free, Gluten Free</li>\r\n</ul>', 111.00, 120.00, 'CG', 'Admin'),
-(35, 'Product Ten', 13, 11, 7, 4, 9, NULL, '<ul>\r\n	<li>Fights cavities.</li>\r\n	<li>Gently removes plaque and stains to whiten teeth with proper brushing.</li>\r\n	<li>Contains enamel-strengthening fluoride for effective cavity protection.</li>\r\n</ul>', 111.00, 120.00, 'PG', 'Admin'),
-(36, 'Product Eleven', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>17% solution and neutral pH cleanses root canals rapidly</li>\r\n	<li>Helpful in enlarging of canals</li>\r\n	<li>Opens calcified canals</li>\r\n	<li>Water-based, easily reach narrow apical area and can be easily removed</li>\r\n</ul>', 740.00, 800.00, 'DS1', 'Admin'),
-(37, 'Product Twelve', 13, 11, 8, 4, 9, '<ul>\r\n	<li>Chemical root canal dilatation.</li>\r\n	<li>Location of canal entrances.</li>\r\n	<li>Citric acid is a mild, slightly antibacterial, biocompatible chelating agent that forms a relatively stable chelate complex with the calcium ions in the dentine (action similar to EDTA preparations). This demineralizes and softens hard dental substance and removes the smear layer on the canal wall, thus opening the dentine tubuli and even widening them.</li>\r\n	<li>Residual citric acid must be thoroughly flushed out to prevent continuing demineralization along the length of the tubuli. Opening up the dentine tubuli facilitates adaptation of the root canal sealer, generally improving the sealing of the root canal filling. This effect is further enhanced by activating the solution with ultrasound.</li>\r\n	<li>Calcium hydroxide residues can also be reliably removed (for instance from a medical inlay).</li>\r\n	<li>Allergic reactions to citric acid.</li>\r\n	<li>Wide-open apical foramen.</li>\r\n</ul>', '<ul>\r\n	<li><em>Mild chelating agent used as a root canal irrigant/cleaner and conditioner that facilitates the removal of smear layer and dissolves calcium hydroxide.</em></li>\r\n	<li>Low-viscosity&nbsp;<strong><em>40% solution of citric acid</em></strong>&nbsp;in purified water</li>\r\n</ul>', 648.00, 700.00, 'CA', 'Admin'),
-(39, 'Product Thirteen', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>The FORMOCRESOL is a Dental Pulp Mummification Material</li>\r\n	<li>Its formulation attends the concepts adopted by the current researches being, therefore, more diluted than the standard composition of Buckley, but it has the same or superior effectiveness, and a larger biological compatibility.</li>\r\n	<li>Its function is to fasten the alive pulps, maintaining them inert and facilitating the conservation in deciduous tooth until a close time of the physiologic fall (pulpotomy).</li>\r\n	<li>It has a potent antibacterial action by its components action, which justifies its use in long curative in endodontics treatment.</li>\r\n	<li>Its function and fix the living pulp, keeping them inert and enabling the conservation of deciduous tooth until a nearby epoch of physiological fall (pulpotomy).&nbsp;</li>\r\n	<li>Antiseptic</li>\r\n	<li>Mumificante The pulp tissue</li>\r\n</ul>', 463.00, 500.00, 'FM01', 'Admin'),
-(40, 'Product Fourteen', 13, 11, 8, 4, 9, '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>', '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla.</p>', 555.00, 600.00, 'CP', 'Admin'),
-(41, 'Product Fifteen', 8, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>It treats periapical infections.&nbsp;</li>\r\n	<li>The oily composition remains active for a long time, helps</li>\r\n</ul>', 462.00, 500.00, 'CP20', 'Admin'),
-(42, 'Product Sixteen', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Low maintenance</li>\r\n	<li>Water resistance</li>\r\n	<li>Comfort underfoot</li>\r\n	<li>Stain resistance</li>\r\n</ul>', 3330.00, 3600.00, 'VS', 'Admin'),
-(43, 'Product Seventeen', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>The product is sufficiently viscous and allows easy application and control over the place to be protected</li>\r\n	<li>Excelent adhesion on the gingiva</li>\r\n	<li>High adhesion isolation</li>\r\n	<li>Easily removed</li>\r\n	<li>No gingival tissue irritation</li>\r\n	<li>Blue shade</li>\r\n</ul>', 832.00, 900.00, 'i-block', 'Admin'),
-(44, 'Product Eighteen', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>For home bleaching of vital teeth</li>\r\n	<li>For home bleaching of non-vital teeth</li>\r\n	<li>For home bleaching of discoloured teeth</li>\r\n	<li>Simple to use</li>\r\n	<li>Minimally invasive treatment</li>\r\n	<li>Ideal consistency</li>\r\n	<li>With fluoride</li>\r\n</ul>', 462.00, 500.00, 'Taste  Apple', 'Admin'),
-(45, 'Product Nineteen', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Simple to use</li>\r\n	<li>Minimally invasive treatment</li>\r\n	<li>Ideal consistency</li>\r\n	<li>With fluoride</li>\r\n</ul>', 370.00, 400.00, 'Taste Orange', 'Admin'),
-(46, 'Product Twenty', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Frenna-AC is a buffered 25% Aluminum Chloride Solution.</li>\r\n	<li>It is epinephrine-free to prevent cardiac reactions.</li>\r\n	<li>It stops minor gingival bleeding very effectively.</li>\r\n	<li>It is recommended to arrest bleeding during crown preparations, before impression taking, for minor surgery, curettage, gingivectomies and deep scaling.</li>\r\n	<li>It is easily absorbed by retraction cords</li>\r\n</ul>', 600.00, 650.00, 'Hemostatic Solution', 'Admin'),
-(47, 'Product Twenty One', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Cord is made of 100% cotton</li>\r\n	<li>Knitted into thousands of tiny loops forming long interlocking chains</li>\r\n	<li>The unique knitted design exerts a gentle continuous outward force following placement as knitted loops seek to open</li>\r\n	<li>Easy to control and place</li>\r\n	<li>Will not tangle in burs or packers</li>\r\n</ul>', 740.00, 800.00, 'Knitted Retraction Cord', 'Admin'),
-(48, 'ProductTwenty Two', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Simple to use</li>\r\n	<li>Minimally invasive treatment</li>\r\n	<li>Ideal consistency</li>\r\n	<li>Low fluoride contents</li>\r\n</ul>', 324.00, 350.00, 'Fluoride Gel', 'Admin'),
-(49, 'Product Twenty Three', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Hygienic dispensing</li>\r\n	<li>Bends into any angle for the placement of small controlled amounts of material in limited access areas</li>\r\n	<li>Multiple applicator colors are available to identify different materials during a procedure</li>\r\n	<li>Three precise head sizes, Regular (2.5 mm), Fine (2.00 mm) and Ultrafine (1.5 mm</li>\r\n</ul>', 370.00, 400.00, 'Disposable Micro Applicators', 'Admin'),
-(50, 'Product 24', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Simple to use</li>\r\n	<li>Minimally invasive treatment</li>\r\n	<li>Ideal consistency</li>\r\n	<li>With fluorid</li>\r\n</ul>', 462.00, 500.00, 'Cotton Rolls', 'Admin'),
-(51, 'Product 25', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Simple to use</li>\r\n	<li>Minimally invasive treatment</li>\r\n	<li>Ideal consistency</li>\r\n	<li>With fluoride</li>\r\n</ul>', 462.00, 500.00, 'Cotton Rolls', 'Admin'),
-(52, 'Product 26', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>For lubrication and cleaning of turbines and handpieces.</li>\r\n</ul>', 1156.00, 1250.00, 'Handpiece Lubricant Spray', 'Admin'),
-(53, 'Product 27', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Used for stain removal and polishing</li>\r\n	<li>Prepares surface for sealant and orthodontic procedures</li>\r\n	<li>Single use</li>\r\n	<li>For professional dental application only</li>\r\n</ul>', 370.00, 400.00, 'Prophy Brushes', 'Admin'),
-(54, 'Product 28', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Flexible to reach into occlusal fissures and grooves to remove debris without injury</li>\r\n	<li>Excellent for polishing composite restorations</li>\r\n	<li>Latex free</li>\r\n</ul>', 462.00, 500.00, 'Prophy Brushes', 'Admin'),
-(55, 'Product 29', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Flexible to reach into occlusal fissures and grooves to remove debris without injury</li>\r\n	<li>Excellent for polishing composite restorations</li>\r\n	<li>Latex free</li>\r\n</ul>', 462.00, 500.00, 'Prophy Brushes', 'Admin'),
-(57, 'Product 30', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Simple to use</li>\r\n	<li>Fresh taste</li>\r\n	<li>With or without fluoride</li>\r\n</ul>', 370.00, 400.00, 'Prophy faste', 'Admin'),
-(58, 'Product 31', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Thixotropic</li>\r\n	<li>Optimum level of viscosity</li>\r\n	<li>37% phosphoric acid</li>\r\n</ul>', 878.00, 950.00, 'Phosphoric Acid', 'Admin'),
-(59, 'Product 32', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Thixotropic.</li>\r\n	<li>Optimum level of viscosity.</li>\r\n	<li>37% phosphoric acid.</li>\r\n</ul>', 555.00, 600.00, 'Phosphoric Acid', 'Admin'),
-(60, 'Product 33', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>To clean debris, plaque, calculus, stains and other accretions from the teeth</li>\r\n	<li>For the teeth surface preparation (cleaning and polishing) prior to restorations and fluoride treatment</li>\r\n	<li>For recontouring, finishing and polishing the surface after restoration to restore normal contours, smooth margins and to create a high luster shine, the overal appearance and longevity of the restoration itself</li>\r\n	<li>Thixotropic</li>\r\n	<li>Optimum level of viscosity</li>\r\n	<li>37% phosphoric acid</li>\r\n</ul>', 277.00, 300.00, 'Phosphoric Acid', 'Admin'),
-(61, 'Product 34', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Quick curing</li>\r\n	<li>High adhesion</li>\r\n	<li>High strenght and hardness</li>\r\n	<li>Easily packable consistency</li>\r\n	<li>Ideal for temporary fillings of short and extended periods</li>\r\n	<li>All temporary fillings</li>\r\n</ul>', 694.00, 750.00, 'Filling Material', 'Admin'),
-(62, 'Product 35', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>High adhesion</li>\r\n	<li>Non sticky</li>\r\n	<li>Radiopaque</li>\r\n	<li>High strength and hardness</li>\r\n	<li>Easily packable</li>\r\n	<li>Different hardness after setting</li>\r\n	<li>Eugenol free</li>\r\n</ul>', 462.00, 500.00, 'Temporary Filling Material', 'Admin'),
-(63, 'Product 36', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>For disinfection of root canal</li>\r\n	<li>To irrigate canal after filling with appropriate chelating agent</li>\r\n	<li>Irrigates root canal</li>\r\n	<li>Helps debride root canal</li>\r\n	<li>Disinfects root canal during instrumentation</li>\r\n</ul>', 694.00, 750.00, 'Sodium Hypochlorite', 'Admin'),
-(64, 'Product 37', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Irrigates root canal.</li>\r\n	<li>Helps debride root canal.</li>\r\n	<li>Disinfects root canal during instrumentation</li>\r\n</ul>', 600.00, 650.00, 'Sodium Hypochlorite', 'Admin'),
-(65, 'Product 38', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>17% solution and neutral pH cleanses root canals rapidly</li>\r\n	<li>Helpful in enlarging of canals</li>\r\n	<li>Opens calcified canals</li>\r\n</ul>', 1850.00, 2000.00, 'I-edta', 'Admin'),
-(66, 'Product 39', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Antibacterial effect</li>\r\n	<li>Helps to find the root canal entrys</li>\r\n	<li>Reduces file breakage during mechanical preparation</li>\r\n	<li>EDTA helps in chelating the calcium salts</li>\r\n	<li>Gel helps lubricate endodontic instrument and makes penetration easier</li>\r\n	<li>Carbamide peroxide in EDTA promotes internal bleaching on irrigation with hypochlorite solution</li>\r\n	<li>&nbsp;</li>\r\n</ul>', 694.00, 750.00, 'I-edta-2', 'Admin'),
-(67, 'Product 40', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Radiopaque</li>\r\n	<li>Easy to insert in the canal</li>\r\n	<li>Antiseptic and anti-inflammatory activity lasts for several hours after being placed in the canal</li>\r\n</ul>', 1388.00, 1500.00, 'I-endo- 3', 'Admin'),
-(68, 'Product 41', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Time-saving direct application and&nbsp;faster action.</li>\r\n	<li>Increased antimicrobial effect.</li>\r\n	<li>Radiopaque integrated.</li>\r\n	<li>High pH value good for use.</li>\r\n	<li>Excellent antibacterial and bacteriostatic properties.</li>\r\n	<li>Ensures complete coating of canal walls.</li>\r\n	<li>Prolonged release of calcium hydroxide helps create secondary dentine.</li>\r\n	<li>Excellent bio-compatibility with no toxic effects on cells.</li>\r\n	<li>Non hardening paste with silicon oil base.</li>\r\n	<li>Stimulates hard tissue formation.</li>\r\n	<li>Stimulates apexification and apexogenesis.</li>\r\n	<li>Ideal for infected root canals and vital pulpotomies in deciduous teeth.</li>\r\n	<li>Can be used in conjunction with gutta percha points and regular root canal sealants.</li>\r\n</ul>', 2035.00, 2200.00, 'I-cal Plus', 'Admin'),
-(69, 'Product 42', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Time-saving direct application</li>\r\n	<li>Increased antimicrobial effect</li>\r\n	<li>Radiopaque</li>\r\n	<li>High pH value</li>\r\n	<li>Excellent antibacterial and bacteriostatic properties</li>\r\n	<li>Ensures complete coating of canal walls</li>\r\n	<li>Prolonged release of calcium hydroxide helps create secondary dentine</li>\r\n	<li>Excellent bio-compatibility with no toxic effects on cells</li>\r\n	<li>Non hardening paste with silicon oil base</li>\r\n	<li>Stimulates hard tissue formation</li>\r\n	<li>Stimulates apexification and apexogenesis</li>\r\n	<li>Ideal for infected root canals and vital pulpotomies in deciduous teeth</li>\r\n	<li>Can be used in conjunction with gutta percha points and regular root canal sealant</li>\r\n</ul>', 555.00, 600.00, 'I-cal Plus-2', 'Admin'),
-(70, 'Product 43', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Time-saving direct application.</li>\r\n	<li>Easy removal, as the material does not set when in place.</li>\r\n	<li>Radiopaque.</li>\r\n	<li>High pH value.</li>\r\n	<li>Water based element.</li>\r\n</ul>', 416.00, 450.00, 'I-cal', 'Admin'),
-(71, 'Product 44', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>High strength</li>\r\n	<li>Quick setting</li>\r\n	<li>Resin modified</li>\r\n</ul>', 1388.00, 1500.00, 'Eugenol Liquid', 'Admin'),
-(72, 'Product 45', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Bases and linings under amalgams.</li>\r\n	<li>Bases and linings under glass ionomers.</li>\r\n	<li>Temporary fillings.</li>\r\n	<li>Temporary fixing crowns and bridges.</li>\r\n	<li>High strength.</li>\r\n	<li>Faster setting.</li>\r\n	<li>Resin modified.</li>\r\n</ul>', 600.00, 650.00, 'Eugenol Cement', 'Admin'),
-(73, 'Product 46', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>High strength</li>\r\n	<li>Quick setting</li>\r\n	<li>Resin modified</li>\r\n</ul>', 508.00, 550.00, 'Oxide Powder', 'Admin'),
-(74, 'Product 47', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>High adhesion (chemically bonds to the tooth structure)</li>\r\n	<li>Fluoride release</li>\r\n	<li>Radiopaque</li>\r\n</ul>', 740.00, 800.00, 'Polycarboxylate Cement', 'Admin'),
-(75, 'Product 48', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Linings under composites.</li>\r\n	<li>Linings under amalgams.</li>\r\n	<li>Temporary fillings.</li>\r\n	<li>Cementation of crowns and bridges.</li>\r\n	<li>Cementation of inlays and onlays.</li>\r\n	<li>Cementation of orthodontic brackets and bands.</li>\r\n	<li>High adhesion to dentin, enamel and alloys.</li>\r\n	<li>Quick setting.</li>\r\n</ul>', 600.00, 650.00, 'Phosphate Cement', 'Admin'),
-(76, 'Product 49', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Removes smear layer and debris for improved bonding.</li>\r\n	<li>10 second application.</li>\r\n	<li>Longevity of the restoration.</li>\r\n	<li>Leaves smear plugs in the tubules (less risk sensitivity after operative).</li>\r\n</ul>', 555.00, 600.00, 'I-sol', 'Admin'),
-(78, 'Product 50', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Quick setting</li>\r\n	<li>High adhesion</li>\r\n	<li>Resin modified</li>\r\n	<li>Radiopaque</li>\r\n	<li>Low film thickness&nbsp; and good aesthetic</li>\r\n	<li>Good translucency</li>\r\n	<li>Excellent biocompatibility</li>\r\n	<li>Contains and releases fluoride ions</li>\r\n	<li>Excellent thermal expansion</li>\r\n	<li>Lower odour than competitive products</li>\r\n</ul>', 1800.00, 1950.00, 'IF', 'Admin'),
-(79, 'Product 51', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Base linings under composite restorations and amalgams</li>\r\n	<li>Fast-setting</li>\r\n	<li>Radiopaque</li>\r\n	<li>Excellent thermal expansion</li>\r\n	<li>High strength and hardness</li>\r\n	<li>Contains and releases fluoride ions</li>\r\n</ul>', 416.00, 450.00, 'Glass Ionomer Base', 'Admin'),
-(80, 'Product 52', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Fast-setting</li>\r\n	<li>Radiopaque</li>\r\n	<li>Excellent thermal expansion</li>\r\n	<li>High strength and hardness</li>\r\n	<li>Contains and releases fluoride ions</li>\r\n</ul>', 1800.00, 1950.00, 'Base Lining Cement', 'Admin'),
-(81, 'Product 53', 13, 11, 8, 4, 9, NULL, '<ul>\r\n	<li>Fast-setting</li>\r\n	<li>Radiopaque</li>\r\n	<li>Non-translucent silver reinforced</li>\r\n	<li>Excellent thermal expansion</li>\r\n	<li>High strength and hardness</li>\r\n	<li>Contains and releases fluoride ions</li>\r\n</ul>', 416.00, 450.00, 'I-sil Liquid- Silver', 'Admin');
+(154, 'Watch 001', 13, 11, 12, 8, 2, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</p>\r\n\r\n<p>remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</p>\r\n\r\n<p>remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 12990.00, 12500.00, 'Code-001', 'admin'),
+(155, 'Watch 002', 8, 13, 3, 8, 3, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 12000.00, 11000.00, 'Code-002', 'admin'),
+(156, 'Watch 003', 8, 13, 3, 8, 4, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 10000.00, 9000.00, 'Code-003', 'admin'),
+(157, 'Watch 004', 6, 8, 4, 8, 5, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 5000.00, 4500.00, 'Code-004', 'admin'),
+(158, 'Watch 005', 7, 12, 4, 8, 6, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 6000.00, 5000.00, 'Code-005', 'admin'),
+(159, 'Watch 006', 8, 12, 6, 8, 7, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 12000.00, 9000.00, 'Code-007', 'admin'),
+(160, 'Watch 007', 7, 12, 4, 8, 8, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 10000.00, 8000.00, 'Code-007', 'admin'),
+(161, 'Watch 008', 8, 11, 7, 8, 8, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 9000.00, 8500.00, 'Code-008', 'admin');
 
 -- --------------------------------------------------------
 
@@ -483,14 +442,15 @@ CREATE TABLE `product_colors` (
 --
 
 INSERT INTO `product_colors` (`id`, `product_id`, `color`) VALUES
-(4, 4, 'red'),
-(5, 4, 'blue'),
-(9, 6, 'red'),
-(10, 6, 'blue'),
-(11, 6, 'black'),
-(24, 30, 'pink'),
-(25, 49, 'blue'),
-(29, 40, 'red');
+(48, 154, 'red'),
+(49, 154, 'blue'),
+(50, 154, 'black'),
+(51, 156, 'red'),
+(52, 156, 'green'),
+(53, 156, 'white'),
+(54, 160, 'green'),
+(55, 160, 'white'),
+(56, 160, 'pink');
 
 -- --------------------------------------------------------
 
@@ -509,62 +469,38 @@ CREATE TABLE `product_images` (
 --
 
 INSERT INTO `product_images` (`id`, `product_id`, `image`) VALUES
-(6, 4, '192181.png'),
-(7, 4, '364121.png'),
-(10, 6, '496336.png'),
-(11, 6, '804221.png'),
-(12, 7, '812548.png'),
-(13, 7, '760943.png'),
-(18, 12, '111482.png'),
-(30, 30, '288492.png'),
-(31, 31, '768164.png'),
-(32, 32, '573613.png'),
-(33, 33, '419303.png'),
-(34, 34, '394311.png'),
-(35, 35, '183536.png'),
-(36, 36, '660879.png'),
-(37, 37, '906642.png'),
-(39, 39, '553886.png'),
-(40, 40, '400610.png'),
-(41, 41, '116664.png'),
-(42, 42, '671323.png'),
-(43, 43, '213037.png'),
-(44, 44, '226393.png'),
-(45, 45, '735566.png'),
-(46, 46, '754701.png'),
-(47, 47, '569833.png'),
-(48, 48, '288557.png'),
-(49, 49, '870208.png'),
-(50, 50, '499688.png'),
-(51, 51, '936330.png'),
-(52, 52, '862746.png'),
-(53, 53, '858954.png'),
-(54, 54, '766376.png'),
-(55, 55, '294372.png'),
-(57, 57, '379049.png'),
-(58, 58, '551069.png'),
-(59, 59, '341667.png'),
-(60, 60, '905406.png'),
-(61, 61, '659505.png'),
-(62, 62, '311771.png'),
-(63, 63, '651811.png'),
-(64, 64, '869695.png'),
-(65, 65, '215364.png'),
-(66, 66, '254040.png'),
-(67, 67, '933486.png'),
-(68, 68, '642184.png'),
-(69, 69, '141387.png'),
-(70, 70, '417866.png'),
-(71, 71, '580221.png'),
-(72, 72, '589835.png'),
-(73, 73, '713939.png'),
-(74, 74, '414244.png'),
-(75, 75, '621903.png'),
-(76, 76, '638860.png'),
-(78, 78, '367750.png'),
-(79, 79, '871905.png'),
-(80, 80, '600390.png'),
-(81, 81, '305342.png');
+(155, 154, '12-17-2019_1101pm6713.png'),
+(156, 154, '12-17-2019_1101pm2846.png'),
+(157, 154, '12-17-2019_1101pm7889.png'),
+(158, 154, '12-17-2019_1101pm5567.png'),
+(159, 155, '12-17-2019_1103pm8162.png'),
+(160, 155, '12-17-2019_1103pm1446.png'),
+(161, 155, '12-17-2019_1103pm1864.png'),
+(162, 155, '12-17-2019_1103pm5327.png'),
+(163, 156, '12-17-2019_1104pm1934.png'),
+(164, 156, '12-17-2019_1104pm2861.png'),
+(165, 156, '12-17-2019_1104pm6296.png'),
+(166, 156, '12-17-2019_1104pm9670.png'),
+(167, 157, '12-17-2019_1105pm9783.png'),
+(168, 157, '12-17-2019_1105pm6233.png'),
+(169, 157, '12-17-2019_1105pm7992.png'),
+(170, 157, '12-17-2019_1105pm8026.png'),
+(171, 158, '12-17-2019_1107pm1317.png'),
+(172, 158, '12-17-2019_1107pm9432.png'),
+(173, 158, '12-17-2019_1107pm6969.png'),
+(174, 158, '12-17-2019_1107pm4809.png'),
+(175, 159, '12-17-2019_1108pm6174.png'),
+(176, 159, '12-17-2019_1108pm7200.png'),
+(177, 159, '12-17-2019_1108pm2870.png'),
+(178, 159, '12-17-2019_1108pm6477.png'),
+(179, 160, '12-17-2019_1108pm2243.png'),
+(180, 160, '12-17-2019_1108pm1443.png'),
+(181, 160, '12-17-2019_1108pm7809.png'),
+(182, 160, '12-17-2019_1108pm2392.png'),
+(183, 161, '12-17-2019_1109pm6240.png'),
+(184, 161, '12-17-2019_1109pm7787.png'),
+(185, 161, '12-17-2019_1109pm1680.png'),
+(186, 161, '12-17-2019_1109pm9944.png');
 
 -- --------------------------------------------------------
 
@@ -583,11 +519,11 @@ CREATE TABLE `product_sizes` (
 --
 
 INSERT INTO `product_sizes` (`id`, `product_id`, `size`) VALUES
-(5, 4, 'l'),
-(6, 4, 'xl'),
-(7, 4, 's'),
-(22, 49, 'l'),
-(25, 40, 'xl');
+(39, 158, 'l'),
+(40, 158, 'm'),
+(41, 158, 's'),
+(42, 159, 'm'),
+(43, 159, 's');
 
 -- --------------------------------------------------------
 
@@ -600,7 +536,7 @@ CREATE TABLE `reviews` (
   `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `review` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `publisher` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
+  `status` int(11) NOT NULL DEFAULT 0,
   `product_id` int(10) UNSIGNED NOT NULL,
   `customer_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -935,131 +871,157 @@ ALTER TABLE `wishlists`
 --
 ALTER TABLE `addresses`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `admin_role`
 --
 ALTER TABLE `admin_role`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `childcategories`
 --
 ALTER TABLE `childcategories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT for table `deliveries`
 --
 ALTER TABLE `deliveries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `delivery_payment`
 --
 ALTER TABLE `delivery_payment`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
 --
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
 --
 -- AUTO_INCREMENT for table `orderdeliveries`
 --
 ALTER TABLE `orderdeliveries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
+
 --
 -- AUTO_INCREMENT for table `product_colors`
 --
 ALTER TABLE `product_colors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+
 --
 -- AUTO_INCREMENT for table `product_sizes`
 --
 ALTER TABLE `product_sizes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `supplier_payment`
 --
 ALTER TABLE `supplier_payment`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- Constraints for dumped tables
 --
@@ -1138,6 +1100,7 @@ ALTER TABLE `subcategories`
 ALTER TABLE `wishlists`
   ADD CONSTRAINT `wishlists_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `wishlists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

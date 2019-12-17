@@ -25,43 +25,42 @@
                     <!-- Product Details Left -->
                     <div class="product-large-slider">
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/frontend')}}/images/product/product-01.png" alt="product-details" />
-                            <a href="{{asset('public/frontend')}}/images/product/product-01.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
+                            <a href="{{asset('public/image/product-images/'.$product->image[0]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/frontend')}}/images/product/product-02.png" alt="product-details" />
-                            <a href="{{asset('public/frontend')}}/images/product/product-02.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
+                            <a href="{{asset('public/image/product-images/'.$product->image[1]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/frontend')}}/images/product/product-03.png" alt="product-details" />
-                            <a href="{{asset('public/frontend')}}/images/product/product-03.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
+                            <a href="{{asset('public/image/product-images/'.$product->image[2]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/frontend')}}/images/product/product-04.png" alt="product-details" />
-                            <a href="{{asset('public/frontend')}}/images/product/product-04.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
+                            <a href="{{asset('public/image/product-images/'.$product->image[3]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
-                        <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/frontend')}}/images/product/product-05.png" alt="product-details" />
-                            <a href="{{asset('public/frontend')}}/images/product/product-05.png" data-fancybox="images"><i class="fa fa-search"></i></a>
-                        </div>
+
+
 
                     </div>
                     <div class="product-nav">
                         <div class="pro-nav-thumb">
-                            <img src="{{asset('public/frontend')}}/images/product/product-01.png" alt="product-details" />
+                            <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
+                        </div>
+
+                        <div class="pro-nav-thumb">
+                            <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
                         </div>
                         <div class="pro-nav-thumb">
-                            <img src="{{asset('public/frontend')}}/images/product/product-02.png" alt="product-details" />
+                            <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
                         </div>
+
                         <div class="pro-nav-thumb">
-                            <img src="{{asset('public/frontend')}}/images/product/product-03.png" alt="product-details" />
+                            <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
                         </div>
-                        <div class="pro-nav-thumb">
-                            <img src="{{asset('public/frontend')}}/images/product/product-04.png" alt="product-details" />
-                        </div>
-                        <div class="pro-nav-thumb">
-                            <img src="{{asset('public/frontend')}}/images/product/product-05.png" alt="product-details" />
-                        </div>
+
+
                     </div>
                     <!--// Product Details Left -->
                 </div>
@@ -84,7 +83,7 @@
                                 <span class="new-price">৳ {{$product->price}}</span>
                                 <span class="old-price">৳ {{$product->price}}</span>
                             </div>
-                            <p>{{$product->keypoint}}</p>
+                            <p>{!! $product->keypoint !!}</p>
 
                             <div class="single-add-to-cart">
                                 <form action="{{url('add-to-cart')}}" class="cart-quantity d-flex" method="post">
@@ -131,7 +130,7 @@
                             <div class="product_tab_content tab-pane active" id="description" role="tabpanel">
                                 <div class="product_description_wrap  mt-30">
                                     <div class="product_desc mb-30">
-                                        <p>{{$product->description}}</p>
+                                        <p>{!! $product->description !!}</p>
 
                                     </div>
 
@@ -230,14 +229,7 @@
                                     <img class="primary-image" src="{{asset('public/image/product-images/'.$similiarProduct->singleImage->image)}}" alt="">
                                 </a>
                                 <div class="label-product label_new">New</div>
-                                <div class="action-links">
-                                    <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
-                                </div>
-                                <ul class="watch-color">
-                                    <li class="twilight"><span></span></li>
-                                    <li class="pigeon"><span></span></li>
-                                    <li  class="portage"><span></span></li>
-                                </ul>
+                            
                             </div>
                             <div class="product-caption">
                                 <h4 class="product-name"><a href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">{{$similiarProduct->title}}</a></h4>
