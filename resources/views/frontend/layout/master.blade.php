@@ -47,10 +47,10 @@
                     <div class="col-lg-6">
                         <div class="top-info-wrap text-right">
                             <ul class="my-account-container">
-                                <li><a href="{{url('/')}}">My account</a></li>
-
                                 @if(\Illuminate\Support\Facades\Session::get('customer_id'))
-                                <li><a href="{{url('customer-logout')}}">Logout</a></li>
+                                    <li><a href="{{url('account')}}">My account</a></li>
+                                  @else
+                                    <li><a href="{{url('customer-login')}}">Login</a></li>
                                 @endif
 
                                 <li><a href="{{url('cart')}}">Cart</a></li>

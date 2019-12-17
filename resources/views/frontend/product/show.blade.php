@@ -24,14 +24,46 @@
                 <div class="col-lg-5 col-md-6">
                     <!-- Product Details Left -->
                     <div class="product-large-slider">
-
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
-
+                            <img src="{{asset('public/frontend')}}/images/product/product-01.png" alt="product-details" />
+                            <a href="{{asset('public/frontend')}}/images/product/product-01.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="pro-large-img img-zoom">
+                            <img src="{{asset('public/frontend')}}/images/product/product-02.png" alt="product-details" />
+                            <a href="{{asset('public/frontend')}}/images/product/product-02.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="pro-large-img img-zoom">
+                            <img src="{{asset('public/frontend')}}/images/product/product-03.png" alt="product-details" />
+                            <a href="{{asset('public/frontend')}}/images/product/product-03.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="pro-large-img img-zoom">
+                            <img src="{{asset('public/frontend')}}/images/product/product-04.png" alt="product-details" />
+                            <a href="{{asset('public/frontend')}}/images/product/product-04.png" data-fancybox="images"><i class="fa fa-search"></i></a>
+                        </div>
+                        <div class="pro-large-img img-zoom">
+                            <img src="{{asset('public/frontend')}}/images/product/product-05.png" alt="product-details" />
+                            <a href="{{asset('public/frontend')}}/images/product/product-05.png" data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
 
                     </div>
-
+                    <div class="product-nav">
+                        <div class="pro-nav-thumb">
+                            <img src="{{asset('public/frontend')}}/images/product/product-01.png" alt="product-details" />
+                        </div>
+                        <div class="pro-nav-thumb">
+                            <img src="{{asset('public/frontend')}}/images/product/product-02.png" alt="product-details" />
+                        </div>
+                        <div class="pro-nav-thumb">
+                            <img src="{{asset('public/frontend')}}/images/product/product-03.png" alt="product-details" />
+                        </div>
+                        <div class="pro-nav-thumb">
+                            <img src="{{asset('public/frontend')}}/images/product/product-04.png" alt="product-details" />
+                        </div>
+                        <div class="pro-nav-thumb">
+                            <img src="{{asset('public/frontend')}}/images/product/product-05.png" alt="product-details" />
+                        </div>
+                    </div>
+                    <!--// Product Details Left -->
                 </div>
 
                 <div class="col-lg-7 col-md-6">
@@ -198,6 +230,9 @@
                                     <img class="primary-image" src="{{asset('public/image/product-images/'.$similiarProduct->singleImage->image)}}" alt="">
                                 </a>
                                 <div class="label-product label_new">New</div>
+                                <div class="action-links">
+                                    <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                </div>
                                 <ul class="watch-color">
                                     <li class="twilight"><span></span></li>
                                     <li class="pigeon"><span></span></li>

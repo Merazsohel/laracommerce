@@ -5,6 +5,7 @@ Route::prefix('/')->group(function () {
     Route::get('','Front\HomeController@index')->name('index');
     Route::get('product/{title}/{id}','Front\ProductController@show')->name('productdetails');
     Route::post('customer-register','Front\HomeController@customerRegister');
+    Route::get('customer-login','Front\HomeController@customerLoginView');
     Route::post('customer-login','Front\HomeController@customerLogin');
     Route::get('customer-logout','Front\HomeController@customerLogout');
     Route::get('shipping','CheckoutController@shipping')->name('shipping');

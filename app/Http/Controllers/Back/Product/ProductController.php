@@ -27,7 +27,7 @@ class ProductController extends Controller
     }
     public function index()
     {
-        $products=Product::with('color','size','color')->get();
+        $products=Product::with('color','size','color')->paginate(20);
         $suppliers=Supplier::select('id','name')->get();
         $brands=Brand::select('id','name')->get();
         $categories=Category::select('id','category')->get();

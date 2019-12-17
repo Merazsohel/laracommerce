@@ -17,7 +17,7 @@ class RoleMiddleware
     {
         if($request->user()===null)
         {
-            return response('Not authored!!');
+            return response('Not authored!! sfdg234huiwh43251543521rg4214u2143ihu21431241ierg^%&*%$&$#^@$#%^!#%^$^%#hgdfghfgdhfgdh');
         }
 
         $action=$request->route()->getAction();
@@ -26,6 +26,6 @@ class RoleMiddleware
         if($request->user()->hasManyRole($roles ) || !$roles){
             return $next($request);
         }
-        return response('Not authored!!');
+        return response('Not authored!!  sfdg234huiwh43251543521rg4214u2143ihu21431241ierg^%&*%$&$#^@$#%^!#%^$^%#hgdfghfgdhfgdh');
     }
 }

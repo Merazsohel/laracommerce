@@ -84,6 +84,10 @@ class HomeController extends Controller
         Session::put('customer_name', $request->customer_name);
         return redirect('checkout');
     }
+    
+    public function customerLoginView(){
+        return view('frontend.customer.login');
+    }
 
     public function customerLogin(Request $request)
     {
