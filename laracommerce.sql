@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2019 at 06:15 PM
+-- Generation Time: Dec 18, 2019 at 06:10 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.2.21
 
@@ -60,7 +60,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'KLxVBlvJsVCioSsslVtpjnciKYDoC9MWtybE9NNuHf8W086UooAZAxearta8', NULL, '2019-12-10 08:00:00'),
+(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'RYDFCNpe2HXgyQFemIIiL77qe0O2Bgu8O7Vb2YCbVty9EB0kqAVXg68jITf1', NULL, '2019-12-10 08:00:00'),
 (5, 'sub', 'admin', 'subadmin@gmail.com', '$2y$10$z3MRApC3EoMn/DPSOD3lFOe9BtD7lHER59Uhf0JLzv6PpxQgLRedO', NULL, '2019-12-14 13:41:52', '2019-12-14 13:41:52');
 
 -- --------------------------------------------------------
@@ -352,7 +352,8 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `address`, `customer_id`, `delivery_charge`, `total`, `cycle`, `code`, `created_at`, `updated_at`) VALUES
-(51, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 35000.00, 'new', '966586903', '2019-12-14 16:37:52', '2019-12-14 16:37:52');
+(51, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 35000.00, 'new', '966586903', '2019-12-14 16:37:52', '2019-12-14 16:37:52'),
+(52, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 9000.00, 'new', '361909122', '2019-12-18 16:54:25', '2019-12-18 16:54:25');
 
 -- --------------------------------------------------------
 
@@ -366,6 +367,8 @@ CREATE TABLE `order_products` (
   `product_id` int(10) UNSIGNED DEFAULT NULL,
   `qty` int(11) NOT NULL,
   `attr` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -374,8 +377,9 @@ CREATE TABLE `order_products` (
 -- Dumping data for table `order_products`
 --
 
-INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `qty`, `attr`, `created_at`, `updated_at`) VALUES
-(30, 51, 6, 1, NULL, '2019-12-14 16:37:52', '2019-12-14 16:37:52');
+INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `qty`, `attr`, `size`, `color`, `created_at`, `updated_at`) VALUES
+(30, 51, 6, 1, NULL, NULL, NULL, '2019-12-14 16:37:52', '2019-12-14 16:37:52'),
+(31, 52, 156, 1, NULL, NULL, 'red', '2019-12-18 16:54:25', '2019-12-18 16:54:25');
 
 -- --------------------------------------------------------
 
@@ -948,13 +952,13 @@ ALTER TABLE `orderdeliveries`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `products`
