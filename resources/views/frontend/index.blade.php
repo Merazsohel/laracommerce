@@ -80,17 +80,9 @@
                 <div class="col-12 text-center">
                     <ul class="nav product-tab-menu" role="tablist">
                         <li class="product-tab-item nav-item active">
-                            <a class="product-tab__link nav-link active" id="nav-featured-tab" data-toggle="tab" href="#nav-featured" role="tab" aria-selected="true">Featured</a>
+                            <a class="product-tab__link nav-link">Our Exclusive Products</a>
                         </li>
-                        <li class="product-tab__item nav-item">
-                            <a class="product-tab__link nav-link" id="nav-new-tab" data-toggle="tab" href="#nav-new" role="tab" aria-selected="false">New Arrivals</a>
-                        </li>
-                        <li class="product-tab__item nav-item">
-                            <a class="product-tab__link nav-link" id="nav-bestseller-tab" data-toggle="tab" href="#nav-bestseller" role="tab" aria-selected="false">Bestseller</a>
-                        </li>
-                        <li class="product-tab__item nav-item">
-                            <a class="product-tab__link nav-link" id="nav-onsale-tab" data-toggle="tab" href="#nav-onsale" role="tab" aria-selected="false">On Sale</a>
-                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -130,91 +122,7 @@
                 </div>
 
 
-                <div class="tab-pane fade" id="nav-new" role="tabpanel">
-                    <div class="product-carousel-group">
 
-                        <div class="row">
-                            @foreach ($products as $product)
-                                <div class="col-md-4 col-lg-3 col-12">
-                                    <!-- single-product-area start -->
-                                    <div class="single-product-area mt-30">
-                                        <div class="product-thumb">
-                                            <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
-                                                <img class="primary-image" src="{{asset('public/image/product-images/'.$product->singleImage->image)}}" alt="">
-                                            </a>
-                                            <div class="label-product label_new">New</div>
-                                        </div>
-                                        <div class="product-caption">
-                                            <h4 class="product-name"><a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">Simple Product 001</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">৳ {{$product->price}}</span>
-                                                <span class="old-price">৳ {{$product->price}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-bestseller" role="tabpanel">
-                    <div class="product-carousel-group">
-
-                        <div class="row">
-                            @foreach ($products as $product)
-                                <div class="col-md-4 col-lg-3 col-12">
-                                    <!-- single-product-area start -->
-                                    <div class="single-product-area mt-30">
-                                        <div class="product-thumb">
-                                            <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
-                                                <img class="primary-image" src="{{asset('public/image/product-images/'.$product->singleImage->image)}}" alt="">
-                                            </a>
-                                            <div class="label-product label_new">New</div>
-                                        </div>
-                                        <div class="product-caption">
-                                            <h4 class="product-name"><a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">Simple Product 001</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">৳ {{$product->price}}</span>
-                                                <span class="old-price">৳ {{$product->price}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            @endforeach
-
-                        </div>
-
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-onsale" role="tabpanel">
-                    <div class="product-carousel-group">
-
-                        <div class="row">
-                            @foreach ($products as $product)
-                                <div class="col-md-4 col-lg-3 col-12">
-                                    <div class="single-product-area mt-30">
-                                        <div class="product-thumb">
-                                            <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
-                                                <img class="primary-image" src="{{asset('public/image/product-images/'.$product->singleImage->image)}}" alt="">
-                                            </a>
-                                            <div class="label-product label_new">New</div>
-                                        </div>
-                                        <div class="product-caption">
-                                            <h4 class="product-name"><a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">Simple Product 001</a></h4>
-                                            <div class="price-box">
-                                                <span class="new-price">৳ {{$product->price}}</span>
-                                                <span class="old-price">৳ {{$product->price}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-
-                    </div>
-                </div>
             </div>
 
         </div>
