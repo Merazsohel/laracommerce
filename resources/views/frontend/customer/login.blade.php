@@ -39,7 +39,7 @@
                                        @csrf
 
                                         <div class="login-input-box">
-                                            <input type="text" name="email_address" placeholder="User Name" required>
+                                            <input type="text" name="email_address" placeholder="Email Address" required>
                                             <input type="password" name="password" placeholder="Password" required>
 
                                         </div>

@@ -105,6 +105,7 @@ class HomeController extends Controller
         if ($result) {
             Session::put('customer_id', $result->id);
             Session::put('customer_name', $result->customer_name);
+            Session::put('email_address', $result->email_address);
             Session::put('address', $result->address);
 
             if (Cart::content()->isEmpty()) {

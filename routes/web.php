@@ -18,7 +18,7 @@ Route::prefix('/')->group(function () {
     //Cart
 
     Route::get('cart','CartController@cartDetails')->name('cart');
-    Route::post('add-to-cart','CartController@addtocart')->name('addtocart');
+    Route::post('add-to-cart','CartController@addToCart')->name('addtocart');
     Route::get('cart/remove/{item_id}','CartController@deleteSingleCart')->name('cart.remove');
     Route::post('update-cart','CartController@updateCart')->name('cart.update');
 
@@ -26,7 +26,7 @@ Route::prefix('/')->group(function () {
     //Checkout
 
     Route::get('checkout','CheckoutController@checkout')->name('checkout');
-    Route::post('checkout/order','OrderController@placeorder')->name('order');
+    Route::post('checkout/order','OrderController@placeOrder')->name('order');
     Route::post('checkout','AddressController@store')->name('storeAddress');
     Route::post('checkout/existingaddressn','AddressController@existingStore')->name('existingAddress');
     Route::post('alter','AddressController@alteraddress')->name('alteraddress');
@@ -43,7 +43,7 @@ Route::prefix('/')->group(function () {
     //Order
 
     Route::get('orders','OrderController@order')->name('customerorders');
-    Route::get('orders/{details}/{id}','OrderController@orderdetails')->name('customerorderdetails');
+    Route::get('orders/{details}/{id}','OrderController@orderDetails')->name('customerorderdetails');
 
     Route::get('find/{subcategory}/{id}','FrontCategoryFilterController@subcategory')->name('subcategoryFind');
     Route::get('review/{title}/{id}','ReviewController@review')->name('review');
