@@ -7,7 +7,7 @@
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/frontend')}}/images/favicon.ico">
+   {{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/frontend')}}/images/favicon.ico">--}}
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/vendor/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/vendor/simple-line-icons.css">
@@ -30,10 +30,8 @@
 
 <div class="main-wrapper">
 
-    <!--  Header Start -->
     <header class="header">
 
-        <!-- Header Top Start -->
         <div class="header-top-area d-none d-lg-block text-color-white bg-gren border-bm-1">
 
             <div class="container">
@@ -61,9 +59,7 @@
             </div>
 
         </div>
-        <!-- Header Top End -->
 
-        <!-- haeader Mid Start -->
         <div class="haeader-mid-area bg-gren border-bm-1 d-none d-lg-block ">
             <div class="container">
                 <div class="row align-items-center">
@@ -102,15 +98,12 @@
                 </div>
             </div>
         </div>
-        <!-- haeader Mid End -->
 
-        <!-- haeader bottom Start -->
         <div class="haeader-bottom-area bg-gren header-sticky">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-12 d-none d-lg-block">
                         <div class="main-menu-area white_text">
-                            <!--  Start Mainmenu Nav-->
                             <nav class="main-navigation text-center">
                                 <ul>
                                     <li class="active"><a href="{{url('/')}}">Home</a></li>
@@ -171,9 +164,7 @@
                 </div>
             </div>
         </div>
-        <!-- haeader bottom End -->
 
-        <!-- off-canvas menu start -->
         <aside class="off-canvas-wrapper">
             <div class="off-canvas-overlay"></div>
             <div class="off-canvas-inner-content">
@@ -190,7 +181,6 @@
                         </form>
                     </div>
 
-                    <!-- mobile menu start -->
                     <div class="mobile-navigation">
                         <nav>
                             <ul class="mobile-menu">
@@ -210,9 +200,8 @@
 
                             </ul>
                         </nav>
-                        <!-- mobile menu navigation end -->
+
                     </div>
-                    <!-- mobile menu end -->
 
                     <div class="offcanvas-widget-area">
                         <div class="top-info-wrap text-left text-black">
@@ -230,19 +219,15 @@
                         </div>
 
                     </div>
-                    <!-- offcanvas widget area end -->
                 </div>
             </div>
         </aside>
-        <!-- off-canvas menu end -->
 
     </header>
-    <!--  Header Start -->
 
 
 @yield('content')
 
-<!-- footer Start -->
     <footer>
         <div class="footer-top section-pb section-pt-60">
             <div class="container">
@@ -295,7 +280,6 @@
                                 <li><a href="{{url('/')}}">Quick Contact</a></li>
                                 <li><a href="{{url('/')}}">Blog Pages</a></li>
                                 <li><a href="#">Concord History</a></li>
-                                <li><a href="#">Client Feed</a></li>
                             </ul>
                         </div>
                     </div>
@@ -314,11 +298,13 @@
                     </div>
                     <div class="col-lg-4 col-md-6">
                         <div class="widget-footer mt-40">
-                            <h6 class="title-widget">Get the app</h6>
-                            <p>GreenLife App is now available on Google Play & App Store. Get it now.</p>
+                            <h6 class="title-widget">Extras</h6>
                             <ul class="footer-list">
-                                <li><img src="{{asset('public/frontend')}}/images/brand/img-googleplay.jpg" alt=""></li>
-                                <li><img src="{{asset('public/frontend')}}/images/brand/img-appstore.jpg" alt=""></li>
+                            <li><a href="{{url('/')}}">Concord History</a></li>
+                            <li><a href="{{url('/')}}">Client Feed</a></li>
+                            <li><a href="{{url('/')}}">About Us</a></li>
+                            <li><a href="{{url('/')}}">Quick Contact</a></li>
+                            <li><a href="{{url('/')}}">Blog Pages</a></li>
                             </ul>
                         </div>
                     </div>
@@ -344,130 +330,6 @@
             </div>
         </div>
     </footer>
-    <!-- footer End -->
-
-
-    <!-- Modal -->
-    <div class="modal fade modal-wrapper" id="exampleModalCenter">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="modal-inner-area">
-                        <div class="row  product-details-inner">
-                            <div class="col-lg-5 col-md-6 col-sm-6">
-                                <!-- Product Details Left -->
-                                <div class="product-large-slider">
-                                    <div class="pro-large-img">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-01.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-large-img">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-02.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-large-img ">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-03.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-large-img">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-04.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-large-img">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-05.png"
-                                             alt="product-details"/>
-                                    </div>
-
-                                </div>
-                                <div class="product-nav">
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-01.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-02.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-03.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-04.png"
-                                             alt="product-details"/>
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/frontend')}}/images/product/product-05.png"
-                                             alt="product-details"/>
-                                    </div>
-                                </div>
-                                <!--// Product Details Left -->
-                            </div>
-
-                            <div class="col-lg-7 col-md-6 col-sm-6">
-                                <div class="product-details-view-content">
-                                    <div class="product-info">
-                                        <h3>Single product One</h3>
-                                        <div class="product-rating d-flex">
-                                            <ul class="d-flex">
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                            </ul>
-                                            <a href="#reviews">(<span class="count">1</span> customer review)</a>
-                                        </div>
-                                        <div class="price-box">
-                                            <span class="new-price">$70.00</span>
-                                            <span class="old-price">$78.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue
-                                            nec est tristique auctor.</p>
-
-                                        <div class="single-add-to-cart">
-                                            <form action="#" class="cart-quantity d-flex">
-                                                <div class="quantity">
-                                                    <div class="cart-plus-minus">
-                                                        <input type="number" class="input-text" name="quantity"
-                                                               value="1" title="Qty">
-                                                    </div>
-                                                </div>
-                                                <button class="add-to-cart" type="submit">Add To Cart</button>
-                                            </form>
-                                        </div>
-                                        <ul class="single-add-actions">
-                                            <li class="add-to-wishlist">
-                                                <a href="wishlist.html" class="add_to_wishlist"><i
-                                                            class="icon-heart"></i> Add to Wishlist</a>
-                                            </li>
-                                        </ul>
-                                        <ul class="stock-cont">
-                                            <li class="product-stock-status">Categories: <a href="#">Watchs,</a> <a
-                                                        href="#">Man Watch</a></li>
-                                            <li class="product-stock-status">Tag: <a href="#">Man</a></li>
-                                        </ul>
-                                        <div class="share-product-socail-area">
-                                            <p>Share this product</p>
-                                            <ul class="single-product-share">
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 </div>
 
 

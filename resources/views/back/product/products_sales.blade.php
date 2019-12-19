@@ -79,7 +79,7 @@
                 },
                 success:function (res) {
                     console.log(res);
-                    $('#existinimage').html('<img src="/image/product-images/'+res.image+'" style="width: 100px;">');
+                    $('#existinimage').html('<img src="/public/image/product-images/'+res.image+'" style="width: 100px;">');
                     $('#id').val(res.id);
                 },
                 error:function (res) {

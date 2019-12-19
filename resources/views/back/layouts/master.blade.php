@@ -220,19 +220,6 @@
                         <li><a href="{{route('salesindex')}}"><i class="fa fa-circle-o"></i> Sales Report</a></li>
                     </ul>
                 </li>
-                <li class="header">System Manage</li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-user-secret"></i> <span>Inventory</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-                    </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{route('inventoryitemcreate')}}"><i class="fa fa-circle-o"></i> Add Item</a></li>
-                        <li><a href="{{route('inventoryitemcreate')}}"><i class="fa fa-circle-o"></i></a></li>
-                    </ul>
-                </li>
 
             </ul>
         </section>

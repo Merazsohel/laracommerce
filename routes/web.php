@@ -14,6 +14,7 @@ Route::prefix('/')->group(function () {
     Route::get('brand/{id}','Front\ProductController@brandWiseProductList');
     Route::get('low-to-high','Front\ProductController@lowToHigh');
     Route::get('high-to-low','Front\ProductController@highToLow');
+    Route::get('price-filter','Front\ProductController@priceFilter');
 
     //Search
 
@@ -163,9 +164,7 @@ Route::prefix('admin')->group(function () {
 
     Route::post('back//productSalseReport', 'Back\Sales\SalesReportController@productSalseReport')->name('productSalseReport');
 
-    Route::get('/inventory/product', function () {
-        return view('back.inventory.item.create');
-    })->name('inventoryitemcreate');
+
 
 });
 

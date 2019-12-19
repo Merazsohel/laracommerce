@@ -95,24 +95,23 @@
                             <div class="shop-sidebar mb-30">
                                 <h4 class="title">Filter By Price</h4>
                                 <div class="filter-price-content">
-                                    <form action="#" method="post">
-                                        <div id="price-slider" class="price-slider"></div>
-                                        <div class="filter-price-wapper">
 
-                                            <a class="add-to-cart-button" href="#">
-                                                <span>FILTER</span>
-                                            </a>
-                                            <div class="filter-price-cont">
+                                    <form action="{{url('price-filter')}}" method="get">
+                                        @csrf
 
-                                                <span>Price:</span>
-                                                <div class="input-type">
-                                                    <input type="text" id="min-price" readonly=""/>
-                                                </div>
-                                                <span>—</span>
-                                                <div class="input-type">
-                                                    <input type="text" id="max-price" readonly=""/>
-                                                </div>
-                                            </div>
+                                        <span class="inlineinput">
+                                         <input type='text' name="min" class="form-control" style='display: inline; width: 90px;'/>
+                                         </span>
+
+                                        <span>To</span>
+
+                                        <span class="inlineinput">
+                                           <input type='text' class="form-control" name="max" style='display: inline; width:90px;'/>
+                                        </span>
+
+                                        <div class="mt-3">
+                                            <input type="submit"  class="btn btn-small btn-primary ml-5" value="FILTER" style="color:white">
+
                                         </div>
                                     </form>
                                 </div>
@@ -305,9 +304,8 @@
 
 @section('script')
     <script type="text/javascript">
-        function handleSelect(elm)
-        {
+        function handleSelect(elm) {
             window.location = elm.value;
         }
     </script>
-    @endsection
+@endsection
