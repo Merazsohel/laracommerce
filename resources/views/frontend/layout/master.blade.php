@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/plugins/animation.css">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/plugins/nice-select.css">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/plugins/fancy-box.css">
-
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/plugins/jqueryui.min.css">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/style.css">
 
@@ -24,7 +23,7 @@
 
     $allCategories=[];
     $data = \App\Category::with('subcategory')->select('id','category')->get();
-    $allCategories['allCategories']=$data;
+    $allCategories['allCategories'] = $data;
 
 @endphp
 <body>
@@ -146,65 +145,17 @@
                     </div>
 
                     <div class="col-5 col-md-6 d-block d-lg-none">
-                        <div class="logo"><a href="#"><img src="{{asset('public/frontend')}}/images/logo/logo.png"
-                                                           alt=""></a></div>
+                        <div class="logo"><a href="{{url('/')}}"><img src="{{asset('public/frontend')}}/images/logo/logo.png"  alt=""></a></div>
                     </div>
 
 
                     <div class="col-lg-3 col-md-6 col-7 d-block d-lg-none">
                         <div class="right-blok-box text-white d-flex">
 
-                            <div class="user-wrap">
-                                <a href="#"><span class="cart-total">2</span> <i class="icon-heart"></i></a>
-                            </div>
 
                             <div class="shopping-cart-wrap">
-                                <a href="#"><i class="icon-basket-loaded"></i><span class="cart-total">2</span></a>
-                                <ul class="mini-cart">
-                                    <li class="cart-item">
-                                        <div class="cart-image">
-                                            <a href="#"><img alt=""
-                                                             src="{{asset('public/frontend')}}/images/product/product-02.png"></a>
-                                        </div>
-                                        <div class="cart-title">
-                                            <a href="#">
-                                                <h4>Product Name 01</h4>
-                                            </a>
-                                            <div class="quanti-price-wrap">
-                                                <span class="quantity">1 ×</span>
-                                                <div class="price-box"><span class="new-price">$130.00</span></div>
-                                            </div>
-                                            <a class="remove_from_cart" href="#"><i class="fa fa-times"></i></a>
-                                        </div>
-                                    </li>
-                                    <li class="cart-item">
-                                        <div class="cart-image">
-                                            <a href="#"><img alt=""
-                                                             src="{{asset('public/frontend')}}/images/product/product-03.png"></a>
-                                        </div>
-                                        <div class="cart-title">
-                                            <a href="#">
-                                                <h4>Product Name 03</h4>
-                                            </a>
-                                            <div class="quanti-price-wrap">
-                                                <span class="quantity">1 ×</span>
-                                                <div class="price-box"><span class="new-price">$130.00</span></div>
-                                            </div>
-                                            <a class="remove_from_cart" href="#"><i class="icon-trash icons"></i></a>
-                                        </div>
-                                    </li>
-                                    <li class="subtotal-box">
-                                        <div class="subtotal-title">
-                                            <h3>Sub-Total :</h3><span>$ 260.99</span>
-                                        </div>
-                                    </li>
-                                    <li class="mini-cart-btns">
-                                        <div class="cart-btns">
-                                            <a href="#">View cart</a>
-                                            <a href="#">Checkout</a>
-                                        </div>
-                                    </li>
-                                </ul>
+                                <a href="{{url('cart')}}"><i class="icon-basket-loaded"></i><span class="cart-total">{{Cart::count()}}</span></a>
+
                             </div>
 
                             <div class="mobile-menu-btn d-block d-lg-none">
@@ -233,9 +184,9 @@
                 <div class="off-canvas-inner">
 
                     <div class="search-box-offcanvas">
-                        <form>
-                            <input type="text" placeholder="Search product...">
-                            <button class="search-btn"><i class="icon-magnifier"></i></button>
+                        <form method="get" action="{{url('search-product')}}">
+                            <input type="text" id="search_text" name="q" class="search-field search-input" placeholder="Search product..." required>
+                            <button type="submit" class="search btn btn-primary">Search</button>
                         </form>
                     </div>
 
@@ -267,10 +218,14 @@
                         <div class="top-info-wrap text-left text-black">
                             <h5>My Account</h5>
                             <ul class="offcanvas-account-container">
-                                <li><a href="#">My account</a></li>
-                                <li><a href="#">Cart</a></li>
-                                <li><a href="#">Wishlist</a></li>
-                                <li><a href="#">Checkout</a></li>
+                                @if(\Illuminate\Support\Facades\Session::get('customer_id'))
+                                    <li><a href="{{url('account')}}">My account</a></li>
+                                @else
+                                    <li><a href="{{url('customer-login')}}">Login</a></li>
+                                @endif
+
+                                <li><a href="{{url('cart')}}">Cart</a></li>
+                                <li><a href="{{url('checkout')}}">Checkout</a></li>
                             </ul>
                         </div>
 
@@ -547,7 +502,7 @@
                     }
                 });
             },
-            minLength: 3,
+            minLength: 1,
 
         });
     });

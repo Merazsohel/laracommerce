@@ -16,8 +16,8 @@ class AddressController extends Controller
     public function store(Request $request)
     {
         session()->forget('address');
-        $request['customer_id']=Auth::guard('customer')->user()->id;
-        $address= Address::create($request->except('_token'));
+        $request['customer_id'] = Auth::guard('customer')->user()->id;
+        $address = Address::create($request->except('_token'));
         session()->put('addressid', $address->id);
         session()->put('address', $request->city);
         return redirect()->back();

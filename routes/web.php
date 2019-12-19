@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 Route::prefix('/')->group(function () {
 
     Route::get('','Front\HomeController@index')->name('index');
@@ -9,6 +11,9 @@ Route::prefix('/')->group(function () {
     Route::post('customer-login','Front\HomeController@customerLogin');
     Route::get('customer-logout','Front\HomeController@customerLogout');
     Route::get('shipping','CheckoutController@shipping')->name('shipping');
+    Route::get('brand/{id}','Front\ProductController@brandWiseProductList');
+    Route::get('low-to-high','Front\ProductController@lowToHigh');
+    Route::get('high-to-low','Front\ProductController@highToLow');
 
     //Search
 
@@ -27,41 +32,23 @@ Route::prefix('/')->group(function () {
 
     Route::get('checkout','CheckoutController@checkout')->name('checkout');
     Route::post('checkout/order','OrderController@placeOrder')->name('order');
-    Route::post('checkout','AddressController@store')->name('storeAddress');
-    Route::post('checkout/existingaddressn','AddressController@existingStore')->name('existingAddress');
-    Route::post('alter','AddressController@alteraddress')->name('alteraddress');
 
     //Account
 
     Route::get('account','ProfileController@profile')->name('profile');
-    Route::get('address/edit/{id}','ProfileController@edit')->name('addressedit');
-    Route::put('address/{id}','ProfileController@update')->name('addresseupdate');
-    Route::get('address/delete/{id}','ProfileController@delete')->name('addressdelete');
+
+    //Category
+
     Route::get('category/{category}','FrontCategoryFilterController@category')->name('category');
     Route::get('filter/{childcategory}/{id}','FrontCategoryFilterController@childcategory')->name('childcategory');
-
-    //Order
-
-    Route::get('orders','OrderController@order')->name('customerorders');
-    Route::get('orders/{details}/{id}','OrderController@orderDetails')->name('customerorderdetails');
-
     Route::get('find/{subcategory}/{id}','FrontCategoryFilterController@subcategory')->name('subcategoryFind');
-    Route::get('review/{title}/{id}','ReviewController@review')->name('review');
-    Route::post('review','ReviewController@post')->name('postreview');
-    Route::get('myreviews.html','ReviewController@reviews')->name('customersreview');
-    Route::post('filter','FrontCategoryFilterController@brandFilter')->name('brandfilter');
-
-    //Wishlist
-
-    Route::get('wishlist','WishlistController@addwishlist')->name('wishlist');
-    Route::post('wishlist/remove','WishlistController@wishlistremove')->name('wishlistremove');
-    Route::get('my-wishlist','WishlistController@allwishlist')->name('allwishlist');
 
 });
 
 Route::prefix('admin')->group(function () {
 
     //Admin Login Route
+
     Route::get('/', ['uses' => 'Back\AdminPanelController@index', 'as' => 'adminindex', 'role' => ['admin', 'editor']]);
     Route::get('account/login', 'Auth\LoginController@showLoginForm')->name('adminlogin');
     Route::post('account/login', 'Auth\LoginController@login')->name('login');
@@ -72,7 +59,7 @@ Route::prefix('admin')->group(function () {
     Route::get('back/products', ['uses' => 'Back\Product\ProductController@index', 'as' => 'productindex']);
     Route::get('products/create', ['uses' => 'Back\Product\ProductController@create', 'as' => 'productcreate']);
     Route::get('products/edit/{id}', ['uses' => 'Back\Product\ProductController@edit', 'as' => 'productedit']);
-    Route::put('products/update/{id}', ['uses' => 'Back\Product\ProductController@update', 'as' => 'productupdate']);
+    Route::post('products/update/{id}', ['uses' => 'Back\Product\ProductController@update', 'as' => 'productupdate']);
     Route::post('products', ['uses' => 'Back\Product\ProductController@store', 'as' => 'productstore']);
     Route::post('products/image', ['uses' => 'Back\Product\ProductImageController@editProductImage', 'as' => 'getproductimage']);
     Route::post('products/image/update', ['uses' => 'Back\Product\ProductImageController@update', 'as' => 'updateproductimage']);

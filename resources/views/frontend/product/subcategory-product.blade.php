@@ -33,7 +33,7 @@
                 </div>
                 @endforeach
                 @else
-                <div class="col-md-4 col-lg-3 col-12 mb-30 mt-50 text-center">
+                <div class="col-md-4 col-lg-3 col-12 mb-30 mt-50 ml-5 text-center">
                    <p class="alert alert-danger">No Product Found in this category.</p>
                 </div>
                     </div>

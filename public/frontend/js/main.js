@@ -316,15 +316,15 @@ $('[data-countdown]').each(function() {
 $( "#price-slider" ).slider({
    range: true,
    min: 0,
-   max: 120,
-   values: [ 20, 115 ],
+   max: 100000,
+   values: [ 100, 1000 ],
    slide: function( event, ui ) {
-        $( "#min-price" ).val('$' + ui.values[ 0 ] );
-        $( "#max-price" ).val('$' + ui.values[ 1 ] );
+        $( "#min-price" ).val('৳ ' + ui.values[ 0 ] );
+        $( "#max-price" ).val('৳ ' + ui.values[ 1 ] );
      }
   });
-  $( "#min-price" ).val('$' + $( "#price-slider" ).slider( "values", 0 ));   
-  $( "#max-price" ).val('$' + $( "#price-slider" ).slider( "values", 1 )); 
+  $( "#min-price" ).val('৳ ' + $( "#price-slider" ).slider( "values", 0 ));
+  $( "#max-price" ).val('৳ ' + $( "#price-slider" ).slider( "values", 1 ));
    
 /*--
     Category menu Activation

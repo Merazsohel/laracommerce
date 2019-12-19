@@ -13,30 +13,48 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
+
 class HomeController extends Controller
 {
+
     public function index()
     {
-        $products = Product::with('singleImage', 'subcategory', 'discount')->take(8)->get();
+        $products = Product::with('singleImage', 'subcategory', 'discount')
+                    ->paginate('6');
 
-        $specialProducts = Product::with('singleImage', 'subcategory', 'discount')->take(3)->get();
-
-        $brands = Brand::select('photo')->get();
+        $brands = Brand::select('id','name')->get();
 
         $adsliders = Advertisement::where('position', 'slider')->get();
 
-        $adsidebars = Advertisement::where('position', 'sidebar')->limit(2)->orderBy('id', 'DESC')->get();
+        $adsidebars = Advertisement::where('position', 'sidebar')
+            ->limit(2)
+            ->orderBy('id', 'DESC')
+            ->get();
 
-        $admiddles = Advertisement::where('position', 'middle')->limit(3)->orderBy('id', 'DESC')->get();
+        $admiddles = Advertisement::where('position', 'middle')
+            ->limit(3)
+            ->orderBy('id', 'DESC')
+            ->get();
 
-        $categories = DB::table('categories')->select('category', 'id', 'photo')->get();
+        $categories = DB::table('categories')
+            ->select('category', 'id', 'photo')
+            ->get();
 
         $categorywithproducts = Category::with('product')->get();
 
+        $allCategories=[];
+
+        $data = Category::with('subcategory')
+            ->select('id','category')
+            ->get();
+
+        $allCategories['allCategories'] = $data;
+
         return view('frontend.index', compact([
-            'products', 'specialProducts', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts'
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts','data'
         ]));
     }
+
 
     public function search(Request $request)
     {
@@ -59,11 +77,46 @@ class HomeController extends Controller
     public function searchResult(Request $request)
     {
         $query = $request->get('q', '');
-        $products = Product::where('title', 'LIKE', '%' . $query . '%')->get();
-        $adsliders = Advertisement::where('position', 'slider')->get(); // home page slider
-        $adsidebars = Advertisement::where('position', 'sidebar')->limit(2)->orderBy('id', 'DESC')->get(); // home page slider aside two ad
 
-        return view('frontend.product.search_product', compact('products', 'adsliders', 'adsidebars'));
+
+        $products = Product::with('singleImage', 'subcategory', 'discount')
+                    ->where('title', 'LIKE', '%' . $query . '%')
+                    ->paginate('6');
+
+        $brands = Brand::select('id','name')->get();
+
+        $adsliders = Advertisement::where('position', 'slider')->get();
+
+        $adsidebars = Advertisement::where('position', 'sidebar')
+                    ->limit(2)
+                    ->orderBy('id', 'DESC')
+                    ->get();
+
+        $admiddles = Advertisement::where('position', 'middle')
+                    ->limit(3)
+                    ->orderBy('id', 'DESC')
+                    ->get();
+
+        $categories = DB::table('categories')
+                    ->select('category', 'id', 'photo')
+                    ->get();
+
+        $categorywithproducts = Category::with('product')
+                    ->get();
+
+        $allCategories=[];
+
+        $data = Category::with('subcategory')
+                ->select('id','category')
+                ->get();
+
+        $allCategories['allCategories'] = $data;
+
+
+
+        return view('frontend.index', compact([
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts','data'
+        ]));
     }
 
 

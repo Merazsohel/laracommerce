@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Advertisement;
+use App\Brand;
+use App\Category;
 use App\Product;
 use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
+
 class ProductController extends Controller
 {
     public function show($title, $id)
@@ -31,6 +36,96 @@ class ProductController extends Controller
             return redirect()->route('index');
         }
 
+    }
+
+    public function brandWiseProductList($id)
+    {
+        $products = Product::with('singleImage', 'subcategory', 'discount')
+            ->where('brand_id',$id)
+            ->paginate('6');
+
+        $brands = Brand::select('id','name')->get();
+
+        $adsliders = Advertisement::where('position', 'slider')->get();
+
+        $adsidebars = Advertisement::where('position', 'sidebar')->limit(2)->orderBy('id', 'DESC')->get();
+
+        $admiddles = Advertisement::where('position', 'middle')->limit(3)->orderBy('id', 'DESC')->get();
+
+        $categories = DB::table('categories')->select('category', 'id', 'photo')->get();
+
+        $categorywithproducts = Category::with('product')->get();
+
+        $allCategories=[];
+
+        $data = Category::with('subcategory')->select('id','category')->get();
+
+        $allCategories['allCategories'] = $data;
+
+
+
+        return view('frontend.index', compact([
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts','data'
+        ]));
+
+    }
+
+    public function lowToHigh()
+    {
+        $products = Product::with('singleImage', 'subcategory', 'discount')->orderBy('price','asc')->paginate('6');
+
+        $brands = Brand::select('id','name')->get();
+
+        $adsliders = Advertisement::where('position', 'slider')->get();
+
+        $adsidebars = Advertisement::where('position', 'sidebar')->limit(2)->orderBy('id', 'DESC')->get();
+
+        $admiddles = Advertisement::where('position', 'middle')->limit(3)->orderBy('id', 'DESC')->get();
+
+        $categories = DB::table('categories')->select('category', 'id', 'photo')->get();
+
+        $categorywithproducts = Category::with('product')->get();
+
+        $allCategories=[];
+
+        $data = Category::with('subcategory')->select('id','category')->get();
+
+        $allCategories['allCategories'] = $data;
+
+
+
+        return view('frontend.index', compact([
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts','data'
+        ]));
+    }
+
+    public function highToLow()
+    {
+        $products = Product::with('singleImage', 'subcategory', 'discount')->orderBy('price','desc')->paginate('6');
+
+        $brands = Brand::select('id','name')->get();
+
+        $adsliders = Advertisement::where('position', 'slider')->get();
+
+        $adsidebars = Advertisement::where('position', 'sidebar')->limit(2)->orderBy('id', 'DESC')->get();
+
+        $admiddles = Advertisement::where('position', 'middle')->limit(3)->orderBy('id', 'DESC')->get();
+
+        $categories = DB::table('categories')->select('category', 'id', 'photo')->get();
+
+        $categorywithproducts = Category::with('product')->get();
+
+        $allCategories=[];
+
+        $data = Category::with('subcategory')->select('id','category')->get();
+
+        $allCategories['allCategories'] = $data;
+
+
+
+        return view('frontend.index', compact([
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts','data'
+        ]));
     }
 
 }
