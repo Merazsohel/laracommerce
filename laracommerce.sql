@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 18, 2019 at 06:10 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.2.21
+-- Host: localhost:3306
+-- Generation Time: Dec 22, 2019 at 11:09 AM
+-- Server version: 5.7.28-0ubuntu0.18.04.4
+-- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -60,7 +58,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'RYDFCNpe2HXgyQFemIIiL77qe0O2Bgu8O7Vb2YCbVty9EB0kqAVXg68jITf1', NULL, '2019-12-10 08:00:00'),
+(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'vTaibnBHpJxMh2GNOGxu7hHuBxwrXzpB2VfFr3OjlJBZtNsPjGsjweIVzy4R', NULL, '2019-12-10 08:00:00'),
 (5, 'sub', 'admin', 'subadmin@gmail.com', '$2y$10$z3MRApC3EoMn/DPSOD3lFOe9BtD7lHER59Uhf0JLzv6PpxQgLRedO', NULL, '2019-12-14 13:41:52', '2019-12-14 13:41:52');
 
 -- --------------------------------------------------------
@@ -93,7 +91,7 @@ CREATE TABLE `advertisements` (
   `id` int(10) UNSIGNED NOT NULL,
   `title` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `subtitle` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `link` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT '#',
   `position` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `photo` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -103,10 +101,10 @@ CREATE TABLE `advertisements` (
 --
 
 INSERT INTO `advertisements` (`id`, `title`, `subtitle`, `link`, `position`, `photo`) VALUES
-(5, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', NULL, 'slider', '12-08-2019_1126am8811.jpg'),
-(6, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', NULL, 'slider', '12-08-2019_1128am6529.jpg'),
-(7, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', NULL, 'slider', '12-08-2019_1130am1846.png'),
-(8, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', NULL, 'slider', '12-08-2019_1131am3337.png');
+(5, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1126am8811.jpg'),
+(6, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1128am6529.jpg'),
+(7, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1130am1846.png'),
+(8, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1131am3337.png');
 
 -- --------------------------------------------------------
 
@@ -125,16 +123,10 @@ CREATE TABLE `brands` (
 --
 
 INSERT INTO `brands` (`id`, `name`, `photo`) VALUES
-(2, 'Brand One', '12-08-2019_1136am6133.png'),
-(3, 'Brand Two', '12-08-2019_1136am3363.png'),
-(4, 'Brand Three', '12-08-2019_1137am1705.png'),
-(5, 'Brand Four', '12-08-2019_1137am2113.png'),
-(6, 'Brand  Five', '12-08-2019_1137am8543.png'),
-(7, 'Brand Six', '12-08-2019_1137am2527.png'),
-(8, 'Brand Eight', '12-08-2019_1138am4095.png'),
-(9, 'Brand Nine', '12-08-2019_1140am6536.png'),
-(10, 'Brand Ten', '12-08-2019_1140am8708.png'),
-(11, 'Brand Eleven', '12-08-2019_1140am4177.png');
+(12, 'Samsung', '12-19-2019_1219pm9275.png'),
+(13, 'Walton', '12-19-2019_1219pm7141.png'),
+(14, 'Xiamoi', '12-19-2019_1219pm8237.png'),
+(15, 'Dell', '12-19-2019_1223pm4227.png');
 
 -- --------------------------------------------------------
 
@@ -204,7 +196,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `customer_name`, `email_address`, `password`, `mobile_number`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
-(18, 'Md.Meraz Hossain', 'merazhossain64@gmail.com', '25d55ad283aa400af464c76d713c07ad', '01821438375', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', NULL, NULL, NULL);
+(18, 'Md. Meraz Hossain', 'sohelhossain64@gmail.com', '25d55ad283aa400af464c76d713c07ad', '01629064868', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', NULL, '2019-12-22 06:42:58', '2019-12-22 06:42:58');
 
 -- --------------------------------------------------------
 
@@ -312,7 +304,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (18, '2018_07_19_061341_create_orders_table', 1),
 (19, '2018_07_19_065655_create_order_products_table', 1),
 (20, '2018_07_21_045923_create_advertisements_table', 1),
-(21, '2018_07_23_122448_create_reviews_table', 1);
+(21, '2018_07_23_122448_create_reviews_table', 1),
+(22, '2019_12_22_150713_create_settings_table', 2);
 
 -- --------------------------------------------------------
 
@@ -328,6 +321,13 @@ CREATE TABLE `orderdeliveries` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `orderdeliveries`
+--
+
+INSERT INTO `orderdeliveries` (`id`, `order_id`, `delivery_id`, `delivery_charge`, `created_at`, `updated_at`) VALUES
+(1, 66, 1, 50.00, '2019-12-22 04:48:58', '2019-12-22 04:48:58');
 
 -- --------------------------------------------------------
 
@@ -352,8 +352,9 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `address`, `customer_id`, `delivery_charge`, `total`, `cycle`, `code`, `created_at`, `updated_at`) VALUES
-(51, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 35000.00, 'new', '966586903', '2019-12-14 16:37:52', '2019-12-14 16:37:52'),
-(52, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 9000.00, 'new', '361909122', '2019-12-18 16:54:25', '2019-12-18 16:54:25');
+(66, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 11000.00, 'success', '382823214', '2019-12-18 10:46:40', '2019-12-22 04:49:01'),
+(67, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 25000.00, 'new', '407310555', '2019-12-19 08:31:49', '2019-12-19 08:31:49'),
+(68, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 11000.00, 'new', '357831446', '2019-12-19 08:33:54', '2019-12-19 08:33:54');
 
 -- --------------------------------------------------------
 
@@ -367,8 +368,8 @@ CREATE TABLE `order_products` (
   `product_id` int(10) UNSIGNED DEFAULT NULL,
   `qty` int(11) NOT NULL,
   `attr` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `color` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -377,9 +378,10 @@ CREATE TABLE `order_products` (
 -- Dumping data for table `order_products`
 --
 
-INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `qty`, `attr`, `size`, `color`, `created_at`, `updated_at`) VALUES
-(30, 51, 6, 1, NULL, NULL, NULL, '2019-12-14 16:37:52', '2019-12-14 16:37:52'),
-(31, 52, 156, 1, NULL, NULL, 'red', '2019-12-18 16:54:25', '2019-12-18 16:54:25');
+INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `qty`, `attr`, `color`, `size`, `created_at`, `updated_at`) VALUES
+(41, 66, 155, 1, NULL, NULL, NULL, '2019-12-18 10:46:40', '2019-12-18 10:46:40'),
+(42, 67, 154, 2, NULL, NULL, NULL, '2019-12-19 08:31:49', '2019-12-19 08:31:49'),
+(43, 68, 155, 1, NULL, NULL, NULL, '2019-12-19 08:33:54', '2019-12-19 08:33:54');
 
 -- --------------------------------------------------------
 
@@ -407,8 +409,8 @@ CREATE TABLE `products` (
   `child_category` int(10) UNSIGNED DEFAULT NULL,
   `supplier_id` int(10) UNSIGNED DEFAULT NULL,
   `brand_id` int(10) UNSIGNED DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `keypoint` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `keypoint` text COLLATE utf8mb4_unicode_ci,
   `supplierprice` double(8,2) NOT NULL,
   `price` double(8,2) NOT NULL,
   `pcode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -420,7 +422,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `title`, `category_id`, `subcategory_id`, `child_category`, `supplier_id`, `brand_id`, `description`, `keypoint`, `supplierprice`, `price`, `pcode`, `created_by`) VALUES
-(154, 'Watch 001', 13, 11, 12, 8, 2, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</p>\r\n\r\n<p>remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</p>\r\n\r\n<p>remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 12990.00, 12500.00, 'Code-001', 'admin'),
+(154, 'Watch 001', 13, 11, 12, 8, 12, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</p>\r\n\r\n<p>remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting,</p>\r\n\r\n<p>remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 12990.00, 12500.00, 'Code-001', 'admin'),
 (155, 'Watch 002', 8, 13, 3, 8, 3, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 12000.00, 11000.00, 'Code-002', 'admin'),
 (156, 'Watch 003', 8, 13, 3, 8, 4, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 10000.00, 9000.00, 'Code-003', 'admin'),
 (157, 'Watch 004', 6, 8, 4, 8, 5, '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', '<p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</p>', 5000.00, 4500.00, 'Code-004', 'admin'),
@@ -536,16 +538,19 @@ INSERT INTO `product_sizes` (`id`, `product_id`, `size`) VALUES
 --
 
 CREATE TABLE `reviews` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `review` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `publisher` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `customer_id` int(10) UNSIGNED NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `customer` varchar(255) NOT NULL,
+  `review` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `product_id`, `customer`, `review`, `created_at`) VALUES
+(2, 154, 'Md. Meraz Hossain', 'Good Product', '2019-12-22 14:14:52');
 
 -- --------------------------------------------------------
 
@@ -570,6 +575,34 @@ INSERT INTO `roles` (`id`, `role`, `created_at`, `updated_at`) VALUES
 (3, 'dataentry', NULL, NULL),
 (4, 'subadmin', NULL, NULL),
 (5, 'analyst', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `settings`
+--
+
+CREATE TABLE `settings` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `site_title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `site_logo` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `favicon` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `facebook_link` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `twitter_link` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `instagram_link` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `linkedIn_link` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `copyright_text` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `settings`
+--
+
+INSERT INTO `settings` (`id`, `site_title`, `site_logo`, `favicon`, `address`, `facebook_link`, `twitter_link`, `instagram_link`, `linkedIn_link`, `copyright_text`, `created_at`, `updated_at`) VALUES
+(2, 'Meraz Shop', '12-22-2019_0433pm3610.png', '12-22-2019_0433pm9672.ico', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', '#', '#', '#', '#', 'Copyright © Meraz 2019. All Right Reserved.', '2019-12-22 10:33:27', '2019-12-22 10:33:27');
 
 -- --------------------------------------------------------
 
@@ -645,7 +678,8 @@ INSERT INTO `supplier_payment` (`id`, `supplier_id`, `order_id`, `payable`, `pai
 (8, 2, 31, 500.00, 0.00, 'August', '13-08-18'),
 (9, 1, 33, 100000.00, 0.00, 'August', '13-08-18'),
 (10, 1, 34, 2000.00, 0.00, 'August', '13-08-18'),
-(11, 1, 35, 10000.00, 0.00, 'September', '10-09-18');
+(11, 1, 35, 10000.00, 0.00, 'September', '10-09-18'),
+(12, 8, 66, 12000.00, 12000.00, 'December', '2019-12-22');
 
 -- --------------------------------------------------------
 
@@ -822,14 +856,18 @@ ALTER TABLE `product_sizes`
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `reviews_product_id_foreign` (`product_id`),
-  ADD KEY `reviews_customer_id_foreign` (`customer_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `settings`
+--
+ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -874,158 +912,137 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `admins`
 --
 ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT for table `admin_role`
 --
 ALTER TABLE `admin_role`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `advertisements`
 --
 ALTER TABLE `advertisements`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `childcategories`
 --
 ALTER TABLE `childcategories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
 --
 -- AUTO_INCREMENT for table `deliveries`
 --
 ALTER TABLE `deliveries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `delivery_payment`
 --
 ALTER TABLE `delivery_payment`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
 --
 -- AUTO_INCREMENT for table `discounts`
 --
 ALTER TABLE `discounts`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `orderdeliveries`
 --
 ALTER TABLE `orderdeliveries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=162;
-
 --
 -- AUTO_INCREMENT for table `product_colors`
 --
 ALTER TABLE `product_colors`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
-
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
-
 --
 -- AUTO_INCREMENT for table `product_sizes`
 --
 ALTER TABLE `product_sizes`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+--
+-- AUTO_INCREMENT for table `settings`
+--
+ALTER TABLE `settings`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `suppliers`
 --
 ALTER TABLE `suppliers`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
 --
 -- AUTO_INCREMENT for table `supplier_payment`
 --
 ALTER TABLE `supplier_payment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -1086,13 +1103,6 @@ ALTER TABLE `product_sizes`
   ADD CONSTRAINT `product_sizes_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `reviews_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
 -- Constraints for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -1104,7 +1114,6 @@ ALTER TABLE `subcategories`
 ALTER TABLE `wishlists`
   ADD CONSTRAINT `wishlists_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `wishlists_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

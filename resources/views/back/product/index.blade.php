@@ -69,7 +69,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">All Products</h3>
             </div>
-            <!-- /.box-header -->
+
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped "  style="width:100%">
                 <thead>
@@ -124,7 +124,7 @@
               </table>
 
             </div>
-            <!-- /.box-body -->
+
           </div>
 
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -154,9 +154,9 @@
                   </div>
                 </form>
                 </div>
-                <!-- /.modal-content -->
+
               </div>
-              <!-- /.modal-dialog -->
+
             </div>
 
 </section>

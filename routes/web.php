@@ -37,12 +37,17 @@ Route::prefix('/')->group(function () {
     //Account
 
     Route::get('account','ProfileController@profile')->name('profile');
+    Route::post('profile-update/{id}','ProfileController@updateProfile');
 
     //Category
 
     Route::get('category/{category}','FrontCategoryFilterController@category')->name('category');
     Route::get('filter/{childcategory}/{id}','FrontCategoryFilterController@childcategory')->name('childcategory');
     Route::get('find/{subcategory}/{id}','FrontCategoryFilterController@subcategory')->name('subcategoryFind');
+
+    //Review
+
+    Route::post('review','ReviewController@create');
 
 });
 
@@ -73,6 +78,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('product/delete/{id}',['uses'=>'Back\Product\ProductController@destroy','as'=>'product.delete']);
 
     /* Category Route */
+
     Route::get('back/categories/', ['uses' => 'Back\Category\CategoryController@index', 'as' => 'categoryindex']);
     Route::get('categories/create', ['uses' => 'Back\Category\CategoryController@create', 'as' => 'categorycreate']);
     Route::get('categories/edit/{id}', ['uses' => 'Back\Category\CategoryController@edit', 'as' => 'categoryedit']);
@@ -81,18 +87,21 @@ Route::prefix('admin')->group(function () {
     Route::delete('categories/{id}', ['uses' => 'Back\Category\CategoryController@destroy', 'as' => 'categorydestroy']);
 
     /* Sub Category Route */
+
     Route::post('subcategories', ['uses' => 'Back\SubCategory\SubCategoryController@store', 'as' => 'subcategorystore']);
     Route::get('subcategories/edit/{id}', ['uses' => 'Back\SubCategory\SubCategoryController@edit', 'as' => 'subcategoryedit']);
     Route::put('subcategories/update/{id}', ['uses' => 'Back\SubCategory\SubCategoryController@update', 'as' => 'subcategoryupdate']);
     Route::delete('subcategories/{id}', ['uses' => 'Back\SubCategory\SubCategoryController@destroy', 'as' => 'subcategorydestroy']);
 
     /* Child Category Route */
+
     Route::post('childcategories', ['uses' => 'Back\ChildCategory\ChildCategoryController@store', 'as' => 'childcategorystore']);
     Route::get('childcategories/edit/{id}', ['uses' => 'Back\ChildCategory\ChildCategoryController@edit', 'as' => 'childcategoryedit']);
     Route::put('childcategories/update/{id}', ['uses' => 'Back\ChildCategory\ChildCategoryController@update', 'as' => 'childcategoryupdate']);
     Route::delete('childcategories/{id}', ['uses' => 'Back\ChildCategory\ChildCategoryController@destroy', 'as' => 'childcategorydestroy']);
 
     /* Supplier Route */
+
     Route::get('suppliers/create', ['uses' => 'Back\Supplier\SupplierController@create', 'as' => 'suppliercreate']);
     Route::post('suppliers', ['uses' => 'Back\Supplier\SupplierController@store', 'as' => 'supplierstore']);
     Route::get('back/suppliers', ['uses' => 'Back\Supplier\SupplierController@index', 'as' => 'supplierindex']);
@@ -102,6 +111,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('suppliers/{id}', ['uses' => 'Back\Supplier\SupplierController@destroy', 'as' => 'supplierdestroy']);
 
     /* Brand Route */
+
     Route::get('brands/create', ['uses' => 'Back\Brand\BrandController@create', 'as' => 'brandcreate']);
     Route::post('brands', ['uses' => 'Back\Brand\BrandController@store', 'as' => 'brandstore']);
     Route::get('back/brands', ['uses' => 'Back\Brand\BrandController@index', 'as' => 'brandindex']);
@@ -110,6 +120,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('brands/{id}', ['uses' => 'Back\Brand\BrandController@destroy', 'as' => 'branddestroy']);
 
      /* Delivery Route */
+
     Route::get('deliveries/create', ['uses' => 'Back\Delivery\DeliveryController@create', 'as' => 'deliverycreate']);
     Route::post('deliveries', ['uses' => 'Back\Delivery\DeliveryController@store', 'as' => 'deliverystore']);
     Route::get('back/deliveries', ['uses' => 'Back\Delivery\DeliveryController@index', 'as' => 'deliveryindex']);
@@ -122,6 +133,7 @@ Route::prefix('admin')->group(function () {
     Route::post('makepyament',['uses'=>'Back\Delivery\DeliveryController@makepyament','as'=>'makepyament']);
 
     /* Admin Role Route */
+
     Route::get('admin/create', ['uses' => 'Back\Admin\AdminController@create', 'as' => 'admincreate']);
     Route::post('admin', ['uses' => 'Back\Admin\AdminController@store', 'as' => 'adminstore']);
     Route::get('back/role', ['uses' => 'Back\Admin\AdminController@index', 'as' => 'adminroleindex']);
@@ -130,6 +142,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('{id}', ['uses' => 'Back\Admin\AdminController@destroy', 'as' => 'admindestroy']);
 
     /* Product Order Route*/
+
     Route::get('orders/index', ['uses' => 'Back\Order\OrderController@index', 'as' => 'orderindex']);
     Route::get('orders/filter', ['uses' => 'Back\Order\OrderController@search', 'as' => 'ordersearch']);
     Route::get('orders/show/{id}', ['uses' => 'Back\Order\OrderController@show', 'as' => 'ordershow']);
@@ -140,6 +153,7 @@ Route::prefix('admin')->group(function () {
     Route::delete('remove/product/{id}', ['uses' => 'Back\Order\OrderController@orderProductDelete', 'as' => 'orderproductdelete']);
 
     /* Advertisement Route */
+
     Route::get('advertisements/create', ['uses' => 'Back\Advertisement\AdvertisementController@create', 'as' => 'advertisementcreate', 'role' => ['admin', 'editor']]);
     Route::post('advertisements', ['uses' => 'Back\Advertisement\AdvertisementController@store', 'as' => 'advertisementstore']);
     Route::get('back/advertisements', ['uses' => 'Back\Advertisement\AdvertisementController@index', 'as' => 'advertisementindex']);
@@ -148,24 +162,28 @@ Route::prefix('admin')->group(function () {
     Route::delete('advertisements/{id}', ['uses' => 'Back\Advertisement\AdvertisementController@destroy', 'as' => 'advertisementdestroy']);
 
      /*supplier payment */
+
     Route::get('supplier/payment', ['uses' => 'Back\Supplier\SupplierController@payment', 'as' => 'supplierpayment']);
     Route::get('supplier/payment/date', ['uses' => 'Back\Supplier\SupplierController@datewiseSupplierPayment', 'as' => 'datewiseSupplierPayment']);
     Route::get('supplier/payment/{id}', ['uses' => 'Back\Supplier\SupplierController@supplierwisepayment', 'as' => 'supplierwisepayment']);
     Route::get('supplier/payment/details/{id}', ['uses' => 'Back\Supplier\SupplierController@paymentdetails', 'as' => 'paymentdetails']);
     Route::post('supplier', ['uses' => 'Back\Supplier\SupplierController@storepayment', 'as' => 'payment']);
 
-
     Route::get('supplier/product/search/{id}', ['uses' => 'Back\Product\ProductController@supplierwisesearch', 'as' => 'supplierwisesearch']);
     Route::get('brand/product/search/{id}', ['uses' => 'Back\Product\ProductController@brandwisesearch', 'as' => 'brandwisesearch']);
     Route::get('category/product/search/{id}', ['uses' => 'Back\Product\ProductController@categorywisesearch', 'as' => 'categorywisesearch']);
     Route::get('type/product/search/{id}', ['uses' => 'Back\Product\ProductController@typewisesearch', 'as' => 'typewisesearch']);
-
     Route::get('back/sales', ['uses' => 'Back\Sales\SalesReportController@index', 'as' => 'salesindex']);
+    Route::post('back/productSalseReport', 'Back\Sales\SalesReportController@productSalseReport')->name('productSalseReport');
 
-    Route::post('back//productSalseReport', 'Back\Sales\SalesReportController@productSalseReport')->name('productSalseReport');
+    //Settings
 
-
-
+    Route::get('add-settings',['uses' => 'Back\Settings\SettingsController@create'])->name('addSettings');
+    Route::post('add-settings',['uses' => 'Back\Settings\SettingsController@store'])->name('storeSettings');
+    Route::get('settings',['uses' => 'Back\Settings\SettingsController@index'])->name('allSettings');
+    Route::get('settings/edit/{id}', ['uses' => 'Back\Settings\SettingsController@edit', 'as' => 'settingEdit']);
+    Route::put('settings/update/{id}', ['uses' => 'Back\Settings\SettingsController@update', 'as' => 'settingsUpdate']);
+    Route::delete('settings/{id}', ['uses' => 'Back\Settings\SettingsController@destroy', 'as' => 'settingDestroy']);
 });
 
 Route::get('/invoice-create/{id}/pdf','Back\Invoice\InvoiceController@invoice');

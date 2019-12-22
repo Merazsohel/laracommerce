@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="col-xs-4">
-                        <img width="50" src="{{ asset('image/advertisement-images/'.$advertisement->photo) }}" alt="">
+                        <img width="50" src="{{ asset('public/image/advertisement-images/'.$advertisement->photo) }}" alt="">
                     </div>
                 </div>
             </div>

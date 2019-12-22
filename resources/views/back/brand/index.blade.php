@@ -31,7 +31,7 @@
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-success btn-flat btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Action <span class="caret"></span></button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li><a href="#"> <i class="fa fa-eye"></i> Show</a></li>
+
                                             <li><a href="{{ route('brandedit', $brand->id) }}"> <i class="fa fa-edit"></i> Edit</a></li>
                                             <li>
                                                 <a href="javaScript:void(0)" data-id="{{$i}}" class="btn-delete"> <i class="fa fa-trash"></i> Delete</a>

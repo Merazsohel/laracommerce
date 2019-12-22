@@ -1,28 +1,24 @@
 @extends('frontend.layout.master')
 @section('content')
-    <!-- breadcrumb-area start -->
+
     <div class="breadcrumb-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <!-- breadcrumb-list start -->
                     <ul class="breadcrumb-list">
                         <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
                         <li class="breadcrumb-item active">{{$product->title}}</li>
                     </ul>
-                    <!-- breadcrumb-list end -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- breadcrumb-area end -->
 
-    <!-- main-content-wrap start -->
     <div class="main-content-wrap shop-page section-ptb">
         <div class="container">
             <div class="row  product-details-inner">
                 <div class="col-lg-5 col-md-6">
-                    <!-- Product Details Left -->
+
                     <div class="product-large-slider">
                         <div class="pro-large-img img-zoom">
                             <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
@@ -62,7 +58,7 @@
 
 
                     </div>
-                    <!--// Product Details Left -->
+
                 </div>
 
                 <div class="col-lg-7 col-md-6">
@@ -70,14 +66,14 @@
                         <div class="product-info">
                             <h3>{{$product->title}}</h3>
                             <div class="product-rating d-flex">
-                                <ul class="d-flex">
+                                {{--<ul class="d-flex">
                                     <li><a href="#"><i class="icon-star"></i></a></li>
                                     <li><a href="#"><i class="icon-star"></i></a></li>
                                     <li><a href="#"><i class="icon-star"></i></a></li>
                                     <li><a href="#"><i class="icon-star"></i></a></li>
                                     <li><a href="#"><i class="icon-star"></i></a></li>
-                                </ul>
-                                <a href="#reviews">(<span class="count">1</span> customer review)</a>
+                                </ul>--}}
+
                             </div>
                             <div class="price-box">
                                 <span class="new-price">৳ {{$product->price}}</span>
@@ -121,6 +117,7 @@
                                         </li>
 
                                 @endif
+                                </form>
 
                             </ul>
 
@@ -145,7 +142,7 @@
                     </div>
                     <div class="col-lg-12">
                         <div class="product_details_tab_content tab-content">
-                            <!-- Start Single Content -->
+
                             <div class="product_tab_content tab-pane active" id="description" role="tabpanel">
                                 <div class="product_description_wrap  mt-30">
                                     <div class="product_desc mb-30">
@@ -155,36 +152,34 @@
 
                                 </div>
                             </div>
-                            <!-- End Single Content -->
-                            <!-- Start Single Content -->
+
                             <div class="product_tab_content tab-pane" id="reviews" role="tabpanel">
                                 <div class="review_address_inner mt-30">
                                     <div class="pro_review">
-                                        <div class="review_thumb">
-                                            <img alt="review images" src="{{asset('public/frontend')}}/images/other/reviewer-60x60.jpg">
-                                        </div>
+                                        @foreach($reviews as $review)
                                         <div class="review_details">
                                             <div class="review_info mb-10">
-                                                <ul class="product-rating d-flex mb-10">
+                                                {{--<ul class="product-rating d-flex mb-10">
                                                     <li><span class="icon-star"></span></li>
                                                     <li><span class="icon-star"></span></li>
                                                     <li><span class="icon-star"></span></li>
                                                     <li><span class="icon-star"></span></li>
                                                     <li><span class="icon-star"></span></li>
-                                                </ul>
-                                                <h5>Admin - <span> November 19, 2019</span></h5>
+                                                </ul>--}}
+                                                <h5>{{$review->customer}} - <span>{{date('F d, Y, g:i A', strtotime($review->created_at))}}</span></h5>
 
                                             </div>
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in viverra ex, vitae vestibulum arcu. Duis sollicitudin metus sed lorem commodo, eu dapibus libero interdum. Morbi convallis viverra erat, et aliquet orci congue vel. Integer in odio enim. Pellentesque in dignissim leo. Vivamus varius ex sit amet quam tincidunt iaculis.</p>
+                                            <p>{{$review->review}}</p>
                                         </div>
+                                            @endforeach
                                     </div>
-                                    <!-- End Single Review -->
+
                                 </div>
-                                <!-- Start RAting Area -->
+
                                 <div class="rating_wrap mt-50">
                                     <h5 class="rating-title-1">Add a review </h5>
-                                    <p>Your email address will not be published. Required fields are marked *</p>
-                                    <h6 class="rating-title-2">Your Rating</h6>
+
+                                   {{-- <h6 class="rating-title-2">Your Rating</h6>
                                     <div class="rating_list">
                                         <div class="review_info mb-10">
                                             <ul class="product-rating d-flex mb-10">
@@ -195,36 +190,45 @@
                                                 <li><span class="icon-star"></span></li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div>--}}
                                 </div>
-                                <!-- End RAting Area -->
+
+                                @if(\Illuminate\Support\Facades\Session::get('customer_id'))
                                 <div class="comments-area comments-reply-area">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form action="#" class="comment-form-area">
+
+                                            <form action="{{url('review')}}" class="comment-form-area" method="POST">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 <div class="row comment-input">
                                                     <div class="col-md-6 comment-form-author mt-15">
-                                                        <label>Name <span class="required">*</span></label>
-                                                        <input type="text" required="required" name="Name">
-                                                    </div>
-                                                    <div class="col-md-6 comment-form-email mt-15">
-                                                        <label>Email <span class="required">*</span></label>
-                                                        <input type="text" required="required" name="email">
+                                                        <label>Name </label>
+                                                        <input type="text" name="customer" value="{{$profile->customer_name}}" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="comment-form-comment mt-15">
                                                     <label>Comment</label>
-                                                    <textarea class="comment-notes" required="required"></textarea>
+                                                    <textarea class="comment-notes" name="review"></textarea>
                                                 </div>
                                                 <div class="comment-form-submit mt-15">
                                                     <input type="submit" value="Submit" class="comment-submit">
                                                 </div>
                                             </form>
+
                                         </div>
                                     </div>
                                 </div>
+                                    @else
+                                    <div class="col-lg-12">
+                                        Please Login First <a class="btn btn-info" href="{{url('customer-login')}}" style="color: white">Login</a>
+                                    </div>
+                                @endif
+
+
+
                             </div>
-                            <!-- End Single Content -->
+
                         </div>
                     </div>
                 </div>
@@ -241,7 +245,7 @@
                 <div class="row ">
                     @foreach($similiarProducts as $similiarProduct)
                         <div class="col-md-4 col-lg-3 col-12">
-                            <!-- single-product-area start -->
+
                             <div class="single-product-area mt-30">
                                 <div class="product-thumb">
                                     <a href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">
@@ -258,7 +262,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- single-product-area end -->
+
                         </div>
                     @endforeach
                 </div>
@@ -267,5 +271,5 @@
 
         </div>
     </div>
-    <!-- main-content-wrap end -->
+
 @endsection

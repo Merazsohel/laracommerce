@@ -47,7 +47,7 @@ class Product extends Model
 
     public function review()
     {
-        return $this->hasMany(Reviews::class)->where('status',1);
+        return $this->hasMany(Reviews::class);
     }
 
 

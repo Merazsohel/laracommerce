@@ -3,8 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Update Supplier information
-            <small>Supplier info can update from here</small>
+            Update  information
         </h1>
     </section>
     <section class="content">

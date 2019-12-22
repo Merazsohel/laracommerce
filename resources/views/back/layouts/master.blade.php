@@ -97,7 +97,7 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-cubes"></i> <span>Products</span>
+                        <i class="fa fa-product-hunt"></i> <span>Products</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -105,47 +105,38 @@
                     <ul class="treeview-menu">
                         <li><a href="{{route('productindex')}}"><i class="fa fa-circle-o"></i> All Products</a></li>
                         <li><a href="{{route('productcreate')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
-                        <li><a href="{{route('todaysSale')}}"><i class="fa fa-circle-o"></i>Todays Sales</a></li>
-                        <li><a href="{{route('allsalesData')}}"><i class="fa fa-circle-o"></i>All Sales</a></li>
-                        <li><a href="{{route('productsalesdata')}}"><i class="fa fa-circle-o"></i>Product sales data</a>
-                        </li>
-                        <li><a href="{{route('categorywisesale')}}"><i class="fa fa-circle-o"></i>Category Wise Sale</a>
-                        </li>
-                        <li><a href="{{route('supplierwise')}}"><i class="fa fa-circle-o"></i>Supplier Wise Sale</a>
-                        </li>
+
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-user-secret"></i> <span>Advertisement</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-image"></i> <span>Slider</span>
+                        <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>  </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{route('advertisementcreate')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
                         <li><a href="{{route('advertisementindex')}}"><i class="fa fa-circle-o"></i> Manage
-                                Advertisement</a></li>
+                                Slider</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-user-secret"></i> <span>Supplier</span>
+                        <i class="fa fa-user-secret"></i> <span>Vendor</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{route('suppliercreate')}}"><i class="fa fa-circle-o"></i> Add New</a></li>
-                        <li><a href="{{route('supplierindex')}}"><i class="fa fa-circle-o"></i> All Supplier</a></li>
+                        <li><a href="{{route('supplierindex')}}"><i class="fa fa-circle-o"></i> All Vendor</a></li>
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-user-secret"></i> <span>Delivery Payment</span>
+                        <i class="fa fa-money"></i> <span>Delivery Payment</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -198,30 +189,50 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-truck"></i> <span>Supplier Payment</span>
+                        <i class="fa fa-money"></i> <span>Vendor Payment</span>
                         <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('supplierpayment')}}"><i class="fa fa-circle-o"></i> Payment Details</a>
+                        <li><a href="{{route('datewiseSupplierPayment')}}"><i class="fa fa-circle-o"></i> Payment Details</a>
                         </li>
+                    </ul>
+                </li>
+
+
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-file-pdf-o"></i> <span>Sales Report</span>
+                        <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>  </span>
+                    </a>
+                    <ul class="treeview-menu">
+
+                        <li><a href="{{route('todaysSale')}}"><i class="fa fa-circle-o"></i>Todays Sales</a></li>
+                        <li><a href="{{route('allsalesData')}}"><i class="fa fa-circle-o"></i>Monthly Sales Report</a></li>
+                        <li><a href="{{route('productsalesdata')}}"><i class="fa fa-circle-o"></i>All Time Sales Report</a> </li>
+                        <li><a href="{{route('salesindex')}}"><i class="fa fa-circle-o"></i>Yearly Sales Report</a></li>
+                        <li><a href="{{route('categorywisesale')}}"><i class="fa fa-circle-o"></i>Category Sales Report</a>  </li>
+                        <li><a href="{{route('supplierwise')}}"><i class="fa fa-circle-o"></i>Vendor Sales Report</a> </li>
+
                     </ul>
                 </li>
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-truck"></i> <span>Reports</span>
-                        <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                        <i class="fa fa-gear"></i> <span>Settings</span>
+                        <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>  </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{route('salesindex')}}"><i class="fa fa-circle-o"></i> Sales Report</a></li>
+
+                        <li><a href="{{route('addSettings')}}"><i class="fa fa-circle-o"></i>Add Settings</a></li>
+                        <li><a href="{{route('allSettings')}}"><i class="fa fa-circle-o"></i>Manage Settings</a></li>
+
                     </ul>
                 </li>
 
             </ul>
+
         </section>
         <!-- /.sidebar -->
     </aside>

@@ -7,10 +7,10 @@
                 <div class="row">
 
                     <div class="col-md-4 ">
-                        <label>Select Suppliers</label>
+                        <label>Select Vendor</label>
                         <form name="supplierform" id="supplierform"  method="get">
                             <select class="form-control" id="supplier">
-                                <option>Select Supplier</option>
+                                <option>Select Vendor</option>
                                 @foreach($suppliers as $supplier)
                                     <option value="{{$supplier->id}}">{{$supplier->name}}</option>
                                 @endforeach
@@ -63,14 +63,14 @@
         </div>
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">All Suppliers Payments Details</h3>
+                <h3 class="box-title">All Vendor Payments Details</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                 <table class="table table-bordered table-striped ">
                     <thead>
                         <tr>
-                            <th>Supplier</th>
+                            <th>Vendor</th>
                             <th>Total Amount</th>
                             <th>Total Paid</th>
                             <th>Total Due</th>
@@ -104,7 +104,7 @@
 @section('script')
     <script>
         $('#supplier').on('change',function () {
-            $("#supplierform").attr('action',  document.location.origin+'/admin/supplier/payment/'+$(this).val()+'');
+            $("#supplierform").attr('action',  document.location.origin+'/ecommerce/admin/supplier/payment/'+$(this).val()+'');
             this.form.submit();
         })
     </script>

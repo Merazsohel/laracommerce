@@ -9,11 +9,7 @@ use App\Http\Controllers\Controller;
 
 class AdvertisementController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -26,22 +22,13 @@ class AdvertisementController extends Controller
         return view('back.advertisement.index', compact('advertisements'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         return view('back.advertisement.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         Advertisement::insert([
@@ -54,36 +41,14 @@ class AdvertisementController extends Controller
         return redirect()->back()->with('success','Record Successfully Inserted !!!.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $advertisement = Advertisement::find($id);
         return view ('back.advertisement.edit',compact('advertisement'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         if($request->hasFile('photo')){
@@ -107,12 +72,7 @@ class AdvertisementController extends Controller
         return redirect(route('advertisementindex'))->with('success','Recored Successfully Updated.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $data = Advertisement::select('photo')->where('id', $id)->first();

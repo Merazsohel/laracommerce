@@ -4,14 +4,14 @@
     <section class="content">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Supplier wise All Products Sales Summery</h3>
+                <h3 class="box-title">Vendor wise All Products Sales Summery</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                 <table id="example1" class="table table-bordered table-striped "  style="width:100%">
                     <thead>
                     <tr>
-                        <th>Supplier</th>
+                        <th>Vendor</th>
                         <th>Total sales</th>
                     </tr>
                     </thead>

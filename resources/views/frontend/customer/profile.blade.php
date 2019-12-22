@@ -34,9 +34,9 @@
                                             <table class="table">
                                                 <thead>
                                                 <tr>
-                                                    <th>Product</th>
                                                     <th>Date</th>
                                                     <th>Status</th>
+                                                    <th>Quantity</th>
                                                     <th>Total</th>
                                                 </tr>
                                                 </thead>
@@ -45,9 +45,10 @@
                                                 @foreach($orders as $order)
 
                                                     <tr>
-                                                        <td>{{$order->product_id}}</td>
+
                                                         <td>{{date('F d, Y', strtotime($order->created_at))}}</td>
                                                         <td>{{$order->cycle}}</td>
+                                                        <td>{{$order->qty}}</td>
                                                         <td>৳ {{$order->total}}</td>
                                                     </tr>
                                                 @endforeach
@@ -63,36 +64,32 @@
                                         <div class="login">
                                             <div class="login-form-container">
                                                 <div class="account-login-form">
-                                                    <form action="#">
 
+                                                    <form action="{{url('profile-update/'.$profile->id)}}" method="post">
+                                                        @csrf
                                                         <div class="account-input-box">
                                                             <label>Name</label>
-                                                            <input type="text" name="first-name"
-                                                                   value="{{$profile->customer_name}}">
+                                                            <input type="text" name="customer_name" value="{{$profile->customer_name}}">
 
                                                             <label>Email</label>
-                                                            <input type="text" name="email-name"
-                                                                   value="{{$profile->email_address}}">
+                                                            <input type="text" name="email_address" value="{{$profile->email_address}}">
 
                                                             <label>Password</label>
-                                                            <input type="password" name="user-password"
-                                                                   value="{{$profile->password}}">
+                                                            <input type="password" name="password" value="{{$profile->password}}">
 
                                                             <label>Mobile Number</label>
-                                                            <input type="text" name="user-password"
-                                                                   value="{{$profile->mobile_number}}">
+                                                            <input type="text" name="mobile_number" value="{{$profile->mobile_number}}">
 
                                                             <label>Address</label>
-                                                            <input type="text" name="user-password"
-                                                                   value="{{$profile->address}}">
+                                                            <input type="text" name="address" value="{{$profile->address}}">
 
                                                         </div>
 
                                                         <div class="button-box">
-                                                            <button class="btn default-btn" type="submit">Update
-                                                            </button>
+                                                            <button class="btn default-btn" type="submit">Update </button>
                                                         </div>
                                                     </form>
+
                                                 </div>
                                             </div>
                                         </div>

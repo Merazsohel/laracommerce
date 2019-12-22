@@ -5,16 +5,24 @@ namespace App\Http\Controllers\Front;
 use App\Advertisement;
 use App\Brand;
 use App\Category;
+use App\Customer;
 use App\Product;
 use App\Http\Controllers\Controller;
+use App\Reviews;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
     public function show($title, $id)
     {
+        $profile = Customer::where('id', Session::get('customer_id'))
+            ->first();
+
+        $reviews = Reviews::all()->where('product_id',$id);
+
         if ($title != null && $id != null) {
             $cart = Cart::content();
             $product = Product::with('color', 'size', 'image', 'review')
@@ -29,7 +37,7 @@ class ProductController extends Controller
                                 ->limit(12)
                                 ->get();
 
-                return view('frontend.product.show', compact('product', 'cart', 'similiarProducts'));
+                return view('frontend.product.show', compact('product', 'cart', 'similiarProducts','profile','reviews'));
             } else {
                 return redirect()->route('index');
             }
