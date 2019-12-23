@@ -169,8 +169,8 @@ class HomeController extends Controller
 
         } else {
 
-            Session::put('message', 'Your User Id or Password Invalid!');
-            return redirect::to('/login');
+            Session::flash('message', 'Email Or Password Incorrect!');
+            return redirect::to('customer-login');
         }
     }
 

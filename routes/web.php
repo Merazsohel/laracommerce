@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\DB;
+use App\Category;
 
 Route::prefix('/')->group(function () {
 
@@ -187,3 +190,4 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::get('/invoice-create/{id}/pdf','Back\Invoice\InvoiceController@invoice');
+

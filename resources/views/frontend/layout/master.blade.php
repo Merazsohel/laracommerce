@@ -1,13 +1,28 @@
+@php
+    $data = \App\Category::with('subcategory')->select('id','category')->get();
+    $subTitle = \Illuminate\Support\Facades\DB::table('settings')->select('site_title')->first();
+    $favIcon = \Illuminate\Support\Facades\DB::table('settings')->select('favicon')->first();
+    $address = \Illuminate\Support\Facades\DB::table('settings')->select('address')->first();
+    $facebook = \Illuminate\Support\Facades\DB::table('settings')->select('facebook_link')->first();
+    $twitter = \Illuminate\Support\Facades\DB::table('settings')->select('twitter_link')->first();
+    $instagram = \Illuminate\Support\Facades\DB::table('settings')->select('instagram_link')->first();
+    $linkedIn = \Illuminate\Support\Facades\DB::table('settings')->select('linkedIn_link')->first();
+    $copyright = \Illuminate\Support\Facades\DB::table('settings')->select('copyright_text')->first();
+    $email = \Illuminate\Support\Facades\DB::table('settings')->select('email')->first();
+    $mobile = \Illuminate\Support\Facades\DB::table('settings')->select('mobile')->first();
+
+@endphp
+
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    @yield('title')
+    <title>{{$subTitle->site_title}}</title>
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   {{-- <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/frontend')}}/images/favicon.ico">--}}
+    <link rel="shortcut icon" type="image/x-icon" href="{{asset('public/image/favicon/'.$favIcon->favicon)}}">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/vendor/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/vendor/font-awesome.min.css">
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/vendor/simple-line-icons.css">
@@ -19,13 +34,6 @@
     <link rel="stylesheet" href="{{asset('public/frontend')}}/css/style.css">
 
 </head>
-@php
-
-    $allCategories=[];
-    $data = \App\Category::with('subcategory')->select('id','category')->get();
-    $allCategories['allCategories'] = $data;
-
-@endphp
 <body>
 
 <div class="main-wrapper">
@@ -239,28 +247,28 @@
 
                             <div class="footer-addres">
                                 <div class="widget-content mb--20">
-                                    <p>Address: Merul Badda, Dhaka, <br> 1207.</p>
-                                    <p>Phone: <a href="tel:">+880 1629064868</a></p>
-                                    <p>Email: <a href="tel:">info@merazsohel.com</a></p>
+                                    <p>{{$address->address}}</p>
+                                    <p>Phone: <a href="tel:">{{$mobile->mobile}}</a></p>
+                                    <p>Email: <a href="tel:">{{$email->email}}</a></p>
                                 </div>
                             </div>
 
                             <ul class="social-icons">
 
                                 <li>
-                                    <a class="facebook social-icon" href="#" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a class="facebook social-icon" href="{{$facebook->facebook_link}}" title="Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
                                 </li>
 
                                 <li>
-                                    <a class="twitter social-icon" href="#" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                                    <a class="twitter social-icon" href="{{$twitter->twitter_link}}" title="Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
                                 </li>
 
                                 <li>
-                                    <a class="instagram social-icon" href="#" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
+                                    <a class="instagram social-icon" href="{{$instagram->instagram_link}}" title="Instagram" target="_blank"><i class="fa fa-instagram"></i></a>
                                 </li>
 
                                 <li>
-                                    <a class="linkedin social-icon" href="#" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
+                                    <a class="linkedin social-icon" href="{{$linkedIn->linkedIn_link}}" title="Linkedin" target="_blank"><i class="fa fa-linkedin"></i></a>
                                 </li>
 
                             </ul>
@@ -314,7 +322,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-6 col-md-6">
                         <div class="copy-left-text">
-                            <p>Copyright &copy; <a href="#">Meraz</a> 2019. All Right Reserved.</p>
+                            <p>{{$copyright->copyright_text}}</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">

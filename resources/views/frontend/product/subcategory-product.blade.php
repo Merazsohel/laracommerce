@@ -6,7 +6,6 @@
 
 @section('content')
 
-
     <div class="container">
         <div class="row ">
             @if(count($products)>0)

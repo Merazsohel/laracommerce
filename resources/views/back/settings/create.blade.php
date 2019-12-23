@@ -42,6 +42,16 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="name">Mobile Number</label>
+                                            <input type="text" class="form-control" name="mobile">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="name">Email</label>
+                                            <input type="email" class="form-control" name="email">
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="name">Facebook Link</label>
                                             <input type="text" class="form-control" name="facebook_link">
                                         </div>

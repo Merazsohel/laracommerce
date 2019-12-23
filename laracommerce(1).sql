@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 22, 2019 at 11:09 AM
+-- Generation Time: Dec 23, 2019 at 10:52 AM
 -- Server version: 5.7.28-0ubuntu0.18.04.4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -305,7 +305,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2018_07_19_065655_create_order_products_table', 1),
 (20, '2018_07_21_045923_create_advertisements_table', 1),
 (21, '2018_07_23_122448_create_reviews_table', 1),
-(22, '2019_12_22_150713_create_settings_table', 2);
+(22, '2019_12_22_150713_create_settings_table', 2),
+(23, '2019_12_23_150409_add_mobile_email_to_settings', 3);
 
 -- --------------------------------------------------------
 
@@ -594,15 +595,17 @@ CREATE TABLE `settings` (
   `linkedIn_link` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `copyright_text` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `mobile` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `site_title`, `site_logo`, `favicon`, `address`, `facebook_link`, `twitter_link`, `instagram_link`, `linkedIn_link`, `copyright_text`, `created_at`, `updated_at`) VALUES
-(2, 'Meraz Shop', '12-22-2019_0433pm3610.png', '12-22-2019_0433pm9672.ico', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', '#', '#', '#', '#', 'Copyright © Meraz 2019. All Right Reserved.', '2019-12-22 10:33:27', '2019-12-22 10:33:27');
+INSERT INTO `settings` (`id`, `site_title`, `site_logo`, `favicon`, `address`, `facebook_link`, `twitter_link`, `instagram_link`, `linkedIn_link`, `copyright_text`, `created_at`, `updated_at`, `mobile`, `email`) VALUES
+(2, 'Meraz Shop', '12-22-2019_0433pm3610.png', '12-22-2019_0433pm9672.ico', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', '#', '#', '#', '#', 'Copyright © Meraz 2019. All Right Reserved.', '2019-12-22 10:33:27', '2019-12-23 09:14:01', '01629064868', 'merazhossain64@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -967,7 +970,7 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 --
 -- AUTO_INCREMENT for table `orderdeliveries`
 --

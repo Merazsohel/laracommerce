@@ -34,24 +34,30 @@
                                             <table class="table">
                                                 <thead>
                                                 <tr>
+
                                                     <th>Date</th>
                                                     <th>Status</th>
                                                     <th>Quantity</th>
                                                     <th>Total</th>
                                                 </tr>
+
+
                                                 </thead>
                                                 <tbody>
+
+
 
                                                 @foreach($orders as $order)
 
                                                     <tr>
-
                                                         <td>{{date('F d, Y', strtotime($order->created_at))}}</td>
                                                         <td>{{$order->cycle}}</td>
                                                         <td>{{$order->qty}}</td>
                                                         <td>৳ {{$order->total}}</td>
+
                                                     </tr>
                                                 @endforeach
+
 
                                                 </tbody>
                                             </table>

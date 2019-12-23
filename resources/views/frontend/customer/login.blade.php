@@ -29,7 +29,9 @@
                             <h4> register </h4>
                         </a>
                     </div>
-
+                    @if(\Illuminate\Support\Facades\Session::has('message'))
+                        <p class="alert {{ \Illuminate\Support\Facades\Session::get('alert-class', 'alert-info') }}">{{ \Illuminate\Support\Facades\Session::get('message') }}</p>
+                    @endif
                     <div class="tab-content">
                         <div id="lg1" class="tab-pane active">
                             <div class="login-form-container">

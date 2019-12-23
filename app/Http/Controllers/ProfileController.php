@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -20,11 +21,12 @@ class ProfileController extends Controller
             ->where('customer_id', Session::get('customer_id'))
             ->get();
 
+       /* $products = Order::with('product')->where('customer_id',Session::get('customer_id'))->get();*/
 
         $profile = Customer::where('id', Session::get('customer_id'))
             ->first();
 
-        return view('frontend.customer.profile', compact('profile', 'orders', 'productName'));
+        return view('frontend.customer.profile', compact('profile', 'orders', 'productName','products'));
     }
 
     public function updateProfile(Request $request, $id)

@@ -19,10 +19,8 @@
                             <th>Site Logo</th>
                             <th>Favicon</th>
                             <th>Address</th>
-                            <th>Facebook</th>
-                            <th>Twitter</th>
-                            <th>Instagram</th>
-                            <th>LinkedIn</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
                             <th>Copyright</th>
                             <th>Action</th>
                         </tr>
@@ -35,10 +33,8 @@
                                 <td><img src="{{ asset('public/image/site-logo/'.$setting->site_logo) }}"  alt=""></td>
                                 <td><img src="{{ asset('public/image/favicon/'.$setting->favicon) }}"  alt=""></td>
                                 <td>{{ $setting->address }}</td>
-                                <td>{{ $setting->facebook_link }}</td>
-                                <td>{{ $setting->twitter_link }}</td>
-                                <td>{{ $setting->instagram_link }}</td>
-                                <td>{{ $setting->linkedIn_link }}</td>
+                                <td>{{ $setting->mobile }}</td>
+                                <td>{{ $setting->email }}</td>
                                 <td>{{ $setting->copyright_text }}</td>
                                 <td>
                                     <form id="delete-form{{$i}}" action="{{ route('settingDestroy',$setting->id) }}" method="POST" style="display: inline-block">

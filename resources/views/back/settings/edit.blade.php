@@ -44,11 +44,19 @@
                                         </div>
                                     </div>
 
-
-
                                     <div class="form-group">
                                         <label for="name">Address</label>
                                         <input type="text" class="form-control" name="address" value="{{$setting->address}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Email</label>
+                                        <input type="email" class="form-control" name="email" value="{{$setting->email}}">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="name">Mobile</label>
+                                        <input type="text" class="form-control" name="mobile" value="{{$setting->mobile}}">
                                     </div>
 
                                     <div class="form-group">

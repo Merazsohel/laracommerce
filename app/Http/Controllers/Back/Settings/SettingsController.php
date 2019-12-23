@@ -39,6 +39,8 @@ class SettingsController extends Controller
             'instagram_link' => $request->instagram_link,
             'linkedIn_link' => $request->linkedIn_link,
             'copyright_text' => $request->copyright_text,
+            'email' => $request->email,
+            'mobile' => $request->mobile,
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
@@ -78,6 +80,8 @@ class SettingsController extends Controller
             'instagram_link' => $request->instagram_link,
             'linkedIn_link' => $request->linkedIn_link,
             'copyright_text' => $request->copyright_text,
+            'mobile' => $request->mobile,
+            'email' => $request->email,
         ]);
         return redirect()->back()->with('success', 'Record Successfully Updated.');
     }
