@@ -1,9 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\DB;
-use App\Category;
 
 Route::prefix('/')->group(function () {
 
@@ -36,6 +33,10 @@ Route::prefix('/')->group(function () {
 
     Route::get('checkout','CheckoutController@checkout')->name('checkout');
     Route::post('checkout/order','OrderController@placeOrder')->name('order');
+
+    Route::post('success-url','OrderController@success_url');
+    Route::post('fail-url','OrderController@fail_url');
+    Route::post('cancel-url','OrderController@cancel_url');
 
     //Account
 

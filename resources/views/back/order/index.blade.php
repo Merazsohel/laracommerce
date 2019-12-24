@@ -77,6 +77,7 @@
                               <th>Name</th>
                               <th>Mobile</th>
                               <th>Address</th>
+                              <th>Payment Type</th>
                               <th>Total</th>
                               <th>Status</th>
                               <th>Action</th>
@@ -91,6 +92,7 @@
                                 <td>{{$order->customer->customer_name}}</td>
                                 <td>{{$order->customer->mobile_number}}</td>
                                 <td>{{$order->address}}</td>
+                                <td>{{$order->payment_type}}</td>
                                 <td>{{$order->total}} /-</td>
                                 <td>
                                     @if($order->cycle=='new')

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 23, 2019 at 10:52 AM
+-- Generation Time: Dec 24, 2019 at 11:48 AM
 -- Server version: 5.7.28-0ubuntu0.18.04.4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -19,22 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `laracommerce`
 --
-
--- --------------------------------------------------------
-
---
--- Table structure for table `addresses`
---
-
-CREATE TABLE `addresses` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `customer_id` int(10) UNSIGNED DEFAULT NULL,
-  `fname` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lname` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `city` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -58,7 +42,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'vTaibnBHpJxMh2GNOGxu7hHuBxwrXzpB2VfFr3OjlJBZtNsPjGsjweIVzy4R', NULL, '2019-12-10 08:00:00'),
+(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'IXcOxQzqryOfBKfYWAaItYRFfzMbNb8jaq7DbkEAkXQShfAyNoqu9WFnO3b9', NULL, '2019-12-10 08:00:00'),
 (5, 'sub', 'admin', 'subadmin@gmail.com', '$2y$10$z3MRApC3EoMn/DPSOD3lFOe9BtD7lHER59Uhf0JLzv6PpxQgLRedO', NULL, '2019-12-14 13:41:52', '2019-12-14 13:41:52');
 
 -- --------------------------------------------------------
@@ -101,10 +85,10 @@ CREATE TABLE `advertisements` (
 --
 
 INSERT INTO `advertisements` (`id`, `title`, `subtitle`, `link`, `position`, `photo`) VALUES
-(5, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1126am8811.jpg'),
-(6, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1128am6529.jpg'),
-(7, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1130am1846.png'),
-(8, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', '#', 'slider', '12-08-2019_1131am3337.png');
+(5, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1126am8811.jpg'),
+(6, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1128am6529.jpg'),
+(7, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1130am1846.png'),
+(8, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1131am3337.png');
 
 -- --------------------------------------------------------
 
@@ -182,10 +166,10 @@ INSERT INTO `childcategories` (`id`, `subcategory_id`, `childcategory`) VALUES
 CREATE TABLE `customers` (
   `id` int(10) UNSIGNED NOT NULL,
   `customer_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email_address` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `mobile_number` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `mobile_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `address` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -195,8 +179,8 @@ CREATE TABLE `customers` (
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `customer_name`, `email_address`, `password`, `mobile_number`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
-(18, 'Md. Meraz Hossain', 'sohelhossain64@gmail.com', '25d55ad283aa400af464c76d713c07ad', '01629064868', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', NULL, '2019-12-22 06:42:58', '2019-12-22 06:42:58');
+INSERT INTO `customers` (`id`, `customer_name`, `email_address`, `mobile_number`, `password`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
+(3, 'Md. Meraz Hossain', 'merazhossain64@gmail.com', '01629064868', 'e10adc3949ba59abbe56e057f20f883e', 'Badda, Dhaka-1207', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -306,7 +290,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2018_07_21_045923_create_advertisements_table', 1),
 (21, '2018_07_23_122448_create_reviews_table', 1),
 (22, '2019_12_22_150713_create_settings_table', 2),
-(23, '2019_12_23_150409_add_mobile_email_to_settings', 3);
+(23, '2019_12_23_150409_add_mobile_email_to_settings', 3),
+(24, '2019_12_24_121547_create_allcustomers_table', 4),
+(25, '2019_12_24_124010_create_customers_table', 5),
+(26, '2019_12_24_161133_add_payment_type_to_orders', 6);
 
 -- --------------------------------------------------------
 
@@ -323,13 +310,6 @@ CREATE TABLE `orderdeliveries` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `orderdeliveries`
---
-
-INSERT INTO `orderdeliveries` (`id`, `order_id`, `delivery_id`, `delivery_charge`, `created_at`, `updated_at`) VALUES
-(1, 66, 1, 50.00, '2019-12-22 04:48:58', '2019-12-22 04:48:58');
-
 -- --------------------------------------------------------
 
 --
@@ -345,17 +325,9 @@ CREATE TABLE `orders` (
   `cycle` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'new',
   `code` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `payment_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `address`, `customer_id`, `delivery_charge`, `total`, `cycle`, `code`, `created_at`, `updated_at`) VALUES
-(66, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 11000.00, 'success', '382823214', '2019-12-18 10:46:40', '2019-12-22 04:49:01'),
-(67, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 25000.00, 'new', '407310555', '2019-12-19 08:31:49', '2019-12-19 08:31:49'),
-(68, 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', 18, 50.00, 11000.00, 'new', '357831446', '2019-12-19 08:33:54', '2019-12-19 08:33:54');
 
 -- --------------------------------------------------------
 
@@ -374,15 +346,6 @@ CREATE TABLE `order_products` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `order_products`
---
-
-INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `qty`, `attr`, `color`, `size`, `created_at`, `updated_at`) VALUES
-(41, 66, 155, 1, NULL, NULL, NULL, '2019-12-18 10:46:40', '2019-12-18 10:46:40'),
-(42, 67, 154, 2, NULL, NULL, NULL, '2019-12-19 08:31:49', '2019-12-19 08:31:49'),
-(43, 68, 155, 1, NULL, NULL, NULL, '2019-12-19 08:33:54', '2019-12-19 08:33:54');
 
 -- --------------------------------------------------------
 
@@ -687,22 +650,6 @@ INSERT INTO `supplier_payment` (`id`, `supplier_id`, `order_id`, `payable`, `pai
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `wishlists`
 --
 
@@ -717,13 +664,6 @@ CREATE TABLE `wishlists` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `addresses`
---
-ALTER TABLE `addresses`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `addresses_customer_id_foreign` (`customer_id`);
 
 --
 -- Indexes for table `admins`
@@ -769,7 +709,9 @@ ALTER TABLE `childcategories`
 -- Indexes for table `customers`
 --
 ALTER TABLE `customers`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `customers_email_address_unique` (`email_address`),
+  ADD UNIQUE KEY `customers_mobile_number_unique` (`mobile_number`);
 
 --
 -- Indexes for table `deliveries`
@@ -893,13 +835,6 @@ ALTER TABLE `supplier_payment`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
-
---
 -- Indexes for table `wishlists`
 --
 ALTER TABLE `wishlists`
@@ -911,11 +846,6 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for dumped tables
 --
 
---
--- AUTO_INCREMENT for table `addresses`
---
-ALTER TABLE `addresses`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `admins`
 --
@@ -950,7 +880,7 @@ ALTER TABLE `childcategories`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `deliveries`
 --
@@ -970,7 +900,7 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `orderdeliveries`
 --
@@ -980,12 +910,12 @@ ALTER TABLE `orderdeliveries`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 --
 -- AUTO_INCREMENT for table `products`
 --
@@ -1037,11 +967,6 @@ ALTER TABLE `suppliers`
 ALTER TABLE `supplier_payment`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
---
 -- AUTO_INCREMENT for table `wishlists`
 --
 ALTER TABLE `wishlists`
@@ -1049,12 +974,6 @@ ALTER TABLE `wishlists`
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `addresses`
---
-ALTER TABLE `addresses`
-  ADD CONSTRAINT `addresses_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `admin_role`

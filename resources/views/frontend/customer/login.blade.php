@@ -41,8 +41,12 @@
                                        @csrf
 
                                         <div class="login-input-box">
-                                            <input type="text" name="email_address" placeholder="Email Address" required>
-                                            <input type="password" name="password" placeholder="Password" required>
+                                            <span class="text-danger">{{$errors->has('email_address')?$errors->first('email_address'):''}}</span>
+                                            <input type="text" name="email_address" placeholder="Email Address">
+
+                                            <span class="text-danger">{{$errors->has('password')?$errors->first('password'):''}}</span>
+                                            <input type="password" name="password" placeholder="Password">
+
 
                                         </div>
 
@@ -68,16 +72,20 @@
                                     <form  method="post" action="{{url('customer-register')}}">
                                         @csrf
                                         <div class="login-input-box">
-                                            <input type="text"  name="customer_name" class="input-text" placeholder="Name" required>
+                                            <span class="text-danger">{{$errors->has('customer_name')?$errors->first('customer_name'):''}}</span>
+                                            <input type="text"  name="customer_name" class="input-text" placeholder="Name">
 
+                                            <span class="text-danger">{{$errors->has('email_address')?$errors->first('email_address'):''}}</span>
                                             <input type="email" name="email_address" placeholder="Email"  class="input-text">
 
+                                            <span class="text-danger">{{$errors->has('mobile_number')?$errors->first('mobile_number'):''}}</span>
                                             <input type="text" name="mobile_number" placeholder="Mobile Number"  class="input-text">
 
+                                            <span class="text-danger">{{$errors->has('address')?$errors->first('address'):''}}</span>
                                             <input type="text" name="address" placeholder="Address"  class="input-text">
 
+                                            <span class="text-danger">{{$errors->has('password')?$errors->first('password'):''}}</span>
                                             <input type="password" name="password" placeholder="********" class="input-text">
-
 
                                         </div>
                                         <div class="button-box">

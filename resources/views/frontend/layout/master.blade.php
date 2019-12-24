@@ -1,6 +1,7 @@
 @php
     $data = \App\Category::with('subcategory')->select('id','category')->get();
     $subTitle = \Illuminate\Support\Facades\DB::table('settings')->select('site_title')->first();
+    $logo = \Illuminate\Support\Facades\DB::table('settings')->select('site_logo')->first();
     $favIcon = \Illuminate\Support\Facades\DB::table('settings')->select('favicon')->first();
     $address = \Illuminate\Support\Facades\DB::table('settings')->select('address')->first();
     $facebook = \Illuminate\Support\Facades\DB::table('settings')->select('facebook_link')->first();
@@ -73,7 +74,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-5">
                         <div class="logo-area">
-                            <a href="{{url('/')}}"><img src="{{asset('public/frontend')}}/images/logo/logo.png" alt=""></a>
+                            <a href="{{url('/')}}"><img src="{{asset('public/image/site-logo/'.$logo->site_logo)}}" alt=""></a>
                         </div>
                     </div>
                     <div class="col-lg-6">

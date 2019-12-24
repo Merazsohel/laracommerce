@@ -124,6 +124,10 @@
                                 <div class="payment-method">
                                     <div class="payment-accordion">
 
+                                    <label><input type="radio" name="payment_type" value="cash_on_delivery"> Cash On Delivery</label>
+
+                                    <label><input type="radio" name="payment_type" value="ssl_commerz"> Online Payment</label>
+
                                     </div>
                                     <div class="order-button-payment">
                                         <input type="submit" value="Place order"/>

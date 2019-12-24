@@ -20,9 +20,9 @@ class HomeController extends Controller
     public function index()
     {
         $products = Product::with('singleImage', 'subcategory', 'discount')
-                    ->paginate('6');
+            ->paginate('6');
 
-        $brands = Brand::select('id','name')->get();
+        $brands = Brand::select('id', 'name')->get();
 
         $adsliders = Advertisement::where('position', 'slider')->get();
 
@@ -42,16 +42,16 @@ class HomeController extends Controller
 
         $categorywithproducts = Category::with('product')->get();
 
-        $allCategories=[];
+        $allCategories = [];
 
         $data = Category::with('subcategory')
-            ->select('id','category')
+            ->select('id', 'category')
             ->get();
 
         $allCategories['allCategories'] = $data;
 
         return view('frontend.index', compact([
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts','data'
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts', 'data'
         ]));
     }
 
@@ -80,50 +80,66 @@ class HomeController extends Controller
 
 
         $products = Product::with('singleImage', 'subcategory', 'discount')
-                    ->where('title', 'LIKE', '%' . $query . '%')
-                    ->paginate('6');
+            ->where('title', 'LIKE', '%' . $query . '%')
+            ->paginate('6');
 
-        $brands = Brand::select('id','name')->get();
+        $brands = Brand::select('id', 'name')->get();
 
         $adsliders = Advertisement::where('position', 'slider')->get();
 
         $adsidebars = Advertisement::where('position', 'sidebar')
-                    ->limit(2)
-                    ->orderBy('id', 'DESC')
-                    ->get();
+            ->limit(2)
+            ->orderBy('id', 'DESC')
+            ->get();
 
         $admiddles = Advertisement::where('position', 'middle')
-                    ->limit(3)
-                    ->orderBy('id', 'DESC')
-                    ->get();
+            ->limit(3)
+            ->orderBy('id', 'DESC')
+            ->get();
 
         $categories = DB::table('categories')
-                    ->select('category', 'id', 'photo')
-                    ->get();
+            ->select('category', 'id', 'photo')
+            ->get();
 
         $categorywithproducts = Category::with('product')
-                    ->get();
+            ->get();
 
-        $allCategories=[];
+        $allCategories = [];
 
         $data = Category::with('subcategory')
-                ->select('id','category')
-                ->get();
+            ->select('id', 'category')
+            ->get();
 
         $allCategories['allCategories'] = $data;
 
 
-
         return view('frontend.index', compact([
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts','data'
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts', 'data'
         ]));
     }
 
 
     public function customerRegister(Request $request)
     {
+        $request->validate([
+            'customer_name' => 'required',
+            'email_address' => 'required|unique:customers',
+            'password' => 'required|min:6|max:12|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/',
+            'mobile_number' => 'required|unique:customers',
+            'address' => 'required',
+        ],
 
-        $data = array();
+        [
+            'customer_name.required' => 'Name field is required!',
+            'email_address.required' => 'Email address field is required!',
+            'email_address.unique' => 'This email address already exist!',
+            'password.required' => 'Password field is required!',
+            'mobile_number.required' => 'Mobile number field is required!',
+            'mobile_number.unique' => 'This mobile number already exist!',
+            'address.required' => 'Address field is required!'
+        ]);
+
+        $data = [];
         $data['customer_name'] = $request->customer_name;
         $data['email_address'] = $request->email_address;
         $data['password'] = md5($request->password);
@@ -134,9 +150,16 @@ class HomeController extends Controller
             ->insertGetId($data);
 
         Session::put('customer_id', $customer_id);
+        Session::put('email_address', $request->email_address);
         Session::put('address', $request->address);
         Session::put('customer_name', $request->customer_name);
-        return redirect('checkout');
+
+        if (Cart::content()->isEmpty()){
+            return redirect('/');
+        }else{
+            return redirect('checkout');
+        }
+
     }
 
     public function customerLoginView()
@@ -146,6 +169,16 @@ class HomeController extends Controller
 
     public function customerLogin(Request $request)
     {
+        $request->validate([
+            'email_address' => 'required',
+            'password' => 'required',
+
+        ],
+        [
+            'email_address.required' => 'Please fill up your Email Address!',
+            'password.required' => 'Please fill up your password!'
+        ]);
+
         $email_address = $request->email_address;
         $password = $request->password;
 

@@ -2,13 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 class Customer extends Authenticatable
 {
 
     protected $fillable = [
-        'email','fname','lname', 'password','username','gender'
+        'customer_name','email_address','mobile_number', 'password','address'
     ];
     protected $hidden = [
         'password', 'remember_token',
