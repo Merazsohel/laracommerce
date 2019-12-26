@@ -21,6 +21,7 @@ class ProductImageController extends Controller
     public function update(Request $request)
     {
         $existingImage = ProductImage::find($request->id);
+
         if ($request->hasFile('image')) {
             $file = $request->image;
             $extention = $file->getClientOriginalExtension();
@@ -31,6 +32,7 @@ class ProductImageController extends Controller
             }
         }
         ProductImage::where('id', $request->id)->update(['image' => $filename]);
+
         return redirect()->back()->with('success', 'Data Updated.');
     }
 }

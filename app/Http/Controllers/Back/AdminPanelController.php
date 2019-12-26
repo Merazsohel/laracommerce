@@ -8,9 +8,7 @@ use App\Customer;
 use App\Order;
 use App\Product;
 use App\Supplier;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
 class AdminPanelController extends Controller
 {
@@ -52,6 +50,7 @@ class AdminPanelController extends Controller
              ->groupBy('month')
              ->get();*/
 
-        return view('back.index', compact('totalSuppliers', 'totalBrands', 'totalProducts', 'totalAdmins', 'totalCustomers', 'newOrders', 'completeOrders'));
+        return view('back.index', compact('totalSuppliers', 'totalBrands', 'totalProducts',
+                                                          'totalAdmins', 'totalCustomers', 'newOrders', 'completeOrders'));
     }
 }

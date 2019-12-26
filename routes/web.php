@@ -11,10 +11,10 @@ Route::prefix('/')->group(function () {
     Route::post('customer-login','Front\HomeController@customerLogin');
     Route::get('customer-logout','Front\HomeController@customerLogout');
     Route::get('shipping','CheckoutController@shipping')->name('shipping');
-    Route::get('brand/{id}','Front\ProductController@brandWiseProductList');
-    Route::get('low-to-high','Front\ProductController@lowToHigh');
-    Route::get('high-to-low','Front\ProductController@highToLow');
-    Route::get('price-filter','Front\ProductController@priceFilter');
+    Route::get('brand/{id}','Front\HomeController@brandWiseProductList');
+    Route::get('low-to-high','Front\HomeController@lowToHigh');
+    Route::get('high-to-low','Front\HomeController@highToLow');
+    Route::get('price-filter','Front\HomeController@priceFilter');
 
     //Search
 
@@ -59,7 +59,7 @@ Route::prefix('admin')->group(function () {
 
     //Admin Login Route
 
-    Route::get('/', ['uses' => 'Back\AdminPanelController@index', 'as' => 'adminindex', 'role' => ['admin', 'editor']]);
+    Route::get('/', ['uses' => 'Back\AdminPanelController@index', 'as' => 'adminindex', 'role' => ['admin', 'subadmin']]);
     Route::get('account/login', 'Auth\LoginController@showLoginForm')->name('adminlogin');
     Route::post('account/login', 'Auth\LoginController@login')->name('login');
     Route::post('account/logout', 'Auth\LoginController@logout')->name('adminlogout');
@@ -158,7 +158,7 @@ Route::prefix('admin')->group(function () {
 
     /* Advertisement Route */
 
-    Route::get('advertisements/create', ['uses' => 'Back\Advertisement\AdvertisementController@create', 'as' => 'advertisementcreate', 'role' => ['admin', 'editor']]);
+    Route::get('advertisements/create', ['uses' => 'Back\Advertisement\AdvertisementController@create', 'as' => 'advertisementcreate', 'role' => ['admin', 'subadmin']]);
     Route::post('advertisements', ['uses' => 'Back\Advertisement\AdvertisementController@store', 'as' => 'advertisementstore']);
     Route::get('back/advertisements', ['uses' => 'Back\Advertisement\AdvertisementController@index', 'as' => 'advertisementindex']);
     Route::get('advertisements/edit/{id}', ['uses' => 'Back\Advertisement\AdvertisementController@edit', 'as' => 'advertisementedit']);

@@ -44,6 +44,7 @@ class SettingsController extends Controller
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+
         return redirect()->back()->with('success', 'Record Successfully Inserted !!!');
     }
 
@@ -83,16 +84,17 @@ class SettingsController extends Controller
             'mobile' => $request->mobile,
             'email' => $request->email,
         ]);
+
         return redirect()->back()->with('success', 'Record Successfully Updated.');
     }
 
     public function destroy($id)
     {
         $siteLogo = Setting::select('site_logo')->where('id', $id)->first();
-        ManageImage::deleteImage('public/image/site-logo/'.$siteLogo->site_logo);
+        ManageImage::deleteImage('public/image/site-logo/' . $siteLogo->site_logo);
 
         $favicon = Setting::select('favicon')->where('id', $id)->first();
-        ManageImage::deleteImage('public/image/favicon/'.$favicon->favicon);
+        ManageImage::deleteImage('public/image/favicon/' . $favicon->favicon);
 
         Setting::find($id)->delete();
 

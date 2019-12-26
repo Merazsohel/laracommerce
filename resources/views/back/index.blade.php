@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <div class="row">
+     {{-- <div class="row">
         <section class="col-lg-6 connectedSortable">
             <label>Product Sales Summery</label>
           <div class="nav-tabs-custom">
@@ -129,13 +129,13 @@
             <canvas id="categoryWiseSale" width="400" height="400"></canvas>
           </div>
         </section>
-      </div>
+      </div>--}}
 
     </section>
 @endsection
 @section('script')
 
-  <script>
+{{--  <script>
 
       $(document).ready(function(){
           Chart.defaults.line.spanGaps = true;
@@ -287,5 +287,5 @@
 
       })
 
-  </script>
+  </script>--}}
 @endsection

@@ -29,33 +29,39 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::with('color', 'size', 'color')->get();
-        $suppliers = Supplier::select('id', 'name')->get();
-        $brands = Brand::select('id', 'name')->get();
-        $categories = Category::select('id', 'category')->get();
-        $subcategories = Subcategory::select('id', 'subcategory')->get();
-        $childcategories = Childcategory::select('id', 'childcategory')->get();
-        return view('back.product.index', compact('products', 'suppliers', 'brands', 'categories', 'subcategories', 'childcategories'));
+        $suppliers = $this->getSuppliers();
+        $brands = $this->getBrands();
+        $categories = $this->getCategories();
+        $subcategories = $this->getSubCategories();
+        $childcategories = $this->getChildCategories();
+
+        return view('back.product.index', compact('products', 'suppliers', 'brands',
+                                                            'categories', 'subcategories', 'childcategories'));
     }
 
     public function create()
     {
-        $categories = Category::select('id', 'category')->get();
-        $subcategories = Subcategory::select('id', 'subcategory')->get();
-        $childcategories = Childcategory::select('id', 'childcategory')->get();
-        $suppliers = Supplier::select('id', 'name')->get();
-        $brands = Brand::select('id', 'name')->get();
-        return view('back.product.create', compact('categories', 'subcategories', 'childcategories', 'suppliers', 'brands'));
+        $categories = $this->getCategories();
+        $subcategories = $this->getSubCategories();
+        $childcategories = $this->getChildCategories();
+        $suppliers = $this->getSuppliers();
+        $brands = $this->getBrands();
+
+        return view('back.product.create', compact('categories', 'subcategories', 'childcategories',
+                                                                   'suppliers', 'brands'));
     }
 
     public function edit($id)
     {
-        $categories = Category::select('id', 'category')->get();
-        $subcategories = Subcategory::select('id', 'subcategory')->get();
-        $childcategories = Childcategory::select('id', 'childcategory')->get();
-        $suppliers = Supplier::select('id', 'name')->get();
-        $brands = Brand::select('id', 'name')->get();
+        $categories = $this->getCategories();
+        $subcategories = $this->getSubCategories();
+        $childcategories = $this->getChildCategories();
+        $suppliers = $this->getSuppliers();
+        $brands = $this->getBrands();
         $product = Product::with('color', 'size', 'image', 'discount')->where('id', $id)->first();
-        return view('back.product.edit', compact('product', 'categories', 'subcategories', 'childcategories', 'suppliers', 'brands'));
+
+        return view('back.product.edit', compact('product', 'categories', 'subcategories',
+                                                                'childcategories', 'suppliers', 'brands'));
     }
 
     public function store(Request $request)
@@ -73,7 +79,9 @@ class ProductController extends Controller
         ]);
 
         $request['created_by'] = Auth::guard('admin')->user()->firstName;
+
         $id = Product::create($request->except('_token'));
+
         if ($request->color != '' && sizeof($request->color) >= 1) {
             for ($i = 0; $i < sizeof($request->color); $i++) {
                 ProductColor::insert(['product_id' => $id->id, 'color' => $request->color[$i]]);
@@ -127,6 +135,7 @@ class ProductController extends Controller
             }
 
         }
+
         return redirect()->back()->with('success', 'Product Updated.');
     }
 
@@ -139,7 +148,9 @@ class ProductController extends Controller
                 unlink('public/image/product-images/' . $product->image[$i]->image);
             }
         }
+
         $product->delete();
+
         return redirect()->back()->with('success', 'Data Removed.');
     }
 
@@ -151,44 +162,48 @@ class ProductController extends Controller
     public function supplierwisesearch($id)
     {
         $products = Product::with('color', 'size', 'color')->where('supplier_id', $id)->paginate(20);
-        $suppliers = Supplier::select('id', 'name')->get();
-        $brands = Brand::select('id', 'name')->get();
-        $categories = Category::select('id', 'category')->get();
-        $subcategories = Subcategory::select('id', 'subcategory')->get();
-        $childcategories = Childcategory::select('id', 'childcategory')->get();
+        $suppliers = $this->getSuppliers();
+        $brands = $this->getBrands();
+        $categories = $this->getCategories();
+        $subcategories = $this->getSubCategories();
+        $childcategories = $this->getChildCategories();
+
         return view('back.product.index', compact('products', 'suppliers', 'brands', 'categories', 'subcategories', 'childcategories'));
     }
 
     public function brandwisesearch($id)
     {
         $products = Product::with('color', 'size', 'color')->where('brand_id', $id)->paginate(20);
-        $suppliers = Supplier::select('id', 'name')->get();
-        $brands = Brand::select('id', 'name')->get();
-        $categories = Category::select('id', 'category')->get();
-        $subcategories = Subcategory::select('id', 'subcategory')->get();
-        $childcategories = Childcategory::select('id', 'childcategory')->get();
+        $suppliers = $this->getSuppliers();
+        $brands = $this->getBrands();
+        $categories = $this->getCategories();
+        $subcategories = $this->getSubCategories();
+        $childcategories = $this->getChildCategories();
+
         return view('back.product.index', compact('products', 'suppliers', 'brands', 'categories', 'subcategories', 'childcategories'));
     }
 
     public function categorywisesearch($id)
     {
         $products = Product::with('color', 'size', 'color')->where('category_id', $id)->paginate(20);
-        $suppliers = Supplier::select('id', 'name')->get();
-        $brands = Brand::select('id', 'name')->get();
-        $categories = Category::select('id', 'category')->get();
-        $subcategories = Subcategory::select('id', 'subcategory')->get();
-        $childcategories = Childcategory::select('id', 'childcategory')->get();
+        $suppliers = $this->getSuppliers();
+        $brands = $this->getBrands();
+        $categories = $this->getCategories();
+        $subcategories = $this->getSubCategories();
+        $childcategories = $this->getChildCategories();
+
         return view('back.product.index', compact('products', 'suppliers', 'brands', 'categories', 'subcategories', 'childcategories'));
     }
 
     public function typewisesearch($id)
     {
         $products = Product::with('color', 'size', 'color')->where('child_category', $id)->paginate(20);
-        $suppliers = Supplier::select('id', 'name')->get();
-        $brands = Brand::select('id', 'name')->get();
-        $categories = Category::select('id', 'category')->get();
-        $subcategories = Subcategory::select('id', 'subcategory')->get();
-        $childcategories = Childcategory::select('id', 'childcategory')->get();
+        $suppliers = $this->getSuppliers();
+        $brands = $this->getBrands();
+        $categories = $this->getCategories();
+        $subcategories = $this->getSubCategories();
+        $childcategories = $this->getChildCategories();
+
         return view('back.product.index', compact('products', 'suppliers', 'brands', 'categories', 'subcategories', 'childcategories'));
     }
 
@@ -199,6 +214,7 @@ class ProductController extends Controller
             ->select('title', DB::raw('count(product_id) as totalsale'))
             ->groupBy('product_id')
             ->get();
+
         return view('back.product.products_sales', compact('productsalesata'));
     }
 
@@ -210,6 +226,7 @@ class ProductController extends Controller
             ->select('code', 'title', 'order_products.created_at', 'price', 'qty', 'supplierprice', 'total')
             ->where('orders.cycle', 'success')
             ->get();
+
         return view('back.product.all_product_sales', compact('products'));
     }
 
@@ -226,6 +243,7 @@ class ProductController extends Controller
             ->where('orders.cycle', 'success')
             ->whereBetween('order_products.created_at', array($from, $to))
             ->get();
+
         return view('back.product.all_product_sales', compact('products'));
     }
 
@@ -238,6 +256,7 @@ class ProductController extends Controller
             ->where('orders.cycle', 'success')
             ->where('order_products.created_at', Carbon::now())
             ->get();
+
         return view('back.product.today_sales', compact('products'));
     }
 
@@ -250,6 +269,7 @@ class ProductController extends Controller
             ->groupBy('category_id')
             ->orderBy('totalsale', 'desc')
             ->get();
+
         return view('back.product.categorywise-sale', compact('productsaledata'));
     }
 
@@ -262,6 +282,33 @@ class ProductController extends Controller
             ->groupBy('supplier_id')
             ->orderBy('totalsale', 'desc')
             ->get();
+
         return view('back.product.supplerwise-sale', compact('productsaledata'));
+    }
+
+
+    public function getBrands()
+    {
+        return Brand::select('id', 'name')->get();
+    }
+
+    public function getSuppliers()
+    {
+        return Supplier::select('id', 'name')->get();
+    }
+
+    public function getCategories()
+    {
+        return Category::select('id', 'category')->get();
+    }
+
+    public function getSubCategories()
+    {
+        return Subcategory::select('id', 'subcategory')->get();
+    }
+
+    public function getChildCategories()
+    {
+        return Childcategory::select('id', 'childcategory')->get();
     }
 }

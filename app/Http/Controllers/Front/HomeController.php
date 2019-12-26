@@ -19,40 +19,24 @@ class HomeController extends Controller
 
     public function index()
     {
-        $products = Product::with('singleImage', 'subcategory', 'discount')
-            ->paginate('6');
+        $products = $this->getProducts();
 
-        $brands = Brand::select('id', 'name')->get();
+        $brands = $this->getBrands();
 
-        $adsliders = Advertisement::where('position', 'slider')->get();
+        $adsliders = $this->getAdSliders();
 
-        $adsidebars = Advertisement::where('position', 'sidebar')
-            ->limit(2)
-            ->orderBy('id', 'DESC')
-            ->get();
+        $adsidebars = $this->getRightAdSliders();
 
-        $admiddles = Advertisement::where('position', 'middle')
-            ->limit(3)
-            ->orderBy('id', 'DESC')
-            ->get();
+        $admiddles =  $this->getMiddleAdSliders();
 
-        $categories = DB::table('categories')
-            ->select('category', 'id', 'photo')
-            ->get();
+        $categories = $this->getAllCategories();
 
         $categorywithproducts = Category::with('product')->get();
 
-        $allCategories = [];
+        $data = $this->getSubCategories();
 
-        $data = Category::with('subcategory')
-            ->select('id', 'category')
-            ->get();
-
-        $allCategories['allCategories'] = $data;
-
-        return view('frontend.index', compact([
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts', 'data'
-        ]));
+        return view('frontend.index', compact('products', 'brands', 'categories', 'adsliders',
+                                                    'adsidebars', 'admiddles', 'categorywithproducts', 'data'));
     }
 
 
@@ -78,46 +62,117 @@ class HomeController extends Controller
     {
         $query = $request->get('q', '');
 
-
         $products = Product::with('singleImage', 'subcategory', 'discount')
             ->where('title', 'LIKE', '%' . $query . '%')
             ->paginate('6');
 
-        $brands = Brand::select('id', 'name')->get();
+        $brands = $this->getBrands();
 
-        $adsliders = Advertisement::where('position', 'slider')->get();
+        $adsliders = $this->getAdSliders();
 
-        $adsidebars = Advertisement::where('position', 'sidebar')
-            ->limit(2)
-            ->orderBy('id', 'DESC')
-            ->get();
+        $adsidebars = $this->getMiddleAdSliders();
 
-        $admiddles = Advertisement::where('position', 'middle')
-            ->limit(3)
-            ->orderBy('id', 'DESC')
-            ->get();
+        $admiddles = $this->getMiddleAdSliders();
 
-        $categories = DB::table('categories')
-            ->select('category', 'id', 'photo')
-            ->get();
+        $categories = $this->getAllCategories();
 
-        $categorywithproducts = Category::with('product')
-            ->get();
+        $data = $this->getSubCategories();
 
-        $allCategories = [];
+        return view('frontend.index', compact('products', 'brands', 'categories',
+                                                    'adsliders', 'adsidebars', 'admiddles', 'data'));
+    }
+    public function brandWiseProductList($id)
+    {
+        $products = $this->getProducts();
 
-        $data = Category::with('subcategory')
-            ->select('id', 'category')
-            ->get();
+        $brands = $this->getBrands();
 
-        $allCategories['allCategories'] = $data;
+        $adsliders = $this->getAdSliders();
+
+        $adsidebars = $this->getRightAdSliders();
+
+        $admiddles = $this->getMiddleAdSliders();
+
+        $categories = $this->getAllCategories();
+
+        $data = $this->getSubCategories();
 
 
-        return view('frontend.index', compact([
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'categorywithproducts', 'data'
-        ]));
+        return view('frontend.index', compact(
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data'
+        ));
+
     }
 
+    public function lowToHigh()
+    {
+        $products = Product::with('singleImage', 'subcategory', 'discount')->orderBy('price','asc')->paginate('6');
+
+        $brands = $this->getBrands();
+
+        $adsliders = $this->getAdSliders();
+
+        $adsidebars = $this->getMiddleAdSliders();
+
+        $admiddles = $this->getMiddleAdSliders();
+
+        $categories = $this->getAllCategories();
+
+        $data = $this->getSubCategories();
+
+
+        return view('frontend.index', compact(
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data'
+        ));
+    }
+
+    public function highToLow()
+    {
+        $products = Product::with('singleImage', 'subcategory', 'discount')->orderBy('price','desc')->paginate('6');
+
+        $brands = $this->getBrands();
+
+        $adsliders = $this->getAdSliders();
+
+        $adsidebars = $this->getMiddleAdSliders();
+
+        $admiddles = $this->getMiddleAdSliders();
+
+        $categories = $this->getAllCategories();
+
+        $data = $this->getSubCategories();
+
+        return view('frontend.index', compact(
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data'
+        ));
+    }
+
+    public function priceFilter(Request $request)
+    {
+        $start =  $request->min;
+        $end     = $request->max;
+
+        $products = Product::with('singleImage', 'subcategory', 'discount')
+            ->where('price','>=',$start)
+            ->where('price','<=',$end)
+            ->paginate('6');
+
+        $brands = $this->getBrands();
+
+        $adsliders = $this->getAdSliders();
+
+        $adsidebars = $this->getMiddleAdSliders();
+
+        $admiddles = $this->getMiddleAdSliders();
+
+        $categories = $this->getAllCategories();
+
+        $data = $this->getSubCategories();
+
+        return view('frontend.index', compact(
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles','data'
+        ));
+    }
 
     public function customerRegister(Request $request)
     {
@@ -213,6 +268,52 @@ class HomeController extends Controller
         Session::put('customer_name', '');
         return redirect::to('/');
 
+    }
+
+    public function getBrands()
+    {
+       return  Brand::select('id', 'name')->get();
+    }
+
+    public function getAdSliders()
+    {
+        return Advertisement::where('position', 'slider')->get();
+    }
+
+    public function getRightAdSliders()
+    {
+        return Advertisement::where('position', 'sidebar')
+            ->limit(2)
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
+
+    public function getMiddleAdSliders()
+    {
+        return Advertisement::where('position', 'middle')
+            ->limit(3)
+            ->orderBy('id', 'DESC')
+            ->get();
+    }
+
+    public function getAllCategories()
+    {
+        return DB::table('categories')
+            ->select('category', 'id', 'photo')
+            ->get();
+    }
+
+    public function getSubCategories()
+    {
+        return Category::with('subcategory')
+            ->select('id', 'category')
+            ->get();
+    }
+
+    public function getProducts()
+    {
+        return Product::with('singleImage', 'subcategory', 'discount')
+            ->paginate('6');
     }
 
 

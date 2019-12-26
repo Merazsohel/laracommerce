@@ -42,6 +42,7 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
         $products = Product::with('color', 'size', 'color')->where('supplier_id', $id)->paginate(20);
         $totalProduct = Product::where('supplier_id', $id)->count();
+
         return view('back.supplier.show', compact('supplier', 'products', 'totalProduct'));
     }
 
@@ -68,19 +69,21 @@ class SupplierController extends Controller
 
     public function payment()
     {
-        $suppliers = Supplier::select('name', 'id')->get();
+        $suppliers = $this->getSuppliers();
+
         $supplierpayments = DB::table('supplier_payment')
             ->leftJoin('suppliers', 'suppliers.id', 'supplier_payment.supplier_id')
             ->select('name', 'suppliers.id as id', DB::raw('sum(payable) as payable,sum(paid) as paid'))
             ->groupBy('supplier_id')
-            //->groupBy('month')
             ->get();
+
         return view('back.supplier.payment', compact('supplierpayments', 'suppliers'));
     }
 
     public function datewiseSupplierPayment(Request $request)
     {
-        $suppliers = Supplier::select('name', 'id')->get();
+        $suppliers = $this->getSuppliers();
+
         $fromdate = $request->from;
         $todate = $request->to;
         $supplierpayments = DB::table('supplier_payment')
@@ -88,20 +91,22 @@ class SupplierController extends Controller
             ->select('name', 'suppliers.id as id', DB::raw('sum(payable) as payable,sum(paid) as paid'))
             ->groupBy('supplier_id')
             ->whereBetween('date', array($fromdate, $todate))
-            //->groupBy('month')
             ->get();
+
         return view('back.supplier.payment', compact('supplierpayments', 'suppliers'));
     }
 
     public function supplierwisepayment($id)
     {
         $suppliers = Supplier::select('name', 'id')->get();
+
         $supplierpayments = DB::table('supplier_payment')
             ->leftJoin('suppliers', 'suppliers.id', 'supplier_payment.supplier_id')
             ->select('name', 'suppliers.id as id', DB::raw('sum(payable) as payable,sum(paid) as paid'))
             ->groupBy('supplier_id')
             ->where('supplier_id', $id)
             ->get();
+
         return view('back.supplier.payment', compact('supplierpayments', 'suppliers'));
     }
 
@@ -117,6 +122,7 @@ class SupplierController extends Controller
             ->whereColumn('payable', '!=', 'paid')
             ->where('supplier_id', $id)
             ->get();
+
         return view('back.supplier.comlpetepayment', compact('supplierpayment', 'completePayment'));
     }
 
@@ -136,5 +142,10 @@ class SupplierController extends Controller
                 ->update(['paid' => $request->paid + $paid->paid, 'date' => Carbon::now()->format('Y-m-d')]);
             return redirect()->back()->with('success', 'Data Recorded..');
         }
+    }
+
+    public function getSuppliers()
+    {
+        return Supplier::select('name', 'id')->get();
     }
 }
