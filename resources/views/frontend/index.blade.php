@@ -100,17 +100,20 @@
                                         @csrf
 
                                         <span class="inlineinput">
-                                         <input type='text' name="min" class="form-control" style='display: inline; width: 90px;'/>
+                                         <input type='text' name="min" class="form-control"
+                                                style='display: inline; width: 90px;'/>
                                          </span>
 
                                         <span>To</span>
 
                                         <span class="inlineinput">
-                                           <input type='text' class="form-control" name="max" style='display: inline; width:90px;'/>
+                                           <input type='text' class="form-control" name="max"
+                                                  style='display: inline; width:90px;'/>
                                         </span>
 
                                         <div class="mt-3">
-                                            <input type="submit"  class="btn btn-small btn-primary ml-5" value="FILTER" style="color:white">
+                                            <input type="submit" class="btn btn-small btn-primary ml-5" value="FILTER"
+                                                   style="color:white">
 
                                         </div>
                                     </form>
@@ -288,11 +291,24 @@
 
                             <div class="col-lg-5 col-md-7">
                                 <div class="newsletter-footer mb-30">
-                                    <input type="text" placeholder="Your email address...">
+                                    <form method="post" action="{{url('newsletter')}}">
+                                        @csrf
+                                    <input type="email" placeholder="Your email address..." required>
                                     <div class="subscribe-button">
-                                        <button class="subscribe-btn">Subscribe</button>
+                                        <button class="subscribe-btn" type="submit">Subscribe</button>
                                     </div>
+                                    </form>
                                 </div>
+                                @if(session()->has('message'))
+                                    <div class="alert alert-success">
+                                        {{ session()->get('message') }}
+                                    </div>
+                                @endif
+                                @if(session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session()->get('error') }}
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

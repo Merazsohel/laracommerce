@@ -22,6 +22,10 @@ Route::prefix('/')->group(function () {
     Route::get('reset-password','Front\WelComeController@resetPasswordForm');
     Route::post('reset-password','Front\WelComeController@resetPassword');
 
+    //Newsletter
+
+    Route::post('newsletter','Front\WelComeController@newsletter');
+
     //Search
 
     Route::get('search',array('as'=>'search','uses'=>'Front\HomeController@search'));

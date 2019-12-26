@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Newsletter;
 
 
 class WelComeController extends Controller
@@ -185,6 +185,17 @@ class WelComeController extends Controller
             ->delete();
 
         return redirect('customer-login')->with('message', 'Congratulation! Successfully you reset your password');
+    }
+
+    public function newsletter(Request $request)
+    {
+
+        if ( ! Newsletter::isSubscribed($request->email) )
+        {
+            Newsletter::subscribePending($request->email);
+            return redirect('newsletter')->with('message', 'Thanks For Subscribe');
+        }
+        return redirect('newsletter')->with('error', 'Sorry! You have already subscribed ');
     }
 
 }
