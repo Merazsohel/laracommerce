@@ -189,13 +189,14 @@ class WelComeController extends Controller
 
     public function newsletter(Request $request)
     {
+        return redirect()->back()->with('message', 'Thanks For Subscribe');
 
-        if ( ! Newsletter::isSubscribed($request->email) )
+       /* if ( ! Newsletter::isSubscribed($request->email) )
         {
             Newsletter::subscribePending($request->email);
             return redirect('newsletter')->with('message', 'Thanks For Subscribe');
-        }
-        return redirect('newsletter')->with('error', 'Sorry! You have already subscribed ');
+        }*/
+       // return redirect('index')->with('error', 'Sorry! You have already subscribed ');
     }
 
 }

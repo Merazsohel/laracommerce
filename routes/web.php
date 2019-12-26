@@ -24,7 +24,7 @@ Route::prefix('/')->group(function () {
 
     //Newsletter
 
-    Route::post('newsletter','Front\WelComeController@newsletter');
+    Route::get('newsletter','Front\WelComeController@newsletter');
 
     //Search
 

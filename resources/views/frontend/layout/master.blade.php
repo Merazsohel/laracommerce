@@ -377,6 +377,8 @@
 </script>
 
 @yield('script')
+
+
 </body>
 
 
