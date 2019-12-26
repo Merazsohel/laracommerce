@@ -52,9 +52,7 @@
 
                                         <div class="button-box">
                                             <div class="login-toggle-btn">
-                                                <input type="checkbox">
-                                                <label>Remember me</label>
-                                                <a href="#">Forgot Password?</a>
+                                                <a href="{{url('forgot-password')}}">Forgot Password?</a>
                                             </div>
                                             <div class="button-box">
                                                 <button class="login-btn btn" type="submit"><span>Login</span></button>

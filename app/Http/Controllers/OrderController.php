@@ -15,6 +15,10 @@ class OrderController extends Controller
 
     public function placeOrder(Request $request)
     {
+        $request->validate([ 'payment_type' => 'required'],
+
+        ['payment_type.required' => 'Please select your payment method!']);
+
         $request['delivery_charge'] = 50;
         $request['address'] = Session::get('address');
         $request['total'] = floatval(str_replace(',', '', Cart::subtotal()));

@@ -126,9 +126,11 @@
 
                                     <label><input type="radio" name="payment_type" value="cash_on_delivery"> Cash On Delivery</label>
 
-                                    <label><input type="radio" name="payment_type" value="ssl_commerz"> Online Payment</label>
+                                     <label><input type="radio" name="payment_type" value="ssl_commerz"> Online Payment</label> <br/>
+                                        <span class="text-danger">{{$errors->has('payment_type')?$errors->first('payment_type'):''}}</span>
 
                                     </div>
+
                                     <div class="order-button-payment">
                                         <input type="submit" value="Place order"/>
                                     </div>

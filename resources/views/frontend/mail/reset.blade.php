@@ -1,0 +1,1 @@
+Please click here to reset your password <a href="{{url('reset-password')}}">Reset</a>

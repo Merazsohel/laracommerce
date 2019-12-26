@@ -3,14 +3,15 @@
 namespace App\Http\Controllers\Front;
 
 use App\Brand;
+use App\Customer;
 use App\Product;
 use App\Category;
 use App\Advertisement;
+use App\Reviews;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 
@@ -37,6 +38,39 @@ class HomeController extends Controller
 
         return view('frontend.index', compact('products', 'brands', 'categories', 'adsliders',
                                                     'adsidebars', 'admiddles', 'categorywithproducts', 'data'));
+    }
+
+    public function show($title, $id)
+    {
+        $profile = Customer::where('id', Session::get('customer_id'))
+            ->first();
+
+        $reviews = Reviews::all()->where('product_id', $id);
+
+        if ($title != null && $id != null) {
+
+            $cart = Cart::content();
+
+            $product = Product::with('color', 'size', 'image', 'review')
+                ->where('id', $id)
+                ->where('title', $title)
+                ->first();
+
+            if ($product != null) {
+
+                $similiarProducts = Product::with('singleImage', 'discount')->where('id', '!=', $id)
+                    ->where('child_category', $product->child_category)
+                    ->inRandomOrder()
+                    ->limit(12)
+                    ->get();
+
+                return view('frontend.product.show', compact('product', 'cart', 'similiarProducts', 'profile', 'reviews'));
+            } else {
+                return redirect()->route('index');
+            }
+        } else {
+            return redirect()->route('index');
+        }
     }
 
 
@@ -174,101 +208,6 @@ class HomeController extends Controller
         ));
     }
 
-    public function customerRegister(Request $request)
-    {
-        $request->validate([
-            'customer_name' => 'required',
-            'email_address' => 'required|unique:customers',
-            'password' => 'required|min:6|max:12|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/',
-            'mobile_number' => 'required|unique:customers',
-            'address' => 'required',
-        ],
-
-        [
-            'customer_name.required' => 'Name field is required!',
-            'email_address.required' => 'Email address field is required!',
-            'email_address.unique' => 'This email address already exist!',
-            'password.required' => 'Password field is required!',
-            'mobile_number.required' => 'Mobile number field is required!',
-            'mobile_number.unique' => 'This mobile number already exist!',
-            'address.required' => 'Address field is required!'
-        ]);
-
-        $data = [];
-        $data['customer_name'] = $request->customer_name;
-        $data['email_address'] = $request->email_address;
-        $data['password'] = md5($request->password);
-        $data['mobile_number'] = $request->mobile_number;
-        $data['address'] = $request->address;
-
-        $customer_id = DB::table('customers')
-            ->insertGetId($data);
-
-        Session::put('customer_id', $customer_id);
-        Session::put('email_address', $request->email_address);
-        Session::put('address', $request->address);
-        Session::put('customer_name', $request->customer_name);
-
-        if (Cart::content()->isEmpty()){
-            return redirect('/');
-        }else{
-            return redirect('checkout');
-        }
-
-    }
-
-    public function customerLoginView()
-    {
-        return view('frontend.customer.login');
-    }
-
-    public function customerLogin(Request $request)
-    {
-        $request->validate([
-            'email_address' => 'required',
-            'password' => 'required',
-
-        ],
-        [
-            'email_address.required' => 'Please fill up your Email Address!',
-            'password.required' => 'Please fill up your password!'
-        ]);
-
-        $email_address = $request->email_address;
-        $password = $request->password;
-
-        $result = DB::table('customers')
-            ->select('*')
-            ->where('email_address', $email_address)
-            ->where('password', md5($password))
-            ->first();
-
-        if ($result) {
-            Session::put('customer_id', $result->id);
-            Session::put('customer_name', $result->customer_name);
-            Session::put('email_address', $result->email_address);
-            Session::put('address', $result->address);
-
-            if (Cart::content()->isEmpty()) {
-                return redirect('/');
-            } else {
-                return redirect('checkout');
-            }
-
-        } else {
-
-            Session::flash('message', 'Email Or Password Incorrect!');
-            return redirect::to('customer-login');
-        }
-    }
-
-    public function customerLogout()
-    {
-        Session::put('customer_id', '');
-        Session::put('customer_name', '');
-        return redirect::to('/');
-
-    }
 
     public function getBrands()
     {

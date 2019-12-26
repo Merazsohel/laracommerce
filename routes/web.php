@@ -5,16 +5,22 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('/')->group(function () {
 
     Route::get('','Front\HomeController@index')->name('index');
-    Route::get('product/{title}/{id}','Front\ProductController@show')->name('productdetails');
-    Route::post('customer-register','Front\HomeController@customerRegister');
-    Route::get('customer-login','Front\HomeController@customerLoginView');
-    Route::post('customer-login','Front\HomeController@customerLogin');
-    Route::get('customer-logout','Front\HomeController@customerLogout');
+    Route::get('product/{title}/{id}','Front\HomeController@show')->name('productdetails');
     Route::get('shipping','CheckoutController@shipping')->name('shipping');
     Route::get('brand/{id}','Front\HomeController@brandWiseProductList');
     Route::get('low-to-high','Front\HomeController@lowToHigh');
     Route::get('high-to-low','Front\HomeController@highToLow');
     Route::get('price-filter','Front\HomeController@priceFilter');
+
+    //Customer Auth
+    Route::post('customer-register','Front\WelComeController@customerRegister');
+    Route::get('customer-login','Front\WelComeController@customerLoginView');
+    Route::post('customer-login','Front\WelComeController@customerLogin');
+    Route::get('customer-logout','Front\WelComeController@customerLogout');
+    Route::get('forgot-password','Front\WelComeController@forgotPassword');
+    Route::post('forgot-password','Front\WelComeController@sentForgotPassword');
+    Route::get('reset-password','Front\WelComeController@resetPasswordForm');
+    Route::post('reset-password','Front\WelComeController@resetPassword');
 
     //Search
 
