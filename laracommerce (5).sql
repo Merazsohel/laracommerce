@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 29, 2019 at 08:47 AM
+-- Generation Time: Dec 29, 2019 at 11:40 AM
 -- Server version: 5.7.28-0ubuntu0.18.04.4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -163,6 +163,32 @@ INSERT INTO `childcategories` (`id`, `subcategory_id`, `childcategory`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contacts`
+--
+
+CREATE TABLE `contacts` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `subject` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `email`, `phone`, `subject`, `message`, `created_at`, `updated_at`) VALUES
+(1, 'customer', 'customer@gmail.com', '01811111111', 'Product Delivery', 'I am not get product yet', NULL, NULL),
+(2, 'customer', 'customer@gmail.com', '01811111111', 'Product Delivery', 'I am not get product yet', '2019-12-29 11:13:40', '2019-12-29 11:13:40'),
+(3, 'customer', 'customer@gmail.com', '01811111111', 'Product Delivery', 'I am not get product yet', '2019-12-29 11:14:18', '2019-12-29 11:14:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `customers`
 --
 
@@ -296,7 +322,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (23, '2019_12_23_150409_add_mobile_email_to_settings', 3),
 (24, '2019_12_24_121547_create_allcustomers_table', 4),
 (25, '2019_12_24_124010_create_customers_table', 5),
-(26, '2019_12_24_161133_add_payment_type_to_orders', 6);
+(26, '2019_12_24_161133_add_payment_type_to_orders', 6),
+(27, '2019_12_29_170937_create_contacts_table', 7);
 
 -- --------------------------------------------------------
 
@@ -593,7 +620,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `site_title`, `site_logo`, `favicon`, `address`, `facebook_link`, `twitter_link`, `instagram_link`, `linkedIn_link`, `copyright_text`, `created_at`, `updated_at`, `mobile`, `email`) VALUES
-(2, 'Meraz Shop', '12-22-2019_0433pm3610.png', '12-22-2019_0433pm9672.ico', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', '#', '#', '#', '#', 'Copyright © Meraz 2019. All Right Reserved.', '2019-12-22 10:33:27', '2019-12-23 09:14:01', '01629064868', 'merazhossain64@gmail.com');
+(2, 'Meraz Shop', '12-29-2019_0455pm6170.png', '12-22-2019_0433pm9672.ico', 'B/14, Block - E, Zakir Hossain Road, Mohammadpur, Dhaka - 1207', '#', '#', '#', '#', 'Copyright © Meraz 2019. All Right Reserved.', '2019-12-22 10:33:27', '2019-12-29 10:55:52', '01629064868', 'merazhossain64@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -729,6 +756,12 @@ ALTER TABLE `categories`
 ALTER TABLE `childcategories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `childcategories_subcategory_id_foreign` (`subcategory_id`);
+
+--
+-- Indexes for table `contacts`
+--
+ALTER TABLE `contacts`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `customers`
@@ -902,6 +935,11 @@ ALTER TABLE `categories`
 ALTER TABLE `childcategories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
+-- AUTO_INCREMENT for table `contacts`
+--
+ALTER TABLE `contacts`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
@@ -925,7 +963,7 @@ ALTER TABLE `discounts`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `orderdeliveries`
 --

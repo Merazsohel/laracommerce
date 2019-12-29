@@ -60,7 +60,7 @@ class SettingsController extends Controller
             $data = Setting::select('site_logo')->where('id', $id)->first();
             ManageImage::deleteImage('public/image/site-logo/' . $data->site_logo);
             Setting::where('id', $id)->update([
-                'photo' => ManageImage::insertImage('public/image/site-logo', $request->site_logo)
+                'site_logo' => ManageImage::insertImage('public/image/site-logo', $request->site_logo)
             ]);
         }
 
@@ -68,7 +68,7 @@ class SettingsController extends Controller
             $data = Setting::select('favicon')->where('id', $id)->first();
             ManageImage::deleteImage('public/image/favicon/' . $data->favicon);
             Setting::where('id', $id)->update([
-                'photo' => ManageImage::insertImage('public/image/favicon', $request->favicon)
+                'favicon' => ManageImage::insertImage('public/image/favicon', $request->favicon)
             ]);
         }
 

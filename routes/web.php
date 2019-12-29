@@ -63,6 +63,20 @@ Route::prefix('/')->group(function () {
 
     Route::post('review','ReviewController@create');
 
+    //Contact Page
+
+    Route::get('contact-us','Front\WelComeController@contact');
+    Route::post('contact-us','Front\WelComeController@contactStore');
+
+    //FAQ
+
+    Route::get('faq','Front\WelComeController@faq');
+
+    //About
+
+    Route::get('about','Front\WelComeController@about');
+
+
 });
 
 Route::prefix('admin')->group(function () {

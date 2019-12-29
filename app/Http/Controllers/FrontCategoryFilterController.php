@@ -17,7 +17,7 @@ class FrontCategoryFilterController extends Controller
             ->where('category', (str_replace("-", ' ', str_replace("s-", "'s ", $category))))
             ->first();
         if (!is_null($category)) {
-            return view('front.product.category-filter', compact('category'));
+            return view('frontend.product.category-filter', compact('category'));
         }
         return redirect()->route('index');
     }

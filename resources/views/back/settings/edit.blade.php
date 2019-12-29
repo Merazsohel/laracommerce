@@ -23,7 +23,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                    <img src="{{ asset('public/image/site-logo/'.$setting->site_logo) }}"  alt="">
+                                    <img src="{{ asset('public/image/site-logo/'.$setting->site_logo) }}"  alt="" style="width: 50px">
                                     </div>
 
                                     <div class="form-group">

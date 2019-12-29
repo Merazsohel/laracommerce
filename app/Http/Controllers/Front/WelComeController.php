@@ -26,15 +26,15 @@ class WelComeController extends Controller
             'address' => 'required',
         ],
 
-            [
-                'customer_name.required' => 'Name field is required!',
-                'email_address.required' => 'Email address field is required!',
-                'email_address.unique' => 'This email address already exist!',
-                'password.required' => 'Password field is required!',
-                'mobile_number.required' => 'Mobile number field is required!',
-                'mobile_number.unique' => 'This mobile number already exist!',
-                'address.required' => 'Address field is required!'
-            ]);
+    [
+        'customer_name.required' => 'Name field is required!',
+        'email_address.required' => 'Email address field is required!',
+        'email_address.unique' => 'This email address already exist!',
+        'password.required' => 'Password field is required!',
+        'mobile_number.required' => 'Mobile number field is required!',
+        'mobile_number.unique' => 'This mobile number already exist!',
+        'address.required' => 'Address field is required!'
+    ]);
 
         $data = [];
         $data['customer_name'] = $request->customer_name;
@@ -198,5 +198,50 @@ class WelComeController extends Controller
         }*/
        // return redirect('index')->with('error', 'Sorry! You have already subscribed ');
     }
+
+    public function contact(){
+        return view('frontend.contact');
+    }
+
+    public function contactStore(Request $request){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:customers',
+            'phone' => 'required|min:6|max:12|regex:/^.*(?=.{3,})(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\d\X])(?=.*[!$#%]).*$/',
+            'subject' => 'required|unique:customers',
+            'message' => 'required',
+        ],
+
+    [
+        'name.required' => 'Required',
+        'email.required' => 'Required',
+        'phone.required' => 'Required',
+        'subject.required' => 'Required',
+        'message.required' => 'Required'
+    ]);
+
+        $data = [];
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['phone'] = $request->phone;
+        $data['subject'] = $request->subject;
+        $data['message'] = $request->message;
+        $data['created_at'] = carbon::now();
+        $data['updated_at'] = carbon::now();
+
+        DB::table('contacts')->insert($data);
+
+        return redirect('contact-us')->with('message', 'Successfully Submitted! ');
+
+    }
+
+    public function faq(){
+        return view('frontend.faq');
+    }
+
+    public function about(){
+        return view('frontend.about');
+    }
+
 
 }

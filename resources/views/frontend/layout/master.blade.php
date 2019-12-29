@@ -74,7 +74,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-3 col-md-4 col-5">
                         <div class="logo-area">
-                            <a href="{{url('/')}}"><img src="{{asset('public/image/site-logo/'.$logo->site_logo)}}" alt=""></a>
+                            <a href="{{url('/')}}"><img src="{{asset('public/image/site-logo/'.$logo->site_logo)}}" alt="" style="width: 50%"></a>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -177,11 +177,12 @@
                                                     @endforeach
                                                 </li>
 
+
+
                                             </ul>
 
                                         </li>
                                     @endforeach
-
                                 </ul>
                             </nav>
 
@@ -282,7 +283,7 @@
         <div class="footer-top section-pb section-pt-60">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-6 col-md-6">
 
                         <div class="widget-footer mt-40">
                             <h6 class="title-widget">Contact Info</h6>
@@ -318,40 +319,26 @@
                         </div>
 
                     </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
+
+                    <div class="col-lg-3 col-md-3">
                         <div class="widget-footer mt-40">
-                            <h6 class="title-widget">Information</h6>
-                            <ul class="footer-list">
-                                <li><a href="{{url('/')}}">Home</a></li>
-                                <li><a href="{{url('/')}}">About Us</a></li>
-                                <li><a href="{{url('/')}}">Quick Contact</a></li>
-                                <li><a href="{{url('/')}}">Blog Pages</a></li>
-                                <li><a href="#">Concord History</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-6 col-sm-6">
-                        <div class="widget-footer mt-40">
-                            <h6 class="title-widget">Extras</h6>
+                            <h6 class="title-widget">Pages</h6>
                             <ul class="footer-list">
 
-                                <li><a href="{{url('/')}}">Concord History</a></li>
-                                <li><a href="{{url('/')}}">Client Feed</a></li>
-                                <li><a href="{{url('/')}}">About Us</a></li>
-                                <li><a href="{{url('/')}}">Quick Contact</a></li>
-                                <li><a href="{{url('/')}}">Blog Pages</a></li>
+                                <li><a href="{{url('contact-us')}}">Contact Us</a></li>
+                                <li><a href="{{url('faq')}}">FAQ</a></li>
+                                <li><a href="{{url('about')}}">About Us</a></li>
+
                             </ul>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6">
+                    <div class="col-lg-3 col-md-3">
                         <div class="widget-footer mt-40">
-                            <h6 class="title-widget">Extras</h6>
+                            <h6 class="title-widget">Top Categories</h6>
                             <ul class="footer-list">
-                            <li><a href="{{url('/')}}">Concord History</a></li>
-                            <li><a href="{{url('/')}}">Client Feed</a></li>
-                            <li><a href="{{url('/')}}">About Us</a></li>
-                            <li><a href="{{url('/')}}">Quick Contact</a></li>
-                            <li><a href="{{url('/')}}">Blog Pages</a></li>
+                                @foreach($data as $categories)
+                            <li><a href="{{url('category/'.$categories->category)}}">{{ $categories->category  }}</a></li>
+                           @endforeach
                             </ul>
                         </div>
                     </div>

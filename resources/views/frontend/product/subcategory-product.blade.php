@@ -18,7 +18,7 @@
                                      src="{{asset('public/image/product-images/'.$product->singleImage->image)}}"
                                      alt="">
                             </a>
-                            <div class="label-product label_new">New</div>
+                            {{--<div class="label-product label_new">New</div>--}}
                         </div>
                         <div class="product-caption">
                             <h4 class="product-name"><a
