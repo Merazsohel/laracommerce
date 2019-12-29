@@ -190,7 +190,7 @@
                     </div>
 
                     <div class="col-5 col-md-6 d-block d-lg-none">
-                        <div class="logo"><a href="{{url('/')}}"><img src="{{asset('public/frontend')}}/images/logo/logo.png"  alt=""></a></div>
+                        <div class="logo"><a href="{{url('/')}}"><img src="{{asset('public/image/site-logo/'.$logo->site_logo)}}"  alt=""></a></div>
                     </div>
 
 
@@ -376,7 +376,6 @@
 <script src="{{asset('public/frontend')}}/js/plugins/countdown.min.js"></script>
 <script src="{{asset('public/frontend')}}/js/plugins/image-zoom.min.js"></script>
 <script src="{{asset('public/frontend')}}/js/plugins/fancybox.js"></script>
-<script src="{{asset('public/frontend')}}/js/plugins/scrollup.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
 <script src="{{asset('public/frontend')}}/js/plugins/ajax-contact.js"></script>
 <script src="{{asset('public/frontend')}}/js/main.js"></script>
@@ -404,7 +403,10 @@
     });
 </script>
 
+
 @yield('script')
+
+
 
 
 </body>

@@ -412,16 +412,7 @@ $("#chekout-box-2").on("change",function(){
     $(".ship-box-info").slideToggle("100");
 });        
     
-     
-/*--
-    ScrollUp Active
------------------------------------*/
-$.scrollUp({
-    scrollText: '<i class="fa fa-angle-up"></i>',
-    easingType: 'linear',
-    scrollSpeed: 900,
-    animation: 'fade'
-});    
+
     
     
     
