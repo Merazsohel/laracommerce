@@ -88,18 +88,55 @@
 
                                     </div>
 
-                                    <button type="submit" class="search btn btn-primary">Search</button>
+                                    <button type="submit" class="search btn btn-secondary">Search</button>
 
                                 </form>
                             </div>
 
                         </div>
                     </div>
+
                     <div class="col-lg-3">
                         <div class="right-blok-box text-white d-flex">
 
                             <div class="shopping-cart-wrap">
-                                <a href="{{url('cart')}}"><i class="icon-basket-loaded"></i><span class="cart-total">{{Cart::count()}}</span></a>
+                                <a href="#"><i class="icon-basket-loaded"></i><span class="cart-total">{{Cart::count()}}</span></a>
+                                <ul class="mini-cart">
+
+                                    @foreach(Cart::content() as $cart)
+
+                                    <li class="cart-item">
+                                        <div class="cart-image">
+                                            <a href="{{route('productdetails',['title'=>str_replace(' ','-',$cart->name),'id'=>$cart->id])}}"><img alt="" src="{{asset('public/image/product-images/'.$cart->options->image)}}"></a>
+                                        </div>
+                                        <div class="cart-title">
+                                            <a href="{{route('productdetails',['title'=>str_replace(' ','-',$cart->name),'id'=>$cart->id])}}">
+                                                <h4>{{$cart->name}}</h4>
+                                            </a>
+                                            <div class="quanti-price-wrap">
+                                                <span class="quantity">{{$cart->qty}} ×</span>
+                                                <div class="price-box"><span class="new-price">{{$cart->price}} /-</span></div>
+                                            </div>
+                                            <a class="remove_from_cart" href="{{ route('cart.remove', $cart->rowId) }}"><i class="icon_close"></i></a>
+                                        </div>
+                                    </li>
+                                    @endforeach
+
+                                    @if(Cart::count() > 0)
+                                    <li class="mini-cart-btns">
+                                        <div class="cart-btns">
+                                            <a href="{{url('cart')}}">View cart</a>
+                                        </div>
+                                    </li>
+                                        @else
+                                            <li class="mini-cart-btns">
+                                                <div class="cart-btns">
+                                                    <a href="#">Your cart is empty</a>
+                                                </div>
+                                            </li>
+                                    @endif
+
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -124,16 +161,21 @@
 
                                             <ul class="mega-menu">
                                                 <li>
-                                                    @foreach($categories->subcategory as $subcategory)
-                                                        <ul>
-                                                            <li>
-                                                                <a href="{{route('subcategoryFind',[$subcategory->subcategory,$subcategory->id])}}">{{ $subcategory->subcategory }}</a>
-                                                            </li>
-
-                                                        </ul>
+                                                    @foreach($categories->subcategory as $subcategories)
+                                                        <div class="col-md-4">
+                                                            <div class="dropdown-menu-info">
+                                                                <a href="{{route('subcategoryFind',[$subcategories->subcategory,$subcategories->id])}}"><h6 class="dropdown-menu-title"> {{ $subcategories->subcategory }} </h6></a>
+                                                                <div class="dropdown-menu-content">
+                                                                    <ul class="menu">
+                                                                        @foreach($subcategories->childcategory as $childcategory)
+                                                                            <li class="menu-item"><a href="{{route('childcategory',[$childcategory->childcategory,$childcategory->id])}}">{{ $childcategory->childcategory  }}</a></li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     @endforeach
                                                 </li>
-
 
                                             </ul>
 
@@ -168,7 +210,6 @@
 
                         </div>
                     </div>
-
 
                 </div>
             </div>

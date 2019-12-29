@@ -9,12 +9,11 @@
     <div class="hero-slider hero-slider-one">
         @foreach($adsliders as $adslider)
             <div class="single-slide"
-                 style="background-image: url({{ asset('public/image/advertisement-images/'.$adslider->photo) }})">
+                 style="background-image: url({{ asset('public/image/advertisement-images/'.$adslider->photo) }}); height: 370px">
                 <div class="hero-content-one container">
                     <div class="row">
                         <div class="col-lg-12 col-md-12">
                             <div class="slider-content-text text-left">
-                                <h5>{{ $adslider->title }}</h5>
                                 <h1>{{ $adslider->title }}</h1>
                                 <p>{{ $adslider->subtitle }}</p>
                                 <div class="slide-btn-group">
@@ -52,6 +51,66 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="single-banner mb-30">
+                        <a href="#"><img src="{{asset('public/frontend')}}/images/banner/banner-01.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6  col-md-6">
+                    <div class="single-banner mb-30">
+                        <a href="#"><img src="{{asset('public/frontend')}}/images/banner/banner-02.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="product-area section-pb section-pt-30">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <h4>Best seller products</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row product-active-lg-4">
+            @foreach($products as $product)
+            <div class="col-lg-12">
+                <div class="single-product-area mt-30">
+                    <div class="product-thumb">
+                        <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
+                            <img class="primary-image" src="{{asset('public/image/product-images/'.$product->singleImage->image)}}" alt="" style="width: 230px;height: 230px">
+                        </a>
+                       {{-- <div class="label-product label_new">New</div>--}}
+                        <div class="action-links">
+                            <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-caption">
+                        <h4 class="product-name"><a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">{{$product->title}}</a></h4>
+                        <div class="price-box">
+                            <span class="new-price">৳ {{$product->price}}</span>
+                            <span class="old-price">৳ {{$product->supplierprice}}</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+                @endforeach
+
+        </div>
+    </div>
+    </div>
+
+    <div class="banner-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-banner mb-30">
                         <a href="#"><img src="{{asset('public/frontend')}}/images/banner/banner-03.jpg" alt=""></a>
                     </div>
                 </div>
@@ -72,7 +131,7 @@
                         <div class="shop-box-area">
 
                             <div class="sidebar-categores-box shop-sidebar mb-30">
-                                <h4 class="title">Product categories</h4>
+                                <h4 class="title">All categories</h4>
 
                                 <div class="category-sub-menu">
                                     <ul>
@@ -81,8 +140,15 @@
                                                 <ul>
                                                     @foreach($categories->subcategory as $subcategory)
                                                         <li>
-                                                            <a href="{{route('subcategoryFind',[$subcategory->subcategory,$subcategory->id])}}">{{ $subcategory->subcategory }}</a>
+                                                            <a href="{{route('subcategoryFind',[$subcategory->subcategory,$subcategory->id])}}"> <strong>{{ $subcategory->subcategory }}</strong> </a>
                                                         </li>
+
+                                                        @foreach($subcategory->childcategory as $childcategory)
+                                                            <li class="menu-item">
+                                                                <a href="{{route('childcategory',[$childcategory->childcategory,$childcategory->id])}}">{{ $childcategory->childcategory  }}</a>
+                                                            </li>
+                                                        @endforeach
+
                                                     @endforeach
                                                 </ul>
                                             </li>
@@ -104,7 +170,7 @@
                                                 style='display: inline; width: 90px;'/>
                                          </span>
 
-                                        <span>To</span>
+                                        <span>-</span>
 
                                         <span class="inlineinput">
                                            <input type='text' class="form-control" name="max"
@@ -112,7 +178,7 @@
                                         </span>
 
                                         <div class="mt-3">
-                                            <input type="submit" class="btn btn-small btn-primary ml-5" value="FILTER"
+                                            <input type="submit" class="btn btn-small btn-secondary ml-5" value="FILTER"
                                                    style="color:white">
 
                                         </div>
@@ -169,7 +235,7 @@
                                     <div class="shop-product-wrap">
                                         <div class="row">
                                             @foreach ($products as $product)
-                                                <div class="col-lg-4 col-md-6">
+                                                <div class="col-lg-3 col-md-6">
                                                     <div class="single-product-area mt-30">
                                                         <div class="product-thumb">
                                                             <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
@@ -177,7 +243,11 @@
                                                                      src="{{asset('public/image/product-images/'.$product->singleImage->image)}}"
                                                                      alt="">
                                                             </a>
-                                                            <div class="label-product label_new">New</div>
+                                                            {{--<div class="label-product label_new">New</div>--}}
+                                                            <div class="action-links">
+                                                                <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                                                                <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                                            </div>
                                                         </div>
                                                         <div class="product-caption">
                                                             <h4 class="product-name"><a
@@ -263,13 +333,13 @@
                             </div>
                         </div>
 
-                        <div class="row">
+                        {{--<div class="row">
                             <div class="col-lg-12 col-md-12">
                                 <ul class="pagination-box">
                                     {{ $products->links() }}
                                 </ul>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
 
                 </div>
@@ -316,6 +386,89 @@
             </div>
         </div>
     </div>
+
+
+
+    <div class="modal fade modal-wrapper" id="exampleModalCenter" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-inner-area">
+                        <div class="row  product-details-inner">
+                            <div class="col-lg-5 col-md-6 col-sm-6">
+                                <!-- Product Details Left -->
+                                <div class="product-large-slider">
+                                    <div class="pro-large-img">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
+                                    </div>
+                                    <div class="pro-large-img">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
+                                    </div>
+                                    <div class="pro-large-img ">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
+                                    </div>
+                                    <div class="pro-large-img">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
+                                    </div>
+
+
+                                </div>
+                                <div class="product-nav">
+                                    <div class="pro-nav-thumb">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
+                                    </div>
+                                    <div class="pro-nav-thumb">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
+                                    </div>
+                                    <div class="pro-nav-thumb">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
+                                    </div>
+                                    <div class="pro-nav-thumb">
+                                        <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-lg-7 col-md-6 col-sm-6">
+                                <div class="product-details-view-content">
+                                    <div class="product-info">
+                                        <h3>{{$product->title}}</h3>
+
+                                        <div class="price-box">
+                                            <span class="new-price">৳ {{$product->price}}</span>
+                                            <span class="old-price">৳ {{$product->price}}</span>
+                                        </div>
+                                        <p>{!! $product->keypoint !!}</p>
+
+                                        <div class="single-add-to-cart">
+                                            <form action="{{url('add-to-cart')}}" class="cart-quantity d-flex" method="post">
+                                                @csrf
+                                                <div class="quantity">
+                                                    <div class="cart-plus-minus">
+                                                        <input type="number" class="input-text" name="qty" value="1" title="Qty" min="1">
+                                                        <input name="product_id" type="hidden" value="{{$product->id}}"/>
+
+                                                    </div>
+                                                </div>
+                                                <button class="add-to-cart" type="submit">Add To Cart</button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @stop
 
 @section('script')

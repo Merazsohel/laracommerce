@@ -51,7 +51,7 @@ class FrontCategoryFilterController extends Controller
 
             $products = Product::where('child_category', $id)->get();
 
-            return view('frontend.product.child-products', compact('products', 'childcaegory', 'brands', 'subcategories'));
+            return view('frontend.product.subcategory-product', compact('products', 'childcaegory', 'brands', 'subcategories'));
 
         } else {
             return redirect()->route('index');

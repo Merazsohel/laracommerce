@@ -23,16 +23,6 @@ class CartController extends Controller
             ->where('product_id', $product_id)
             ->first();
 
-        $productSizeInfo = DB::table('product_sizes')
-            ->select('size')
-            ->where('product_id', $product_id)
-            ->first();
-
-        $productColorInfo = DB::table('product_colors')
-            ->select('color')
-            ->where('product_id', $product_id)
-            ->first();
-
         $data['id'] = $product_info->id;
         $data['name'] = $product_info->title;
         $data['price'] = $product_info->price;
@@ -40,11 +30,11 @@ class CartController extends Controller
         $data['options']['image'] = $productImageInfo->image;
 
         if ($request->size) {
-            $data['options']['size'] = $productSizeInfo->size;
+            $data['options']['size'] = $request->size;
         }
 
         if ($request->color){
-            $data['options']['color'] = $productColorInfo->color;
+            $data['options']['color'] = $request->color;
         }
 
         cart::add($data);
@@ -57,6 +47,7 @@ class CartController extends Controller
     public function cartDetails()
     {
         $cartContents = Cart::content();
+
         return view('frontend.cart.details', compact('cartContents'));
     }
 

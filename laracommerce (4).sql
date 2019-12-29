@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 24, 2019 at 11:48 AM
+-- Generation Time: Dec 29, 2019 at 08:47 AM
 -- Server version: 5.7.28-0ubuntu0.18.04.4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -42,8 +42,8 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `firstName`, `lastName`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'IXcOxQzqryOfBKfYWAaItYRFfzMbNb8jaq7DbkEAkXQShfAyNoqu9WFnO3b9', NULL, '2019-12-10 08:00:00'),
-(5, 'sub', 'admin', 'subadmin@gmail.com', '$2y$10$z3MRApC3EoMn/DPSOD3lFOe9BtD7lHER59Uhf0JLzv6PpxQgLRedO', NULL, '2019-12-14 13:41:52', '2019-12-14 13:41:52');
+(4, 'admin', '', 'admin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'xXwo7I3sTqXkH8ZsPb2EXk9EKHXACbI2w7G8sgeizrHitZXn71TlgtOF8jdr', NULL, '2019-12-10 08:00:00'),
+(5, 'sub', 'admin', 'subadmin@gmail.com', '$2y$12$NgAlynXatEGZJayJPFvAkekzdelKA3ZEnI3aDWsQrGUFThvpBUt3S', 'OsNp9M58DSXsee3GtK1CR79gEkbsclDcQ4NDamvygCl2svu5A4XiEAcNmEKa', '2019-12-14 13:41:52', '2019-12-26 06:06:13');
 
 -- --------------------------------------------------------
 
@@ -63,7 +63,7 @@ CREATE TABLE `admin_role` (
 
 INSERT INTO `admin_role` (`id`, `admin_id`, `role_id`) VALUES
 (3, 4, 1),
-(4, 5, 4);
+(6, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -85,10 +85,10 @@ CREATE TABLE `advertisements` (
 --
 
 INSERT INTO `advertisements` (`id`, `title`, `subtitle`, `link`, `position`, `photo`) VALUES
-(5, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1126am8811.jpg'),
-(6, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1128am6529.jpg'),
-(7, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1130am1846.png'),
-(8, 'What is Lorem Ipsum?', 'Lorem Ipsum is simply dummy text', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1131am3337.png');
+(5, 'Hot Deals', 'New Arrivals (Grab the best deal now)', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1126am8811.jpg'),
+(6, 'Summer Collection', 'Grab the best deal now', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1128am6529.jpg'),
+(7, 'Male Fashion', 'Grab the best deal now', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1130am1846.png'),
+(8, 'Smartphones', 'Free Shipping for first purchase', 'http://localhost/ecommerce/product/Watch%20001/154', 'slider', '12-08-2019_1131am3337.png');
 
 -- --------------------------------------------------------
 
@@ -129,10 +129,10 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `category`, `photo`) VALUES
-(6, 'Category Four', '12-08-2019_1122am4923.png'),
-(7, 'Category Five', '12-08-2019_1122am7940.png'),
-(8, 'Category Three', '12-08-2019_1122am9175.png'),
-(13, 'Category Two', '12-08-2019_1121am8888.png');
+(6, 'Home & Living', '12-08-2019_1122am4923.png'),
+(7, 'Men', '12-08-2019_1122am7940.png'),
+(8, 'Kids', '12-08-2019_1122am9175.png'),
+(13, 'Women', '12-08-2019_1121am8888.png');
 
 -- --------------------------------------------------------
 
@@ -151,11 +151,14 @@ CREATE TABLE `childcategories` (
 --
 
 INSERT INTO `childcategories` (`id`, `subcategory_id`, `childcategory`) VALUES
-(3, 8, 'Child Three'),
-(4, 8, 'Child Five'),
-(6, 11, 'Child Seven'),
-(7, 11, 'Child Eight'),
-(12, 11, 'Child Two');
+(3, 8, 'Sandals'),
+(4, 8, 'Skin Care'),
+(6, 11, 'PERFUMES'),
+(7, 11, 'WATCHES'),
+(12, 11, 'HEALTH CARE'),
+(13, 12, 'T-Shirts'),
+(14, 12, 'Shirt'),
+(15, 13, 'Kids Shoes');
 
 -- --------------------------------------------------------
 
@@ -180,7 +183,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `customer_name`, `email_address`, `mobile_number`, `password`, `address`, `remember_token`, `created_at`, `updated_at`) VALUES
-(3, 'Md. Meraz Hossain', 'merazhossain64@gmail.com', '01629064868', 'e10adc3949ba59abbe56e057f20f883e', 'Badda, Dhaka-1207', NULL, NULL, NULL);
+(3, 'Md. Meraz Hossain', 'merazhossain64@gmail.com', '01629064868', 'e10adc3949ba59abbe56e057f20f883e', 'Badda, Dhaka-1207', NULL, NULL, '2019-12-26 09:32:54');
 
 -- --------------------------------------------------------
 
@@ -329,6 +332,17 @@ CREATE TABLE `orders` (
   `payment_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `address`, `customer_id`, `delivery_charge`, `total`, `cycle`, `code`, `created_at`, `updated_at`, `payment_type`) VALUES
+(1, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '974935544', '2019-12-26 06:23:13', '2019-12-26 06:23:13', 'cash_on_delivery'),
+(2, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '905621606', '2019-12-26 06:24:35', '2019-12-26 06:24:35', 'cash_on_delivery'),
+(3, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '979872928', '2019-12-26 06:25:20', '2019-12-26 06:25:20', 'cash_on_delivery'),
+(4, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '729848328', '2019-12-26 06:31:16', '2019-12-26 06:31:16', 'cash_on_delivery'),
+(5, 'Badda, Dhaka-1207', 3, 50.00, 12500.00, 'new', '461567683', '2019-12-26 06:42:30', '2019-12-26 06:42:30', 'cash_on_delivery');
+
 -- --------------------------------------------------------
 
 --
@@ -347,6 +361,17 @@ CREATE TABLE `order_products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `order_products`
+--
+
+INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `qty`, `attr`, `color`, `size`, `created_at`, `updated_at`) VALUES
+(1, 1, 155, 1, NULL, NULL, NULL, '2019-12-26 06:23:13', '2019-12-26 06:23:13'),
+(2, 2, 155, 1, NULL, NULL, NULL, '2019-12-26 06:24:36', '2019-12-26 06:24:36'),
+(3, 3, 155, 1, NULL, NULL, NULL, '2019-12-26 06:25:20', '2019-12-26 06:25:20'),
+(4, 4, 155, 1, NULL, NULL, NULL, '2019-12-26 06:31:16', '2019-12-26 06:31:16'),
+(5, 5, 154, 1, NULL, NULL, NULL, '2019-12-26 06:42:30', '2019-12-26 06:42:30');
+
 -- --------------------------------------------------------
 
 --
@@ -354,7 +379,7 @@ CREATE TABLE `order_products` (
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_address` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -587,10 +612,10 @@ CREATE TABLE `subcategories` (
 --
 
 INSERT INTO `subcategories` (`id`, `category_id`, `subcategory`) VALUES
-(8, 6, 'Sub-Category Four'),
-(11, 13, 'Sub-Category Two'),
-(12, 7, 'Sub-Category Five'),
-(13, 8, 'Sub-Category Three');
+(8, 6, 'Shoes'),
+(11, 13, 'Bags'),
+(12, 7, 'Clothing'),
+(13, 8, 'Shorts');
 
 -- --------------------------------------------------------
 
@@ -763,7 +788,7 @@ ALTER TABLE `order_products`
 -- Indexes for table `password_resets`
 --
 ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
+  ADD KEY `password_resets_email_index` (`email_address`);
 
 --
 -- Indexes for table `products`
@@ -855,7 +880,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admin_role`
 --
 ALTER TABLE `admin_role`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `advertisements`
 --
@@ -875,7 +900,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `childcategories`
 --
 ALTER TABLE `childcategories`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `customers`
 --
@@ -905,17 +930,17 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orderdeliveries`
 --
 ALTER TABLE `orderdeliveries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `products`
 --

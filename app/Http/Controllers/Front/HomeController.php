@@ -47,30 +47,22 @@ class HomeController extends Controller
 
         $reviews = Reviews::all()->where('product_id', $id);
 
-        if ($title != null && $id != null) {
+        $cart = Cart::content();
 
-            $cart = Cart::content();
-
-            $product = Product::with('color', 'size', 'image', 'review')
+        $product = Product::with('color', 'size', 'image', 'review')
                 ->where('id', $id)
                 ->where('title', $title)
                 ->first();
 
-            if ($product != null) {
+         $similiarProducts = Product::with('singleImage', 'discount')->where('id', '!=', $id)
+                ->where('child_category', $product->child_category)
+                ->inRandomOrder()
+                ->limit(12)
+                ->get();
 
-                $similiarProducts = Product::with('singleImage', 'discount')->where('id', '!=', $id)
-                    ->where('child_category', $product->child_category)
-                    ->inRandomOrder()
-                    ->limit(12)
-                    ->get();
+         return view('frontend.product.show', compact('product', 'cart', 'similiarProducts', 'profile', 'reviews'));
 
-                return view('frontend.product.show', compact('product', 'cart', 'similiarProducts', 'profile', 'reviews'));
-            } else {
-                return redirect()->route('index');
-            }
-        } else {
-            return redirect()->route('index');
-        }
+
     }
 
 
@@ -251,8 +243,8 @@ class HomeController extends Controller
 
     public function getProducts()
     {
-        return Product::with('singleImage', 'subcategory', 'discount')
-            ->paginate('6');
+        return Product::with('singleImage', 'subcategory', 'discount','color','size')
+            ->take('8')->get();
     }
 
 

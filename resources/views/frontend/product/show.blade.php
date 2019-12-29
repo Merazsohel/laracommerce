@@ -21,39 +21,50 @@
 
                     <div class="product-large-slider">
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
-                            <a href="{{asset('public/image/product-images/'.$product->image[0]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}"
+                                 alt="product-details"/>
+                            <a href="{{asset('public/image/product-images/'.$product->image[0]->image)}}"
+                               data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
-                            <a href="{{asset('public/image/product-images/'.$product->image[1]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}"
+                                 alt="product-details"/>
+                            <a href="{{asset('public/image/product-images/'.$product->image[1]->image)}}"
+                               data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
-                            <a href="{{asset('public/image/product-images/'.$product->image[2]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}"
+                                 alt="product-details"/>
+                            <a href="{{asset('public/image/product-images/'.$product->image[2]->image)}}"
+                               data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
                         <div class="pro-large-img img-zoom">
-                            <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
-                            <a href="{{asset('public/image/product-images/'.$product->image[3]->image)}}" data-fancybox="images"><i class="fa fa-search"></i></a>
+                            <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}"
+                                 alt="product-details"/>
+                            <a href="{{asset('public/image/product-images/'.$product->image[3]->image)}}"
+                               data-fancybox="images"><i class="fa fa-search"></i></a>
                         </div>
-
 
 
                     </div>
                     <div class="product-nav">
                         <div class="pro-nav-thumb">
-                            <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
+                            <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}"
+                                 alt="product-details"/>
                         </div>
 
                         <div class="pro-nav-thumb">
-                            <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
+                            <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}"
+                                 alt="product-details"/>
                         </div>
                         <div class="pro-nav-thumb">
-                            <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
+                            <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}"
+                                 alt="product-details"/>
                         </div>
 
                         <div class="pro-nav-thumb">
-                            <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
+                            <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}"
+                                 alt="product-details"/>
                         </div>
 
 
@@ -81,82 +92,87 @@
                             </div>
                             <p>{!! $product->keypoint !!}</p>
 
-                            <div class="single-add-to-cart">
-                                <form action="{{url('add-to-cart')}}" class="cart-quantity d-flex" method="post">
-                                    @csrf
-                                    <div class="quantity">
-                                        <div class="cart-plus-minus">
-                                            <input type="number" class="input-text" name="qty" value="1" title="Qty" min="1">
-                                            <input name="product_id" type="hidden" value="{{$product->id}}"/>
-
+                            <form action="{{url('add-to-cart')}}" class="cart-quantity d-flex" method="post">
+                                @csrf
+                                <div>
+                                    @if (!$product->color->isEmpty())
+                                        <div class="select-opstion-box mb-20">
+                                            <h6 class="title mb-10">Color</h6>
+                                            <select id="color" class="color-select" name="color">
+                                                <option value="">Choose an option</option>
+                                                @foreach($product->color as $color)
+                                                    <option value="{{$color->color}}"
+                                                            class="attached enabled">{{$color->color}}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
-                                    </div>
-                                    <button class="add-to-cart" type="submit">Add To Cart</button>
-                                </form>
-                            </div>
-
-                            <ul class="stock-cont">
-                                <form action="{{url('add-to-cart')}}" class="cart-quantity d-flex" method="post">
-                                    @csrf
-                                    @if (!$product->size->isEmpty())
-
-                                        <li class="product-sku mt-2 mb-2">Size:
-                                            @foreach($product->size as $size)
-                                                <span><input type="radio" name="size"  value="{{$size->size}}"> {{$size->size}}</span>
-                                            @endforeach
-                                        </li>
-
                                     @endif
 
-                                    @if (!$product->color->isEmpty())
+                                    @if (!$product->size->isEmpty())
+                                        <div class="select-opstion-box mb-20">
+                                            <h6 class="title mb-10">Size</h6>
+                                            <select id="color" class="color-select" name="size">
+                                                <option value="">Choose an option</option>
+                                                @foreach($product->size as $size)
+                                                    <option value="{{$size->size}}"
+                                                            class="attached enabled">{{$size->size}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endif
 
-                                        <li class="product-sku mt-2 mb-2">Color:
-                                            @foreach($product->color as $color)
-                                                <span><input type="radio" name="color"  value="{{$color->color}}"> {{$color->color}}</span>
-                                            @endforeach
-                                        </li>
+                                    <div class="single-add-to-cart">
+                                        <div class="quantity">
+                                            <div class="cart-plus-minus">
+                                                <input type="number" class="form-control" name="qty" value="1" title="Qty" min="1">
+                                                <input name="product_id" type="hidden" value="{{$product->id}}"/>
 
-                                @endif
-                                </form>
+                                            </div>
+                                        </div>
 
-                            </ul>
+                                        <button class="add-to-cart mt-2" type="submit">Add To Cart</button>
+
+                                    </div>
+                                </div>
+                            </form>
 
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <div class="product-description-area section-pt">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product-details-tab">
-                            <ul role="tablist" class="nav">
-                                <li class="active" role="presentation">
-                                    <a data-toggle="tab" role="tab" href="#description" class="active">Description</a>
-                                </li>
-                                <li role="presentation">
-                                    <a data-toggle="tab" role="tab" href="#reviews">Reviews</a>
-                                </li>
-                            </ul>
-                        </div>
+        <div class="product-description-area section-pt">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product-details-tab">
+                        <ul role="tablist" class="nav">
+                            <li class="active" role="presentation">
+                                <a data-toggle="tab" role="tab" href="#description" class="active">Description</a>
+                            </li>
+                            <li role="presentation">
+                                <a data-toggle="tab" role="tab" href="#reviews">Reviews</a>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="col-lg-12">
-                        <div class="product_details_tab_content tab-content">
+                </div>
+                <div class="col-lg-12">
+                    <div class="product_details_tab_content tab-content">
 
-                            <div class="product_tab_content tab-pane active" id="description" role="tabpanel">
-                                <div class="product_description_wrap  mt-30">
-                                    <div class="product_desc mb-30">
-                                        <p>{!! $product->description !!}</p>
-
-                                    </div>
+                        <div class="product_tab_content tab-pane active" id="description" role="tabpanel">
+                            <div class="product_description_wrap  mt-30">
+                                <div class="product_desc mb-30">
+                                    <p>{!! $product->description !!}</p>
 
                                 </div>
-                            </div>
 
-                            <div class="product_tab_content tab-pane" id="reviews" role="tabpanel">
-                                <div class="review_address_inner mt-30">
-                                    <div class="pro_review">
-                                        @foreach($reviews as $review)
+                            </div>
+                        </div>
+
+                        <div class="product_tab_content tab-pane" id="reviews" role="tabpanel">
+                            <div class="review_address_inner mt-30">
+                                <div class="pro_review">
+                                    @foreach($reviews as $review)
                                         <div class="review_details">
                                             <div class="review_info mb-10">
                                                 {{--<ul class="product-rating d-flex mb-10">
@@ -166,34 +182,36 @@
                                                     <li><span class="icon-star"></span></li>
                                                     <li><span class="icon-star"></span></li>
                                                 </ul>--}}
-                                                <h5>{{$review->customer}} - <span>{{date('F d, Y, g:i A', strtotime($review->created_at))}}</span></h5>
+                                                <h5>{{$review->customer}} -
+                                                    <span>{{date('F d, Y, g:i A', strtotime($review->created_at))}}</span>
+                                                </h5>
 
                                             </div>
                                             <p>{{$review->review}}</p>
                                         </div>
-                                            @endforeach
-                                    </div>
-
+                                    @endforeach
                                 </div>
 
-                                <div class="rating_wrap mt-50">
-                                    <h5 class="rating-title-1">Add a review </h5>
+                            </div>
 
-                                   {{-- <h6 class="rating-title-2">Your Rating</h6>
-                                    <div class="rating_list">
-                                        <div class="review_info mb-10">
-                                            <ul class="product-rating d-flex mb-10">
-                                                <li><span class="icon-star"></span></li>
-                                                <li><span class="icon-star"></span></li>
-                                                <li><span class="icon-star"></span></li>
-                                                <li><span class="icon-star"></span></li>
-                                                <li><span class="icon-star"></span></li>
-                                            </ul>
-                                        </div>
-                                    </div>--}}
-                                </div>
+                            <div class="rating_wrap mt-50">
+                                <h5 class="rating-title-1">Add a review </h5>
 
-                                @if(\Illuminate\Support\Facades\Session::get('customer_id'))
+                                {{-- <h6 class="rating-title-2">Your Rating</h6>
+                                 <div class="rating_list">
+                                     <div class="review_info mb-10">
+                                         <ul class="product-rating d-flex mb-10">
+                                             <li><span class="icon-star"></span></li>
+                                             <li><span class="icon-star"></span></li>
+                                             <li><span class="icon-star"></span></li>
+                                             <li><span class="icon-star"></span></li>
+                                             <li><span class="icon-star"></span></li>
+                                         </ul>
+                                     </div>
+                                 </div>--}}
+                            </div>
+
+                            @if(\Illuminate\Support\Facades\Session::get('customer_id'))
                                 <div class="comments-area comments-reply-area">
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -204,7 +222,8 @@
                                                 <div class="row comment-input">
                                                     <div class="col-md-6 comment-form-author mt-15">
                                                         <label>Name </label>
-                                                        <input type="text" name="customer" value="{{$profile->customer_name}}" readonly>
+                                                        <input type="text" name="customer"
+                                                               value="{{$profile->customer_name}}" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="comment-form-comment mt-15">
@@ -219,57 +238,61 @@
                                         </div>
                                     </div>
                                 </div>
-                                    @else
-                                    <div class="col-lg-12">
-                                        Please Login First <a class="btn btn-info" href="{{url('customer-login')}}" style="color: white">Login</a>
-                                    </div>
-                                @endif
+                            @else
+                                <div class="col-lg-12">
+                                    Please Login First <a class="btn btn-info" href="{{url('customer-login')}}"
+                                                          style="color: white">Login</a>
+                                </div>
+                            @endif
 
-
-
-                            </div>
 
                         </div>
+
                     </div>
                 </div>
             </div>
-
-            <div class="related-product-area section-pt">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h3> Related Product</h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row ">
-                    @foreach($similiarProducts as $similiarProduct)
-                        <div class="col-md-4 col-lg-3 col-12">
-
-                            <div class="single-product-area mt-30">
-                                <div class="product-thumb">
-                                    <a href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">
-                                        <img class="primary-image" src="{{asset('public/image/product-images/'.$similiarProduct->singleImage->image)}}" alt="">
-                                    </a>
-                                    <div class="label-product label_new">New</div>
-
-                                </div>
-                                <div class="product-caption">
-                                    <h4 class="product-name"><a href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">{{$similiarProduct->title}}</a></h4>
-                                    <div class="price-box">
-                                        <span class="new-price">৳ {{$similiarProduct->price}}</span>
-                                        <span class="old-price">৳ {{$similiarProduct->price}}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-
-
         </div>
+
+        <div class="related-product-area section-pt">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h3> Related Product</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row ">
+                @foreach($similiarProducts as $similiarProduct)
+                    <div class="col-md-4 col-lg-3 col-12">
+
+                        <div class="single-product-area mt-30">
+                            <div class="product-thumb">
+                                <a href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">
+                                    <img class="primary-image"
+                                         src="{{asset('public/image/product-images/'.$similiarProduct->singleImage->image)}}"
+                                         alt="">
+                                </a>
+                                <div class="label-product label_new">New</div>
+
+                            </div>
+                            <div class="product-caption">
+                                <h4 class="product-name"><a
+                                            href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">{{$similiarProduct->title}}</a>
+                                </h4>
+                                <div class="price-box">
+                                    <span class="new-price">৳ {{$similiarProduct->price}}</span>
+                                    <span class="old-price">৳ {{$similiarProduct->price}}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+
+    </div>
     </div>
 
 @endsection
