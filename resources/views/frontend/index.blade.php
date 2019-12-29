@@ -361,7 +361,7 @@
 
                             <div class="col-lg-5 col-md-7">
                                 <div class="newsletter-footer mb-30">
-                                    <form method="post" action="{{url('newsletter')}}">
+                                    <form method="get" action="{{url('newsletter')}}">
                                         @csrf
                                     <input type="email" placeholder="Your email address..." required>
                                     <div class="subscribe-button">
