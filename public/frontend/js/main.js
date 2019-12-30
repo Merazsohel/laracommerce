@@ -2,21 +2,7 @@
     "use strict";
 
 
-/*--
-    Menu Sticky
------------------------------------*/
-    var windows = $(window);
-    var sticky = $('.header-sticky');
 
-    windows.on('scroll', function() {
-        var scroll = windows.scrollTop();
-        if (scroll < 300) {
-            sticky.removeClass('is-sticky');
-        }else{
-            sticky.addClass('is-sticky');
-        }
-    });
-    
 /*--
     Off Canvas
 -------------------------------------------*/
@@ -411,13 +397,7 @@ $("#chekout-box").on("change",function(){
 $("#chekout-box-2").on("change",function(){
     $(".ship-box-info").slideToggle("100");
 });        
-    
 
-    
-    
-    
-    
-    
     
 })(jQuery);
 

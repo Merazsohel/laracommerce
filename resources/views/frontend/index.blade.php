@@ -333,13 +333,16 @@
                             </div>
                         </div>
 
-                        {{--<div class="row">
+                       <div class="row">
                             <div class="col-lg-12 col-md-12">
-                                <ul class="pagination-box">
-                                    {{ $products->links() }}
-                                </ul>
+                            <div class="mt-5 float-right">
+                                {{ $products->links() }}
                             </div>
-                        </div>--}}
+
+
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>

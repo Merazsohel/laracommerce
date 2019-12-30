@@ -109,52 +109,17 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-4 col-xs-3">
-                        <div class="form-group">
-                            <label>Product Weight</label>
-                            <input type="text" name="weight" class="form-control">
-                        </div>
-                    </div>
 
                     <div class="col-sm-4 col-xs-3">
                         <label>Select Color</label>
                         <div class="form-group">
                             <div class="checkbox">
+                                @foreach($colors as $color)
                                 <label>
-                                <input type="checkbox" value="red" class="minimal" name="color[]">
-                                    Red
+                                <input type="checkbox" value="{{$color->color}}" class="minimal" name="color[]">
+                                    {{$color->color}}
                                 </label>
-                           
-                                <label>
-                                <input type="checkbox"  value="blue" class="minimal" name="color[]">
-                                    Blue
-                                </label>
-                           
-                                <label>
-                                <input type="checkbox"  value="black" class="minimal" name="color[]">
-                                    Black
-                                </label>
-                                <input type="checkbox"  value="green" class="minimal" name="color[]">
-                                    Green
-                                </label>
-                                <input type="checkbox"  value="white" class="minimal" name="color[]">
-                                    White
-                                </label>
-                                 <input type="checkbox"  value="pink" class="minimal" name="color[]">
-                                    Pink
-                                </label>
-                                <input type="checkbox"  value="yellow" class="minimal" name="color[]">
-                                    Yellow
-                                </label>
-                                <input type="checkbox"  value="silver" class="minimal" name="color[]">
-                                    Silver
-                                </label>
-                                <input type="checkbox"  value="purple" class="minimal" name="color[]">
-                                    Purple
-                                </label>
-                                 <input type="checkbox"  value="magento" class="minimal" name="color[]">
-                                    Magento
-                                </label>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -162,25 +127,12 @@
                         <label>Select Sizes</label>
                         <div class="form-group">
                             <div class="checkbox">
+                                @foreach($sizes as $size)
                                 <label>
-                                <input type="checkbox"  value="xl" class="minimal" name="size[]">
-                                    Extra Large
+                                <input type="checkbox"  value="{{$size->name}}" class="minimal" name="size[]">
+                                   {{$size->name}}
                                 </label>
-                                <label>
-                                <input type="checkbox" value="l" class="minimal" name="size[]">
-                                    Large
-                                </label>
-                                 <input type="checkbox" value="m" class="minimal" name="size[]">
-                                    Medium
-                                </label>
-                                <label>
-                                <input type="checkbox" value="s" class="minimal" name="size[]">
-                                    Small
-                                </label>
-                                <label>
-                                <input type="checkbox" value="xs" class="minimal" name="size[]">
-                                    Extra Small
-                                </label>
+                               @endforeach
                             </div>
                         </div>
                     </div>
@@ -199,13 +151,7 @@
                             </textarea>
                         </div>
                     </div>
-                    <!--<div class="col-xs-12">-->
-                    <!--    <div class="form-group">-->
-                    <!--        <label for="">Product Specification</label>-->
-                    <!--        <textarea id="specification" name="specification" rows="10" cols="80">-->
-                    <!--        </textarea>-->
-                    <!--    </div>-->
-                    <!--</div>-->
+
                     <div class="col-sm-4 col-xs-3">
                         <label>Upload Product Image</label>
                         <div class="form-group">
@@ -218,19 +164,14 @@
                     </div>
                 </div>
               </div>
-              <!-- /.box-body -->
+
               <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Add Product</button>
               </div>
             </form>
         </div>
     </div>
-    <!-- /.box -->
+
     </section>
-  <!-- /.content -->
-@endsection
-@section('script')
-<script>
-    
-</script>
+
 @endsection

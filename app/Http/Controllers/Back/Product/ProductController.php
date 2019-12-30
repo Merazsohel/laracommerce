@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Back\Product;
 use App\Brand;
 use App\Category;
 use App\Childcategory;
+use App\Color;
 use App\Product;
 use App\ProductColor;
 use App\ProductImage;
 use App\CustomClasses\ManageImage;
 use App\ProductSize;
+use App\Size;
 use App\Subcategory;
 use App\Supplier;
 use App\Discount;
@@ -46,9 +48,11 @@ class ProductController extends Controller
         $childcategories = $this->getChildCategories();
         $suppliers = $this->getSuppliers();
         $brands = $this->getBrands();
+        $colors = Color::all();
+        $sizes = Size::all();
 
         return view('back.product.create', compact('categories', 'subcategories', 'childcategories',
-                                                                   'suppliers', 'brands'));
+                                                                   'suppliers', 'brands','colors','sizes'));
     }
 
     public function edit($id)
@@ -311,4 +315,6 @@ class ProductController extends Controller
     {
         return Childcategory::select('id', 'childcategory')->get();
     }
+
+
 }

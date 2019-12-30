@@ -30,8 +30,8 @@
                         @foreach($settings as $setting)
                             <tr>
                                 <td>{{ $setting->site_title }}</td>
-                                <td><img src="{{ asset('public/image/site-logo/'.$setting->site_logo) }}"  alt=""></td>
-                                <td><img src="{{ asset('public/image/favicon/'.$setting->favicon) }}"  alt=""></td>
+                                <td><img src="{{ asset('public/image/site-logo/'.$setting->site_logo) }}"  alt="" width="50px"></td>
+                                <td><img src="{{ asset('public/image/favicon/'.$setting->favicon) }}"  alt="" width="50px"></td>
                                 <td>{{ $setting->address }}</td>
                                 <td>{{ $setting->mobile }}</td>
                                 <td>{{ $setting->email }}</td>

@@ -13,6 +13,7 @@ Route::prefix('/')->group(function () {
     Route::get('price-filter','Front\HomeController@priceFilter');
 
     //Customer Auth
+
     Route::post('customer-register','Front\WelComeController@customerRegister');
     Route::get('customer-login','Front\WelComeController@customerLoginView');
     Route::post('customer-login','Front\WelComeController@customerLogin');
@@ -212,6 +213,25 @@ Route::prefix('admin')->group(function () {
     Route::get('settings/edit/{id}', ['uses' => 'Back\Settings\SettingsController@edit', 'as' => 'settingEdit']);
     Route::put('settings/update/{id}', ['uses' => 'Back\Settings\SettingsController@update', 'as' => 'settingsUpdate']);
     Route::delete('settings/{id}', ['uses' => 'Back\Settings\SettingsController@destroy', 'as' => 'settingDestroy']);
+
+    //Color
+
+    Route::get('add-color',['uses' => 'Back\SizesAndColors\SizesAndColorsController@createColor'])->name('addColor');
+    Route::post('add-color',['uses' => 'Back\SizesAndColors\SizesAndColorsController@storeColor'])->name('storeColor');
+    Route::get('colors',['uses' => 'Back\SizesAndColors\SizesAndColorsController@allColors'])->name('allColors');
+    Route::get('colors/edit/{id}', ['uses' => 'Back\SizesAndColors\SizesAndColorsController@editColor', 'as' => 'editColor']);
+    Route::put('colors/update/{id}', ['uses' => 'Back\SizesAndColors\SizesAndColorsController@updateColor', 'as' => 'updateColor']);
+    Route::get('colors/{id}', ['uses' => 'Back\SizesAndColors\SizesAndColorsController@destroyColor', 'as' => 'destroyColor']);
+
+    //Size
+
+    Route::get('add-size',['uses' => 'Back\SizesAndColors\SizesAndColorsController@createSize'])->name('addSize');
+    Route::post('add-size',['uses' => 'Back\SizesAndColors\SizesAndColorsController@storeSize'])->name('storeSize');
+    Route::get('sizes',['uses' => 'Back\SizesAndColors\SizesAndColorsController@allSizes'])->name('allSizes');
+    Route::get('sizes/edit/{id}', ['uses' => 'Back\SizesAndColors\SizesAndColorsController@editSize', 'as' => 'editSize']);
+    Route::put('sizes/update/{id}', ['uses' => 'Back\SizesAndColors\SizesAndColorsController@updateSize', 'as' => 'updateSize']);
+    Route::get('sizes/{id}', ['uses' => 'Back\SizesAndColors\SizesAndColorsController@destroySize', 'as' => 'destroySize']);
+
 });
 
 Route::get('/invoice-create/{id}/pdf','Back\Invoice\InvoiceController@invoice');

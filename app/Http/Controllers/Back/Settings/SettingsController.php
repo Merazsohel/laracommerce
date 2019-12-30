@@ -83,6 +83,7 @@ class SettingsController extends Controller
             'copyright_text' => $request->copyright_text,
             'mobile' => $request->mobile,
             'email' => $request->email,
+            'updated_at' => Carbon::now()
         ]);
 
         return redirect()->back()->with('success', 'Record Successfully Updated.');

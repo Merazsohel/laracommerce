@@ -244,7 +244,7 @@ class HomeController extends Controller
     public function getProducts()
     {
         return Product::with('singleImage', 'subcategory', 'discount','color','size')
-            ->take('8')->get();
+            ->paginate('8');
     }
 
 

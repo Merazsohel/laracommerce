@@ -111,6 +111,22 @@
 
                 <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-product-hunt"></i> <span>Color & Size</span>
+                        <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('addColor')}}"><i class="fa fa-circle-o"></i> Add Color</a></li>
+                        <li><a href="{{route('allColors')}}"><i class="fa fa-circle-o"></i> Color Lists</a></li>
+                        <li><a href="{{route('addSize')}}"><i class="fa fa-circle-o"></i> Add Size</a></li>
+                        <li><a href="{{route('allSizes')}}"><i class="fa fa-circle-o"></i> Size Lists</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="treeview">
+                    <a href="#">
                         <i class="fa fa-image"></i> <span>Slider</span>
                         <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i>  </span>
                     </a>

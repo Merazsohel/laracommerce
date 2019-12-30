@@ -5,7 +5,7 @@
         <section class="content-header">
             <h1>
                 Add Settings
-                <small>Store New Brand Details</small>
+                <small>Store New Settings</small>
             </h1>
         </section>
         <section class="content">
