@@ -54,6 +54,7 @@ class HomeController extends Controller
                 ->where('title', $title)
                 ->first();
 
+
          $similiarProducts = Product::with('singleImage', 'discount')->where('id', '!=', $id)
                 ->where('child_category', $product->child_category)
                 ->inRandomOrder()

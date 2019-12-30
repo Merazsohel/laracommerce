@@ -153,13 +153,14 @@
                     </div>
 
                     <div class="col-sm-4 col-xs-3">
-                        <label>Upload Product Image</label>
+                        <label>Product Image</label> (Please upload minimum 4 photos)
                         <div class="form-group">
                             <div class="btn btn-default btn-file">
                               <i class="fa fa-paperclip"></i> Attachment
                               <input type="file" name="images[]" multiple required>
                             </div>
                             <p class="help-block">You can upload multiple image by pressing Ctrl</p>
+
                           </div>
                     </div>
                 </div>
