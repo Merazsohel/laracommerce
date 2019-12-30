@@ -67,7 +67,7 @@
                             </div>
                             <div class="price-box">
                                 <span class="new-price">৳ {{$product->price}}</span>
-                                <span class="old-price">৳ {{$product->price}}</span>
+                                <span class="old-price">৳ {{$product->supplierprice}}</span>
                             </div>
                             <p>{!! $product->keypoint !!}</p>
 
@@ -248,12 +248,12 @@
                                              src="{{asset('public/image/product-images/'.$similiarProduct->singleImage->image)}}"
                                              alt="">
                                     </a>
-                                   {{-- <div class="label-product label_new">New</div>--}}
+                                    <div class="label-product label_new">-{{ round((($product->supplierprice - $product->price) * 100) / $product->supplierprice) }}%</div>
 
                                 </div>
                                 <div class="product-caption">
                                     <h4 class="product-name"><a
-                                                href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">{{$similiarProduct->title}}</a>
+                                                href="{{route('productdetails',['title'=>$similiarProduct->title,'id'=>$similiarProduct->id])}}">{{str_limit($similiarProduct->title,50)}}</a>
                                     </h4>
                                     <div class="price-box">
                                         <span class="new-price">৳ {{$similiarProduct->price}}</span>

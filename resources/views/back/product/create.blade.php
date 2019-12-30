@@ -153,7 +153,7 @@
                     </div>
 
                     <div class="col-sm-4 col-xs-3">
-                        <label>Product Image</label> (Please upload minimum 4 photos)
+                        <label>Product Image</label>
                         <div class="form-group">
                             <div class="btn btn-default btn-file">
                               <i class="fa fa-paperclip"></i> Attachment
