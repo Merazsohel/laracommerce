@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="col-lg-12">
                                     <span style="color: red">**Note: If you want to update your billing info please click <a
-                                                class="btn btn-info" href="{{url('account')}}"> here</a></span>
+                                                class="btn-sm btn-secondary" href="{{url('account')}}"> here</a></span>
                                     </div>
 
                                 </div>

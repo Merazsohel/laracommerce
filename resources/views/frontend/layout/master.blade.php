@@ -1,6 +1,6 @@
 @php
     $data = \App\Category::with('subcategory')->select('id','category')->get();
-    $subTitle = \Illuminate\Support\Facades\DB::table('settings')->select('site_title')->first();
+    $siteTitle = \Illuminate\Support\Facades\DB::table('settings')->select('site_title')->first();
     $logo = \Illuminate\Support\Facades\DB::table('settings')->select('site_logo')->first();
     $favIcon = \Illuminate\Support\Facades\DB::table('settings')->select('favicon')->first();
     $address = \Illuminate\Support\Facades\DB::table('settings')->select('address')->first();
@@ -19,7 +19,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>{{$subTitle->site_title}}</title>
+    <title>{{$siteTitle->site_title}}</title>
     <meta name="robots" content="noindex, follow"/>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

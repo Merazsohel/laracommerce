@@ -238,6 +238,7 @@
                     </div>
                 </div>
                 <div class="row ">
+                    @if(count($similiarProducts) > 0)
                     @foreach($similiarProducts as $similiarProduct)
                         <div class="col-md-4 col-lg-3 col-12">
 
@@ -263,7 +264,12 @@
                             </div>
 
                         </div>
+
                     @endforeach
+
+                        @else
+                            <div class="alert alert-info mt-2"> No related product found </div>
+                    @endif
                 </div>
             </div>
         </div>

@@ -25,6 +25,8 @@ class OrderController extends Controller
         $request['customer_id'] = session('customer_id');
         $request['code'] = mt_rand(100000000, 999999999);
 
+       Session::put('code',  $request['code']);
+
         $payment_type = $request->payment_type;
 
         if ($payment_type == 'ssl_commerz') {

@@ -39,8 +39,12 @@ class OrderController extends Controller
 
     public function show($id)
     {
-        $order = Order::with('customer', 'address', 'product')->where('id', $id)->first();
-        return view('back.order.show', compact('order'));
+        $order = Order::with('customer', 'product')->where('id', $id)->first();
+        $address = DB::table('settings')->select('address')->first();
+        $siteTitle = DB::table('settings')->select('site_title')->first();
+        $email = DB::table('settings')->select('email')->first();
+        $mobile = DB::table('settings')->select('mobile')->first();
+        return view('back.order.show', compact('order','order','address','siteTitle','email','mobile'));
     }
 
 
@@ -54,7 +58,7 @@ class OrderController extends Controller
     {
         if ($status != null) {
 
-            $orders = Order::with('customer', 'address')
+            $orders = Order::with('customer')
                 ->where('cycle', $status)
                 ->paginate(20);
 

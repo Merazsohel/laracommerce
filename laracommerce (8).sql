@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 30, 2019 at 06:45 AM
+-- Generation Time: Dec 30, 2019 at 10:42 AM
 -- Server version: 5.7.28-0ubuntu0.18.04.4
 -- PHP Version: 7.2.24-0ubuntu0.18.04.1
 
@@ -284,12 +284,7 @@ CREATE TABLE `delivery_payment` (
 --
 
 INSERT INTO `delivery_payment` (`id`, `delivery_id`, `payable`, `paid`, `remain`, `month`, `year`, `invoice`, `paid_by`, `created_at`, `updated_at`) VALUES
-(26, 1, 60, 30, 30, 'August', 2018, '5643456', 'Admin', '2018-08-13 20:38:23', '2018-08-13 20:38:23'),
-(27, 1, 60, 15, 15, 'August', 2018, '56434565', 'Admin', '2018-08-13 20:38:33', '2018-08-13 20:38:33'),
-(28, 1, 60, 15, 0, 'August', 2018, '56434512', 'Admin', '2018-08-13 20:38:44', '2018-08-13 20:38:44'),
-(29, 1, 120, 30, 30, 'August', 2018, '5643456', 'Admin', '2018-08-14 15:44:03', '2018-08-14 15:44:03'),
-(30, 1, 120, 15, 15, 'August', 2018, '56434565', 'Admin', '2018-08-14 15:45:42', '2018-08-14 15:45:42'),
-(31, 1, 120, 10, 5, 'August', 2018, '56434565', 'Admin', '2018-08-14 18:20:56', '2018-08-14 18:20:56');
+(32, 1, 100, 50, 50, 'December', 2019, '974935544', 'admin', '2019-12-30 10:42:04', '2019-12-30 10:42:04');
 
 -- --------------------------------------------------------
 
@@ -365,6 +360,17 @@ CREATE TABLE `orderdeliveries` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `orderdeliveries`
+--
+
+INSERT INTO `orderdeliveries` (`id`, `order_id`, `delivery_id`, `delivery_charge`, `created_at`, `updated_at`) VALUES
+(1, NULL, 1, 0.00, '2019-12-30 10:18:01', '2019-12-30 10:18:01'),
+(2, NULL, 1, 0.00, '2019-12-30 10:18:19', '2019-12-30 10:18:19'),
+(3, 1, 1, 50.00, '2019-12-30 10:33:14', '2019-12-30 10:33:14'),
+(4, 2, 3, 50.00, '2019-12-30 10:33:52', '2019-12-30 10:33:52'),
+(5, 3, 1, 50.00, '2019-12-30 10:36:51', '2019-12-30 10:36:51');
+
 -- --------------------------------------------------------
 
 --
@@ -389,11 +395,23 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `address`, `customer_id`, `delivery_charge`, `total`, `cycle`, `code`, `created_at`, `updated_at`, `payment_type`) VALUES
-(1, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '974935544', '2019-12-26 06:23:13', '2019-12-26 06:23:13', 'cash_on_delivery'),
-(2, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '905621606', '2019-12-26 06:24:35', '2019-12-26 06:24:35', 'cash_on_delivery'),
-(3, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '979872928', '2019-12-26 06:25:20', '2019-12-26 06:25:20', 'cash_on_delivery'),
+(1, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'success', '974935544', '2019-12-26 06:23:13', '2019-12-30 10:37:19', 'cash_on_delivery'),
+(2, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'ondelivery', '905621606', '2019-12-26 06:24:35', '2019-12-30 10:33:52', 'cash_on_delivery'),
+(3, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'success', '979872928', '2019-12-26 06:25:20', '2019-12-30 10:36:53', 'cash_on_delivery'),
 (4, 'Badda, Dhaka-1207', 3, 50.00, 11000.00, 'new', '729848328', '2019-12-26 06:31:16', '2019-12-26 06:31:16', 'cash_on_delivery'),
-(5, 'Badda, Dhaka-1207', 3, 50.00, 12500.00, 'new', '461567683', '2019-12-26 06:42:30', '2019-12-26 06:42:30', 'cash_on_delivery');
+(5, 'Badda, Dhaka-1207', 3, 50.00, 12500.00, 'new', '461567683', '2019-12-26 06:42:30', '2019-12-26 06:42:30', 'cash_on_delivery'),
+(6, 'Badda, Dhaka-1207', 3, 50.00, 21500.00, 'new', '564056001', '2019-12-30 08:57:00', '2019-12-30 08:57:00', 'cash_on_delivery'),
+(7, 'Badda, Dhaka-1207', 3, 50.00, 21500.00, 'new', '828633805', '2019-12-30 08:57:20', '2019-12-30 08:57:20', 'cash_on_delivery'),
+(8, 'Badda, Dhaka-1207', 3, 50.00, 21500.00, 'new', '780730715', '2019-12-30 08:57:43', '2019-12-30 08:57:43', 'cash_on_delivery'),
+(9, 'Badda, Dhaka-1207', 3, 50.00, 9000.00, 'new', '949833316', '2019-12-30 09:00:45', '2019-12-30 09:00:45', 'cash_on_delivery'),
+(11, 'Badda, Dhaka-1207', 3, 50.00, 9000.00, 'new', '538693772', '2019-12-30 09:11:01', '2019-12-30 09:11:01', 'cash_on_delivery'),
+(12, 'Badda, Dhaka-1207', 3, 50.00, 9000.00, 'new', '862192829', '2019-12-30 09:11:49', '2019-12-30 09:11:49', 'cash_on_delivery'),
+(13, 'Badda, Dhaka-1207', 3, 50.00, 12500.00, 'new', '388114404', '2019-12-30 09:16:43', '2019-12-30 09:16:43', 'cash_on_delivery'),
+(14, 'Badda, Dhaka-1207', 3, 50.00, 12500.00, 'new', '587465169', '2019-12-30 09:18:05', '2019-12-30 09:18:05', 'cash_on_delivery'),
+(15, 'Badda, Dhaka-1207', 3, 50.00, 25000.00, 'new', '379557660', '2019-12-30 09:29:18', '2019-12-30 09:29:18', 'cash_on_delivery'),
+(16, 'Badda, Dhaka-1207', 3, 50.00, 25000.00, 'new', '992978830', '2019-12-30 09:30:29', '2019-12-30 09:30:29', 'cash_on_delivery'),
+(17, 'Badda, Dhaka-1207', 3, 50.00, 12500.00, 'new', '286288127', '2019-12-30 09:32:06', '2019-12-30 09:32:06', 'cash_on_delivery'),
+(18, 'Badda, Dhaka-1207', 3, 50.00, 25000.00, 'new', '678550325', '2019-12-30 09:38:09', '2019-12-30 09:38:09', 'cash_on_delivery');
 
 -- --------------------------------------------------------
 
@@ -422,7 +440,22 @@ INSERT INTO `order_products` (`id`, `order_id`, `product_id`, `qty`, `attr`, `co
 (2, 2, 155, 1, NULL, NULL, NULL, '2019-12-26 06:24:36', '2019-12-26 06:24:36'),
 (3, 3, 155, 1, NULL, NULL, NULL, '2019-12-26 06:25:20', '2019-12-26 06:25:20'),
 (4, 4, 155, 1, NULL, NULL, NULL, '2019-12-26 06:31:16', '2019-12-26 06:31:16'),
-(5, 5, 154, 1, NULL, NULL, NULL, '2019-12-26 06:42:30', '2019-12-26 06:42:30');
+(5, 5, 154, 1, NULL, NULL, NULL, '2019-12-26 06:42:30', '2019-12-26 06:42:30'),
+(6, 6, 156, 1, NULL, NULL, NULL, '2019-12-30 08:57:00', '2019-12-30 08:57:00'),
+(7, 6, 154, 1, NULL, NULL, NULL, '2019-12-30 08:57:01', '2019-12-30 08:57:01'),
+(8, 7, 156, 1, NULL, NULL, NULL, '2019-12-30 08:57:21', '2019-12-30 08:57:21'),
+(9, 7, 154, 1, NULL, NULL, NULL, '2019-12-30 08:57:21', '2019-12-30 08:57:21'),
+(10, 8, 156, 1, NULL, NULL, NULL, '2019-12-30 08:57:43', '2019-12-30 08:57:43'),
+(11, 8, 154, 1, NULL, NULL, NULL, '2019-12-30 08:57:43', '2019-12-30 08:57:43'),
+(12, 9, 156, 1, NULL, NULL, NULL, '2019-12-30 09:00:45', '2019-12-30 09:00:45'),
+(14, 11, 156, 1, NULL, NULL, NULL, '2019-12-30 09:11:01', '2019-12-30 09:11:01'),
+(15, 12, 156, 1, NULL, NULL, NULL, '2019-12-30 09:11:50', '2019-12-30 09:11:50'),
+(16, 13, 154, 1, NULL, NULL, NULL, '2019-12-30 09:16:43', '2019-12-30 09:16:43'),
+(17, 14, 154, 1, NULL, NULL, NULL, '2019-12-30 09:18:05', '2019-12-30 09:18:05'),
+(18, 15, 154, 2, NULL, NULL, NULL, '2019-12-30 09:29:18', '2019-12-30 09:29:18'),
+(19, 16, 154, 2, NULL, NULL, NULL, '2019-12-30 09:30:29', '2019-12-30 09:30:29'),
+(20, 17, 154, 1, NULL, NULL, NULL, '2019-12-30 09:32:06', '2019-12-30 09:32:06'),
+(21, 18, 154, 2, NULL, NULL, NULL, '2019-12-30 09:38:09', '2019-12-30 09:38:09');
 
 -- --------------------------------------------------------
 
@@ -743,7 +776,9 @@ INSERT INTO `supplier_payment` (`id`, `supplier_id`, `order_id`, `payable`, `pai
 (9, 1, 33, 100000.00, 0.00, 'August', '13-08-18'),
 (10, 1, 34, 2000.00, 0.00, 'August', '13-08-18'),
 (11, 1, 35, 10000.00, 0.00, 'September', '10-09-18'),
-(12, 8, 66, 12000.00, 12000.00, 'December', '2019-12-22');
+(12, 8, 66, 12000.00, 12000.00, 'December', '2019-12-22'),
+(13, 8, 3, 12000.00, 0.00, 'December', '30-12-19'),
+(14, 8, 1, 12000.00, 0.00, 'December', '30-12-19');
 
 -- --------------------------------------------------------
 
@@ -1016,7 +1051,7 @@ ALTER TABLE `deliveries`
 -- AUTO_INCREMENT for table `delivery_payment`
 --
 ALTER TABLE `delivery_payment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 --
 -- AUTO_INCREMENT for table `discounts`
 --
@@ -1031,37 +1066,37 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orderdeliveries`
 --
 ALTER TABLE `orderdeliveries`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 --
 -- AUTO_INCREMENT for table `order_products`
 --
 ALTER TABLE `order_products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 --
 -- AUTO_INCREMENT for table `product_colors`
 --
 ALTER TABLE `product_colors`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=189;
 --
 -- AUTO_INCREMENT for table `product_sizes`
 --
 ALTER TABLE `product_sizes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
@@ -1096,7 +1131,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `supplier_payment`
 --
 ALTER TABLE `supplier_payment`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `wishlists`
 --

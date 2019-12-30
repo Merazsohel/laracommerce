@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Invoice Of {{$order->customer->customer_name}}</title>
+    <title>Invoice of {{$order->customer->customer_name}}</title>
     <link rel="stylesheet" href="{{asset('public/back/dist/css/pdf.css')}}">
 </head>
 
@@ -12,12 +12,12 @@
             <div class="col-xs-12">
                 <div class="pull-left">
                     
-                    <p>BDBL BHABAN, <br /> KAWRAN BAZAR, DHAKA-1215</p>
+                    <p>{{$address->address}}</p>
                 </div>
     
                 <div class="pull-right">
                     <h1>INVOICE</h1>
-                    <h4 class="invoice-number">No. # {{$order->id}}</h4>
+                    <h4 class="invoice-number">No. # {{$order->code}}</h4>
                 </div>
             </div>
     
