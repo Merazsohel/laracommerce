@@ -1,19 +1,3 @@
-@php
-    $data = \App\Category::with('subcategory')->select('id','category')->get();
-    $siteTitle = \Illuminate\Support\Facades\DB::table('settings')->select('site_title')->first();
-    $logo = \Illuminate\Support\Facades\DB::table('settings')->select('site_logo')->first();
-    $favIcon = \Illuminate\Support\Facades\DB::table('settings')->select('favicon')->first();
-    $address = \Illuminate\Support\Facades\DB::table('settings')->select('address')->first();
-    $facebook = \Illuminate\Support\Facades\DB::table('settings')->select('facebook_link')->first();
-    $twitter = \Illuminate\Support\Facades\DB::table('settings')->select('twitter_link')->first();
-    $instagram = \Illuminate\Support\Facades\DB::table('settings')->select('instagram_link')->first();
-    $linkedIn = \Illuminate\Support\Facades\DB::table('settings')->select('linkedIn_link')->first();
-    $copyright = \Illuminate\Support\Facades\DB::table('settings')->select('copyright_text')->first();
-    $email = \Illuminate\Support\Facades\DB::table('settings')->select('email')->first();
-    $mobile = \Illuminate\Support\Facades\DB::table('settings')->select('mobile')->first();
-
-@endphp
-
 <!doctype html>
 <html class="no-js" lang="en">
 <head>
