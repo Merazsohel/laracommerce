@@ -104,7 +104,7 @@
 @section('script')
     <script>
         $('#supplier').on('change',function () {
-            $("#supplierform").attr('action',  document.location.origin+'/ecommerce/admin/supplier/payment/'+$(this).val()+'');
+            $("#supplierform").attr('action',  document.location.origin+'/admin/supplier/payment/'+$(this).val()+'');
             this.form.submit();
         })
     </script>

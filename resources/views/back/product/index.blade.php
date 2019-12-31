@@ -185,20 +185,20 @@
         })
 
         $('#supplier').on('change',function () {
-            $("#supplierform").attr('action',  document.location.origin+'/ecommerce/admin/supplier/product/search/'+$(this).val()+'');
+            $("#supplierform").attr('action',  document.location.origin+'/admin/supplier/product/search/'+$(this).val()+'');
             this.form.submit();
         })
 
         $('#brand').on('change',function () {
-            $("#brandform").attr('action',  document.location.origin+'/ecommerce/admin/brand/product/search/'+$(this).val()+'');
+            $("#brandform").attr('action',  document.location.origin+'/admin/brand/product/search/'+$(this).val()+'');
             this.form.submit();
         })
         $('#category').on('change',function () {
-            $("#categoryform").attr('action',  document.location.origin+'/ecommerce/admin/category/product/search/'+$(this).val()+'');
+            $("#categoryform").attr('action',  document.location.origin+'/admin/category/product/search/'+$(this).val()+'');
             this.form.submit();
         })
         $('#childcategory').on('change',function () {
-            $("#childcategoryform").attr('action',  document.location.origin+'/ecommerce/admin/type/product/search/'+$(this).val()+'');
+            $("#childcategoryform").attr('action',  document.location.origin+'/admin/type/product/search/'+$(this).val()+'');
             this.form.submit();
         })
     </script>
