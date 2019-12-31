@@ -32,7 +32,7 @@ class OrderController extends Controller
         $todate = $request->to;
         $from = $fromdate . ' ' . '00:00:00';
         $to = $todate . ' ' . '23:59:59';
-        $orders = Order::with('customer', 'address')->whereBetween('created_at', array($from, $to))->paginate(20);
+        $orders = Order::with('customer')->whereBetween('created_at', array($from, $to))->paginate(20);
         return view('back.order.index', compact('orders'));
     }
 
