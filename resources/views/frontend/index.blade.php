@@ -64,71 +64,6 @@
     </div>
 
 
-    <div class="product-area section-pb section-pt-30">
-    <div class="container">
-
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
-                    <h4>Best seller products</h4>
-                </div>
-            </div>
-        </div>
-
-        <div class="row product-active-lg-4">
-            @foreach($products as $product)
-            <div class="col-lg-12">
-                <div class="single-product-area mt-30">
-                    <div class="product-thumb">
-                        <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
-                            <img class="primary-image" src="{{asset('public/image/product-images/'.$product->singleImage->image)}}" alt="" style="width: 230px;height: 230px">
-                        </a>
-
-                        @if($product->supplierprice != $product->price)
-                            <div class="label-product label_new">{{ round((($product->supplierprice - $product->price) * 100) / $product->supplierprice) }}% OFF</div>
-                        @endif
-
-                        <div class="action-links">
-                            <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
-                            <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
-                        </div>
-                    </div>
-                    <div class="product-caption">
-                        <h4 class="product-name"><a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">{{str_limit($product->title,50)}}</a></h4>
-                        <div class="price-box">
-                            <span class="new-price">৳ {{$product->price}}</span>
-                            @if($product->supplierprice != $product->price)
-                                <span class="old-price">৳ {{$product->supplierprice}}</span>
-                            @endif
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-                @endforeach
-
-        </div>
-    </div>
-    </div>
-
-    <div class="banner-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="single-banner mb-30">
-                        <a href="#"><img src="{{asset('public/frontend')}}/images/banner/banner-03.jpg" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-6  col-md-6">
-                    <div class="single-banner mb-30">
-                        <a href="#"><img src="{{asset('public/frontend')}}/images/banner/banner-04.jpg" alt=""></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="main-content-wrap shop-page section-ptb">
         <div class="container">
             <div class="row">
@@ -298,7 +233,9 @@
                                                                class="product-name">{{$product->title}}</a></h4>
                                                         <div class="price-box">
                                                             <span class="new-price">৳ {{$product->price}}</span>
-                                                            <span class="old-price">৳ {{$product->supplierprice}}</span>
+                                                            @if($product->supplierprice != $product->price)
+                                                                <span class="old-price">৳ {{$product->supplierprice}}</span>
+                                                            @endif
                                                         </div>
 
                                                         <p>{!! \Illuminate\Support\Str::limit($product->keypoint,200) !!}</p>
@@ -362,6 +299,71 @@
         </div>
     </div>
 
+    <div class="product-area section-pb section-pt-30">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title">
+                        <h4>Brand New Products</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row product-active-lg-4">
+                @foreach($newProducts as $product)
+                    <div class="col-lg-12">
+                        <div class="single-product-area mt-30">
+                            <div class="product-thumb">
+                                <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
+                                    <img class="primary-image" src="{{asset('public/image/product-images/'.$product->singleImage->image)}}" alt="" style="width: 230px;height: 230px">
+                                </a>
+
+                                @if($product->supplierprice != $product->price)
+                                    <div class="label-product label_new">{{ round((($product->supplierprice - $product->price) * 100) / $product->supplierprice) }}% OFF</div>
+                                @endif
+
+                                <div class="action-links">
+                                    <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
+                                    <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
+                                </div>
+                            </div>
+                            <div class="product-caption">
+                                <h4 class="product-name"><a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">{{str_limit($product->title,50)}}</a></h4>
+                                <div class="price-box">
+                                    <span class="new-price">৳ {{$product->price}}</span>
+                                    @if($product->supplierprice != $product->price)
+                                        <span class="old-price">৳ {{$product->supplierprice}}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+
+    <div class="banner-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="single-banner mb-30">
+                        <a href="#"><img src="{{asset('public/frontend')}}/images/banner/banner-03.jpg" alt=""></a>
+                    </div>
+                </div>
+                <div class="col-lg-6  col-md-6">
+                    <div class="single-banner mb-30">
+                        <a href="#"><img src="{{asset('public/frontend')}}/images/banner/banner-04.jpg" alt=""></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="newletter-area">
         <div class="container">
             <div class="row">
@@ -416,34 +418,29 @@
                             <div class="col-lg-5 col-md-6 col-sm-6">
                                 <!-- Product Details Left -->
                                 <div class="product-large-slider">
-                                    <div class="pro-large-img">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
-                                    </div>
-                                    <div class="pro-large-img">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
-                                    </div>
-                                    <div class="pro-large-img ">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
-                                    </div>
-                                    <div class="pro-large-img">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
-                                    </div>
+
+                                    @foreach($product->image as $image)
+
+
+                                        <div class="pro-large-img img-zoom">
+                                            <img src="{{asset('public/image/product-images/'.$image->image)}}"
+                                                 alt="product-details"/>
+                                            <a href="{{asset('public/image/product-images/'.$image->image)}}"
+                                               data-fancybox="images"><i class="fa fa-search"></i></a>
+                                        </div>
+                                    @endforeach
 
 
                                 </div>
                                 <div class="product-nav">
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[0]->image)}}" alt="product-details" />
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[1]->image)}}" alt="product-details" />
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[2]->image)}}" alt="product-details" />
-                                    </div>
-                                    <div class="pro-nav-thumb">
-                                        <img src="{{asset('public/image/product-images/'.$product->image[3]->image)}}" alt="product-details" />
-                                    </div>
+                                    @foreach($product->image as $image)
+
+                                        <div class="pro-nav-thumb">
+                                            <img src="{{asset('public/image/product-images/'.$image->image)}}"
+                                                 alt="product-details"/>
+                                        </div>
+
+                                    @endforeach
 
                                 </div>
 

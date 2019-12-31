@@ -22,6 +22,8 @@ class HomeController extends Controller
     {
         $products = $this->getProducts();
 
+        $newProducts = $this->getNewProducts();
+
         $brands = $this->getBrands();
 
         $adsliders = $this->getAdSliders();
@@ -37,7 +39,7 @@ class HomeController extends Controller
         $data = $this->getSubCategories();
 
         return view('frontend.index', compact('products', 'brands', 'categories', 'adsliders',
-                                                    'adsidebars', 'admiddles', 'categorywithproducts', 'data'));
+                                                    'adsidebars', 'admiddles', 'categorywithproducts', 'data','newProducts'));
     }
 
     public function show($title, $id)
@@ -95,6 +97,8 @@ class HomeController extends Controller
 
         $brands = $this->getBrands();
 
+        $newProducts = $this->getNewProducts();
+
         $adsliders = $this->getAdSliders();
 
         $adsidebars = $this->getMiddleAdSliders();
@@ -106,13 +110,17 @@ class HomeController extends Controller
         $data = $this->getSubCategories();
 
         return view('frontend.index', compact('products', 'brands', 'categories',
-                                                    'adsliders', 'adsidebars', 'admiddles', 'data'));
+                                                    'adsliders', 'adsidebars', 'admiddles', 'data','newProducts'));
     }
     public function brandWiseProductList($id)
     {
-        $products = $this->getProducts();
+        $products = Product::with('singleImage', 'subcategory', 'discount','color','size')
+                    ->where('brand_id',$id)
+                    ->paginate('8');
 
         $brands = $this->getBrands();
+
+        $newProducts = $this->getNewProducts();
 
         $adsliders = $this->getAdSliders();
 
@@ -126,16 +134,20 @@ class HomeController extends Controller
 
 
         return view('frontend.index', compact(
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data'
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data','newProducts'
         ));
 
     }
 
     public function lowToHigh()
     {
-        $products = Product::with('singleImage', 'subcategory', 'discount')->orderBy('price','asc')->paginate('6');
+        $products = Product::with('singleImage', 'subcategory', 'discount')
+                    ->orderBy('price','asc')
+                    ->paginate('6');
 
         $brands = $this->getBrands();
+
+        $newProducts = $this->getNewProducts();
 
         $adsliders = $this->getAdSliders();
 
@@ -149,15 +161,19 @@ class HomeController extends Controller
 
 
         return view('frontend.index', compact(
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data'
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data','newProducts'
         ));
     }
 
     public function highToLow()
     {
-        $products = Product::with('singleImage', 'subcategory', 'discount')->orderBy('price','desc')->paginate('6');
+        $products = Product::with('singleImage', 'subcategory', 'discount')
+                    ->orderBy('price','desc')
+                    ->paginate('6');
 
         $brands = $this->getBrands();
+
+        $newProducts = $this->getNewProducts();
 
         $adsliders = $this->getAdSliders();
 
@@ -170,7 +186,7 @@ class HomeController extends Controller
         $data = $this->getSubCategories();
 
         return view('frontend.index', compact(
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data'
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles', 'data','newProducts'
         ));
     }
 
@@ -184,6 +200,8 @@ class HomeController extends Controller
             ->where('price','<=',$end)
             ->paginate('6');
 
+        $newProducts = $this->getNewProducts();
+
         $brands = $this->getBrands();
 
         $adsliders = $this->getAdSliders();
@@ -197,7 +215,7 @@ class HomeController extends Controller
         $data = $this->getSubCategories();
 
         return view('frontend.index', compact(
-            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles','data'
+            'products', 'brands', 'categories', 'adsliders', 'adsidebars', 'admiddles','data','newProducts'
         ));
     }
 
@@ -246,6 +264,13 @@ class HomeController extends Controller
     {
         return Product::with('singleImage', 'subcategory', 'discount','color','size')
             ->paginate('8');
+    }
+
+    public function getNewProducts()
+    {
+        $newProducts = Product::with('singleImage', 'subcategory', 'discount')
+            ->orderBy('id', 'desc')->take(5)->get();
+        return $newProducts;
     }
 
 
