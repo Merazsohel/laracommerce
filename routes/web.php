@@ -49,6 +49,8 @@ Route::prefix('/')->group(function () {
     Route::post('fail-url','OrderController@fail_url');
     Route::post('cancel-url','OrderController@cancel_url');
 
+    Route::post('stripe', 'OrderController@stripePost')->name('stripe.post');
+
     //Account
 
     Route::get('account','ProfileController@profile')->name('profile');

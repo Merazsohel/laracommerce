@@ -68,12 +68,12 @@
                   <table class="table table-bordered table-striped " id="example1">
                       <thead>
                           <tr>
-                              <th>Order ID</th>
+                              <th>ID</th>
                               <th>Date</th>
                               <th>Name</th>
                               <th>Mobile</th>
                               <th>Address</th>
-                              <th>Payment Type</th>
+                              <th>Payment</th>
                               <th>Total</th>
                               <th>Status</th>
                               <th>Action</th>
@@ -83,7 +83,7 @@
                         @php $i = 1 @endphp
                           @foreach($orders as $order)
                             <tr>
-                                <td>{{$order->id}}</td>
+                                <td>{{$order->code}}</td>
                                 <td>{{$order->created_at}}</td>
                                 <td>{{$order->customer->customer_name}}</td>
                                 <td>{{$order->customer->mobile_number}}</td>

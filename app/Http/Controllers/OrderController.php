@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Mail;
+use Stripe;
 
 class OrderController extends Controller
 {
@@ -70,6 +71,10 @@ class OrderController extends Controller
             $cart = Cart::content();
 
             return view('frontend.cart.paypal',compact('cart'));
+        }
+
+        if ($payment_type == 'stripe'){
+            return view('frontend.cart.stripe');
         }
 
 
@@ -197,6 +202,22 @@ class OrderController extends Controller
     public function cancel_url()
     {
         return "Cancel";
+    }
+
+    public function stripePost(Request $request)
+    {
+        Stripe\Stripe::setApiKey('sk_test_26oIbkHKrqq4hURz0OnXHkKF00Aod2EwxM');
+        Stripe\Charge::create ([
+            "amount" => 100 * 100,
+            "currency" => "bdt",
+            "source" => $request->stripeToken,
+            "description" => "Test payment from merazsohel.com."
+        ]);
+
+        Session::flash('success', 'Payment successful!');
+        Cart::destroy();
+        return redirect()->to('shipping');
+
     }
 
 
