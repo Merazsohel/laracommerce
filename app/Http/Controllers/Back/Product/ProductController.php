@@ -30,7 +30,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::with('color', 'size', 'color')->get();
+        $products = Product::all();
         $suppliers = $this->getSuppliers();
         $brands = $this->getBrands();
         $categories = $this->getCategories();
@@ -62,6 +62,7 @@ class ProductController extends Controller
         $childcategories = $this->getChildCategories();
         $suppliers = $this->getSuppliers();
         $brands = $this->getBrands();
+
         $product = Product::with('color', 'size', 'image', 'discount')->where('id', $id)->first();
 
         return view('back.product.edit', compact('product', 'categories', 'subcategories',
@@ -165,7 +166,7 @@ class ProductController extends Controller
 
     public function supplierwisesearch($id)
     {
-        $products = Product::with('color', 'size', 'color')->where('supplier_id', $id)->paginate(20);
+        $products = Product::with( 'size', 'color')->where('supplier_id', $id)->paginate(20);
         $suppliers = $this->getSuppliers();
         $brands = $this->getBrands();
         $categories = $this->getCategories();
@@ -177,7 +178,7 @@ class ProductController extends Controller
 
     public function brandwisesearch($id)
     {
-        $products = Product::with('color', 'size', 'color')->where('brand_id', $id)->paginate(20);
+        $products = Product::with('size', 'color')->where('brand_id', $id)->paginate(20);
         $suppliers = $this->getSuppliers();
         $brands = $this->getBrands();
         $categories = $this->getCategories();
@@ -189,7 +190,7 @@ class ProductController extends Controller
 
     public function categorywisesearch($id)
     {
-        $products = Product::with('color', 'size', 'color')->where('category_id', $id)->paginate(20);
+        $products = Product::with( 'size', 'color')->where('category_id', $id)->paginate(20);
         $suppliers = $this->getSuppliers();
         $brands = $this->getBrands();
         $categories = $this->getCategories();
@@ -201,7 +202,7 @@ class ProductController extends Controller
 
     public function typewisesearch($id)
     {
-        $products = Product::with('color', 'size', 'color')->where('child_category', $id)->paginate(20);
+        $products = Product::with( 'size', 'color')->where('child_category', $id)->paginate(20);
         $suppliers = $this->getSuppliers();
         $brands = $this->getBrands();
         $categories = $this->getCategories();

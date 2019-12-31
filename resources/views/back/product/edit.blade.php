@@ -11,7 +11,8 @@
         <!-- Default box -->
         <div class="box box-primary">
             <div class="box-header with-border">
-                <form role="form" method="post" action="{{route('productupdate',$product->id)}}" enctype="multipart/form-data">
+                <form role="form" method="post" action="{{route('productupdate',$product->id)}}"
+                      enctype="multipart/form-data">
                     {{csrf_field()}}
 
                     <div class="box-body">
@@ -20,24 +21,27 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label for="title">Product Title</label>
-                                    <input type="text" class="form-control" value="{{$product->title}}" id="title" name="title" placeholder="Product Title">
+                                    <input type="text" class="form-control" value="{{$product->title}}" id="title"
+                                           name="title" placeholder="Product Title">
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="supplierprice">Supllier Price</label>
-                                    <input type="text" class="form-control" value="{{$product->supplierprice}}" id="supplierprice" name="supplierprice" placeholder="Supplier Price">
+                                    <input type="text" class="form-control" value="{{$product->supplierprice}}"
+                                           id="supplierprice" name="supplierprice" placeholder="Supplier Price">
                                 </div>
                             </div>
                             <div class="col-xs-3">
                                 <div class="form-group">
                                     <label for="price">Selling Price</label>
-                                    <input type="text" class="form-control" value="{{$product->price}}" id="price" name="price" placeholder="Selling Price">
+                                    <input type="text" class="form-control" value="{{$product->price}}" id="price"
+                                           name="price" placeholder="Selling Price">
                                 </div>
                             </div>
                         </div>
-                        
-                         <div class="row">
+
+                        <div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group">
                                     <label for="">Product Keypoint</label>
@@ -59,7 +63,6 @@
                             </div>
                         </div>
 
-                       
 
                         <div class="row">
                             <div class="col-ms-3 col-xs-3">
@@ -68,7 +71,7 @@
                                     <select class="form-control" name="brand_id">
                                         <option value="">Brand</option>
                                         @foreach($brands as $brand)
-                                            <option value="{{$brand->id}}"   {{$product->brand_id==$brand->id ?  'selected':''}}  >{{$brand->name}}</option>
+                                            <option value="{{$brand->id}}" {{$product->brand_id==$brand->id ?  'selected':''}} >{{$brand->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -80,12 +83,12 @@
                                     <select class="form-control" name="supplier_id">
                                         <option value="">Brand</option>
                                         @foreach($suppliers as $supplier)
-                                            <option value="{{$supplier->id}}" {{$product->supplier_id==$supplier->id ? 'selected':''}}  >{{$supplier->name}}</option>
+                                            <option value="{{$supplier->id}}" {{$product->supplier_id==$supplier->id ? 'selected':''}} >{{$supplier->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            
+
                             <div class="col-ms-3 col-xs-3">
                                 <div class="form-group">
                                     <label>Select Category</label>
@@ -141,48 +144,48 @@
                                 <div class="form-group">
                                    <span style="color:crimson"> Current Colors:
                                     @foreach($product->color as $color)
-                                       {{strtoupper($color->color.", ")}}
-                                    @endforeach
+                                           {{strtoupper($color->color.", ")}}
+                                       @endforeach
                                     </span>
                                     <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                <input type="checkbox" value="red" class="minimal" name="color[]">
-                                    Red
-                                </label>
-                           
-                                <label>
-                                <input type="checkbox"  value="blue" class="minimal" name="color[]">
-                                    Blue
-                                </label>
-                           
-                                <label>
-                                <input type="checkbox"  value="black" class="minimal" name="color[]">
-                                    Black
-                                </label>
-                                <input type="checkbox"  value="green" class="minimal" name="color[]">
-                                    Green
-                                </label>
-                                <input type="checkbox"  value="white" class="minimal" name="color[]">
-                                    White
-                                </label>
-                                 <input type="checkbox"  value="pink" class="minimal" name="color[]">
-                                    Pink
-                                </label>
-                                <input type="checkbox"  value="yellow" class="minimal" name="color[]">
-                                    Yellow
-                                </label>
-                                <input type="checkbox"  value="silver" class="minimal" name="color[]">
-                                    Silver
-                                </label>
-                                <input type="checkbox"  value="purple" class="minimal" name="color[]">
-                                    Purple
-                                </label>
-                                 <input type="checkbox"  value="magento" class="minimal" name="color[]">
-                                    Magento
-                                </label>
-                            </div>
-                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" value="red" class="minimal" name="color[]">
+                                                Red
+                                            </label>
+
+                                            <label>
+                                                <input type="checkbox" value="blue" class="minimal" name="color[]">
+                                                Blue
+                                            </label>
+
+                                            <label>
+                                                <input type="checkbox" value="black" class="minimal" name="color[]">
+                                                Black
+                                            </label>
+                                            <input type="checkbox" value="green" class="minimal" name="color[]">
+                                            Green
+                                            </label>
+                                            <input type="checkbox" value="white" class="minimal" name="color[]">
+                                            White
+                                            </label>
+                                            <input type="checkbox" value="pink" class="minimal" name="color[]">
+                                            Pink
+                                            </label>
+                                            <input type="checkbox" value="yellow" class="minimal" name="color[]">
+                                            Yellow
+                                            </label>
+                                            <input type="checkbox" value="silver" class="minimal" name="color[]">
+                                            Silver
+                                            </label>
+                                            <input type="checkbox" value="purple" class="minimal" name="color[]">
+                                            Purple
+                                            </label>
+                                            <input type="checkbox" value="magento" class="minimal" name="color[]">
+                                            Magento
+                                            </label>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-ms-3 col-xs-3">
@@ -190,27 +193,27 @@
                                 <div class="form-group">
                                   <span style="color:crimson">  Current Sizes :
                                     @foreach($product->size as $size)
-                                        {{strtoupper($size->size.", ")}}
-                                    @endforeach
+                                          {{strtoupper($size->size.", ")}}
+                                      @endforeach
                                     </span>
                                     <div class="checkbox">
                                         <label>
-                                        <input type="checkbox"  value="xl" class="minimal" name="size[]">
+                                            <input type="checkbox" value="xl" class="minimal" name="size[]">
                                             Extra Large
                                         </label>
                                         <label>
-                                        <input type="checkbox" value="l" class="minimal" name="size[]">
+                                            <input type="checkbox" value="l" class="minimal" name="size[]">
                                             Large
                                         </label>
-                                         <input type="checkbox" value="m" class="minimal" name="size[]">
-                                            Medium
+                                        <input type="checkbox" value="m" class="minimal" name="size[]">
+                                        Medium
                                         </label>
                                         <label>
-                                        <input type="checkbox" value="s" class="minimal" name="size[]">
+                                            <input type="checkbox" value="s" class="minimal" name="size[]">
                                             Small
                                         </label>
                                         <label>
-                                        <input type="checkbox" value="xs" class="minimal" name="size[]">
+                                            <input type="checkbox" value="xs" class="minimal" name="size[]">
                                             Extra Small
                                         </label>
                                     </div>
@@ -220,7 +223,8 @@
                                 <div class="form-group">
                                     <label>Price Discount</label>
                                     @if(!is_null($product->discount))
-                                        <input type="text" value="{{$product->discount->amount}}" name="discount" class="form-control">
+                                        <input type="text" value="{{$product->discount->amount}}" name="discount"
+                                               class="form-control">
                                     @else
                                         <input type="text" name="discount" class="form-control">
                                     @endif
@@ -228,7 +232,8 @@
                             </div>
                             <div class="col-sm-3 col-xs-3">
                                 @foreach($product->image as $image)
-                                    <img src="{{asset('public/image/product-images/'.$image->image)}}" style="width: 80px" alt="">
+                                    <img src="{{asset('public/image/product-images/'.$image->image)}}"
+                                         style="width: 80px" alt="">
                                 @endforeach
                                 <label>Upload Product Image</label>
                                 <div class="form-group">
