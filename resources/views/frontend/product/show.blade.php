@@ -111,7 +111,7 @@
                                             </div>
                                         </div>
 
-                                        <button class="add-to-cart mt-2" type="submit">Add To Cart</button>
+                                        <button class="btn-md btn-secondary mt-2" type="submit" >Add To Cart</button>
 
                                     </div>
                                 </div>

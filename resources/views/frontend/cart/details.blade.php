@@ -103,13 +103,13 @@
                                     <a href="{{url('/')}}" class=" continue-btn">Continue Shopping</a>
                                 </div>
 
-                                <div class="coupon">
+                                {{--<div class="coupon">
                                     <h3>Coupon</h3>
                                     <p>Enter your coupon code if you have one.</p>
                                     <input id="coupon_code" class="input-text" name="coupon_code" value=""
                                            placeholder="Coupon code" type="text">
                                     <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                         <div class="col-md-4 ml-auto">
