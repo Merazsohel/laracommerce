@@ -156,17 +156,17 @@ class OrderController extends Controller
 
     public function success_url()
     {
-        echo 'In Success';
+        return "Success";
     }
 
     public function fail_url()
     {
-        echo 'Fail';
+        return "Fail";
     }
 
     public function cancel_url()
     {
-        echo 'Cancel';
+        return "Cancel";
     }
 
 

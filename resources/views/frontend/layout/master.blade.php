@@ -25,34 +25,6 @@
 
     <header class="header">
 
-        <div class="header-top-area d-none d-lg-block text-color-white bg-gren border-bm-1">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="header-top-settings">
-
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="top-info-wrap text-right">
-                            <ul class="my-account-container">
-                                @if(\Illuminate\Support\Facades\Session::get('customer_id'))
-                                    <li><a href="{{url('account')}}">My account</a></li>
-                                  @else
-                                    <li><a href="{{url('customer-login')}}">Login</a></li>
-                                @endif
-
-                                <li><a href="{{url('cart')}}">Cart</a></li>
-                                <li><a href="{{url('checkout')}}">Checkout</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
         <div class="haeader-mid-area bg-gren border-bm-1 d-none d-lg-block ">
             <div class="container">
                 <div class="row align-items-center">
@@ -80,11 +52,20 @@
                         </div>
                     </div>
 
+
                     <div class="col-lg-3">
                         <div class="right-blok-box text-white d-flex">
+                            @if(\Illuminate\Support\Facades\Session::get('customer_id'))
+                                <a href="{{url('account')}}"><i class="fa fa-user-circle-o"></i></a>
+                                <a href="{{url('customer-logout')}}"><i class="fa fa-sign-out"></i></a>
+                            @else
+                                <a href="{{url('customer-login')}}"><i class="fa fa-sign-in"></i></a>
+                            @endif
+
 
                             <div class="shopping-cart-wrap">
                                 <a href="#"><i class="icon-basket-loaded"></i><span class="cart-total">{{Cart::count()}}</span></a>
+
                                 <ul class="mini-cart">
 
                                     @foreach(Cart::content() as $cart)
@@ -212,7 +193,7 @@
                     <div class="search-box-offcanvas">
                         <form method="get" action="{{url('search-product')}}">
                             <input type="text" id="search_text" name="q" class="search-field search-input" placeholder="Search product..." required>
-                            <button type="submit" class="search btn btn-primary">Search</button>
+                            <button type="submit" class="search btn-secondary">Search</button>
                         </form>
                     </div>
 

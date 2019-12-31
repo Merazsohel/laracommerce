@@ -6,13 +6,13 @@
 
 @section('content')
 
-    <div class="hero-slider hero-slider-one">
+    <div class="hero-slider hero-slider-one" >
         @foreach($adsliders as $adslider)
             <div class="single-slide"
-                 style="background-image: url({{ asset('public/image/advertisement-images/'.$adslider->photo) }}); height: 370px">
+                 style="background-image: url({{ asset('public/image/advertisement-images/'.$adslider->photo) }}); height: 370px;">
                 <div class="hero-content-one container">
                     <div class="row">
-                        <div class="col-lg-12 col-md-12">
+                        <div class="col-lg-12 col-md-12" >
                             <div class="slider-content-text text-left">
                                 <h1>{{ $adslider->title }}</h1>
                                 <p>{{ $adslider->subtitle }}</p>
@@ -67,7 +67,7 @@
     <div class="main-content-wrap shop-page section-ptb">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 order-lg-1 order-2">
+                <div class="col-lg-3 order-lg-1 order-2 col-md-3">
                     <div class="shop-sidebar-wrap">
                         <div class="shop-box-area">
 
@@ -145,7 +145,7 @@
                     </div>
 
                 </div>
-                <div class="col-lg-9 order-lg-2 order-1">
+                <div class="col-lg-9 order-lg-2 order-1 col-md-9">
                     <div class="shop-product-wrapper">
                         <div class="row align-itmes-center">
                             <div class="col">
