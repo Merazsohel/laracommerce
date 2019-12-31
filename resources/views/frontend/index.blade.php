@@ -83,7 +83,11 @@
                         <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">
                             <img class="primary-image" src="{{asset('public/image/product-images/'.$product->singleImage->image)}}" alt="" style="width: 230px;height: 230px">
                         </a>
-                       <div class="label-product label_new">-{{ round((($product->supplierprice - $product->price) * 100) / $product->supplierprice) }}%</div>
+
+                        @if($product->supplierprice != $product->price)
+                            <div class="label-product label_new">{{ round((($product->supplierprice - $product->price) * 100) / $product->supplierprice) }}% OFF</div>
+                        @endif
+
                         <div class="action-links">
                             <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                             <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
@@ -93,7 +97,9 @@
                         <h4 class="product-name"><a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}">{{str_limit($product->title,50)}}</a></h4>
                         <div class="price-box">
                             <span class="new-price">৳ {{$product->price}}</span>
-                            <span class="old-price">৳ {{$product->supplierprice}}</span>
+                            @if($product->supplierprice != $product->price)
+                                <span class="old-price">৳ {{$product->supplierprice}}</span>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -243,7 +249,11 @@
                                                                      src="{{asset('public/image/product-images/'.$product->singleImage->image)}}"
                                                                      alt="">
                                                             </a>
-                                                            <div class="label-product label_new">-{{ round((($product->supplierprice - $product->price) * 100) / $product->supplierprice) }}%</div>
+
+                                                            @if($product->supplierprice != $product->price)
+                                                                <div class="label-product label_new">{{ round((($product->supplierprice - $product->price) * 100) / $product->supplierprice) }}% OFF</div>
+                                                            @endif
+
                                                             <div class="action-links">
                                                                 <a href="{{route('productdetails',['title'=>$product->title,'id'=>$product->id])}}" class="cart-btn" title="Add to Cart"><i class="icon-basket-loaded"></i></a>
                                                                 <a href="#" class="quick-view" title="Quick View" data-toggle="modal" data-target="#exampleModalCenter"><i class="icon-magnifier icons"></i></a>
@@ -255,7 +265,9 @@
                                                             </h4>
                                                             <div class="price-box">
                                                                 <span class="new-price">৳ {{$product->price}}</span>
+                                                                @if($product->supplierprice != $product->price)
                                                                 <span class="old-price">৳ {{$product->supplierprice}}</span>
+                                                                 @endif
                                                             </div>
                                                         </div>
                                                     </div>

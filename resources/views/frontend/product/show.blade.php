@@ -67,7 +67,9 @@
                             </div>
                             <div class="price-box">
                                 <span class="new-price">৳ {{$product->price}}</span>
-                                <span class="old-price">৳ {{$product->supplierprice}}</span>
+                                @if($product->supplierprice != $product->price)
+                                    <span class="old-price">৳ {{$product->supplierprice}}</span>
+                                @endif
                             </div>
                             <p>{!! $product->keypoint !!}</p>
 
