@@ -15,8 +15,7 @@ class OrderController extends Controller
 
     public function placeOrder(Request $request)
     {
-        $request->validate([ 'payment_type' => 'required'],
-
+        $request->validate(['payment_type' => 'required'],
         ['payment_type.required' => 'Please select your payment method!']);
 
         $request['delivery_charge'] = 50;
@@ -25,15 +24,21 @@ class OrderController extends Controller
         $request['customer_id'] = session('customer_id');
         $request['code'] = mt_rand(100000000, 999999999);
 
-       Session::put('code',  $request['code']);
+        Session::put('code', $request['code']);
 
         $payment_type = $request->payment_type;
 
         if ($payment_type == 'ssl_commerz') {
-            $this->ssl_payment();
+
+            if ($order = Order::create($request->all())) {
+                foreach (Cart::content() as $cart) {
+                    DB::table('order_products')->insert(['order_id' => $order->id, 'product_id' => $cart->id, 'color' => $cart->options->color, 'size' => $cart->options->size, 'qty' => $cart->qty, 'attr' => $cart->options->attr, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+                }
+                $this->ssl_payment();
+            }
         }
 
-        if ($payment_type == 'cash_on_delivery'){
+        if ($payment_type == 'cash_on_delivery') {
 
             if ($order = Order::create($request->all())) {
                 foreach (Cart::content() as $cart) {
@@ -55,8 +60,20 @@ class OrderController extends Controller
             }
         }
 
-    }
+        if ($payment_type == 'paypal') {
 
+           $order = Order::create($request->all());
+            foreach (Cart::content() as $cart) {
+                DB::table('order_products')->insert(['order_id' => $order->id, 'product_id' => $cart->id, 'color' => $cart->options->color, 'size' => $cart->options->size, 'qty' => $cart->qty, 'attr' => $cart->options->attr, 'created_at' => Carbon::now(), 'updated_at' => Carbon::now()]);
+            }
+
+            $cart = Cart::content();
+
+            return view('frontend.cart.paypal',compact('cart'));
+        }
+
+
+    }
 
 
     private function ssl_payment()
@@ -94,7 +111,7 @@ class OrderController extends Controller
         $_SESSION['CUS_HISTORY']['CUS_EMAIL'] = $post_data['cus_email'] = Session::get('email_address');
 
         $_SESSION['CUS_HISTORY']['CUS_ADD'] = $post_data['cus_add1'] = Session::get('address');
-        $_SESSION['CUS_HISTORY']['CUS_COUNTRY'] = $post_data['cus_country'] ='Bangladesh';
+        $_SESSION['CUS_HISTORY']['CUS_COUNTRY'] = $post_data['cus_country'] = 'Bangladesh';
 
 
         $handle = curl_init();
@@ -156,7 +173,20 @@ class OrderController extends Controller
 
     public function success_url()
     {
-        return "Success";
+        $data = [];
+        $data["email_address"] = Session::get('email_address');
+        $data["customer_name"] = Session::get('customer_name');
+        $data["subject"] = 'Thanks For Purchase';
+
+        Mail::send('frontend.mail.mail', $data, function ($message) use ($data) {
+            $message->to($data["email_address"], $data["customer_name"])
+                ->subject($data["subject"]);
+        });
+
+
+        Cart::destroy();
+
+        return redirect()->to('shipping');
     }
 
     public function fail_url()
