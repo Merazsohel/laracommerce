@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Setting;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
@@ -52,6 +53,11 @@ class OrderController extends Controller
                 Mail::send('frontend.mail.mail', $data, function ($message) use ($data) {
                     $message->to($data["email_address"], $data["customer_name"])
                         ->subject($data["subject"]);
+                });
+
+                Mail::send('frontend.mail.admin_mail', $data, function ($message) use ($data) {
+                    $message->to('merazhossain64@gmail.com', 'Order Confirmation')
+                        ->subject('New Order');
                 });
 
 
