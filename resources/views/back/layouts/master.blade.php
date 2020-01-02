@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.1/build/css/themes/default.min.css"/>
     <link rel="stylesheet" href="{{ asset('public/back/dist/css/skins/_all-skins.min.css')}}">
-
     <link rel="stylesheet" href="{{ asset('public/back/dist/css/custom.css')}}">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -91,7 +90,8 @@
                 <li class="header">MAIN NAVIGATION</li>
                 <li><a href="{{ route('adminindex') }}"><i class="fa fa-dashboard"></i> <span> Dashboard </span></a>
                 </li>
-                <li><a href="{{ route('orderindex') }}"><i class="fa fa-bullhorn"></i> <span> All Orders </span></a>
+
+                <li><a href="{{ route('orderindex') }}"><i class="fa fa-bullhorn"></i> <span> All Orders </span><small class="label pull-right bg-red">{{$newOrder}}</small></a>
                 </li>
                 <li><a href="{{ route('categorycreate') }}"><i class="fa fa-sitemap"></i> <span> All Categories </span></a>
                 </li>

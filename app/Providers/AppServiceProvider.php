@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use App\Order;
 use App\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -48,6 +49,12 @@ class AppServiceProvider extends ServiceProvider
                   ->with('email',$email)
                   ->with('mobile',$mobile)
             ;
+        });
+
+        View::composer('back.layouts.master', function ($view) {
+            $newOrder = Order::where('cycle','new')->count();
+
+            $view->with('newOrder',$newOrder);
         });
     }
 
